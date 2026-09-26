@@ -42,6 +42,12 @@ main:focus { outline: none; }
 .home-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 32px; align-items: start; }
 .profile-photo { display: block; width: 100%; height: auto; }
 .research-item { margin-top: 2rem; }
+.photo-gallery { display: grid; gap: 36px; }
+.photo-gallery figure { margin: 0; }
+.photo-gallery a { display: block; }
+.photo-gallery img { display: block; width: 100%; height: auto; }
+.photo-gallery figcaption { margin-top: 8px; }
+.photo-gallery .portrait-photo { width: 100%; max-width: 480px; justify-self: center; }
 @media (max-width: 640px) {
   body { margin: 24px auto; }
   header { align-items: flex-start; flex-direction: column; gap: 10px; }
