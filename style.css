@@ -39,11 +39,16 @@ address { font-style: normal; }
 .skip-link { position: absolute; top: 8px; left: 20px; padding: 8px; background: var(--paper); transform: translateY(-200%); }
 .skip-link:focus { transform: translateY(0); }
 main:focus { outline: none; }
+.home-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 32px; align-items: start; }
+.profile-photo { display: block; width: 100%; height: auto; }
+.research-item { margin-top: 2rem; }
 @media (max-width: 640px) {
   body { margin: 24px auto; }
   header { align-items: flex-start; flex-direction: column; gap: 10px; }
   h1 { font-size: 1.8rem; }
   nav { gap: 20px; }
+  .home-layout { grid-template-columns: 1fr; gap: 20px; }
+  .profile-photo { max-width: 360px; }
 }
 @media print {
   body { max-width: none; margin: 0; padding: 0; background: #fff; color: #000; }
