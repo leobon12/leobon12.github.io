@@ -1,0 +1,70 @@
+.coding-intro {
+  max-width: 38rem;
+  color: #625a52;
+  margin: -.6rem 0 2rem;
+}
+.formalization-list {
+  border-top: 1px solid #d8cbb8;
+}
+.formalization {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  column-gap: 1.25rem;
+  padding: 1.7rem 0 1.8rem;
+  border-bottom: 1px solid #d8cbb8;
+  scroll-margin-top: 2rem;
+}
+.project-number {
+  color: var(--maroon);
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .08em;
+  padding-top: .35rem;
+}
+.formalization h3 {
+  max-width: 42rem;
+  margin: 0 0 .55rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+.paper-authors {
+  margin: 0 0 1rem;
+  color: #625a52;
+  font-size: .9375rem;
+}
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .7rem 1.5rem;
+  margin: 0;
+  font-size: .875rem;
+}
+.paper-link {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  text-decoration-color: #c5a99d;
+}
+.paper-link:hover { text-decoration-color: currentColor; }
+.lean-placeholder {
+  display: inline-flex;
+  gap: .55rem;
+  align-items: baseline;
+  color: #625a52;
+}
+.lean-label {
+  color: #3c3732;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .8rem;
+}
+@media (max-width: 480px) {
+  .formalization { grid-template-columns: 1.4rem minmax(0, 1fr); column-gap: .65rem; }
+  .formalization h3 { font-size: 1.25rem; }
+  .project-links { gap: .55rem 1.1rem; }
+}
+@media print {
+  .formalization { break-inside: avoid; }
+}
