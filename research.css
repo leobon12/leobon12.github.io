@@ -1,17 +1,13 @@
 .ai-research { margin-top: 3.5rem; }
-.ai-research > h2 { scroll-margin-top: 2rem; }
+.research-section-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; margin: 1.25rem 0; }
+.research-section-heading h2 { margin: 0; scroll-margin-top: 2rem; }
+.research-github { font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
 .research-description { max-width: 42rem; margin: 0 0 .9rem; color: #625a52; font-size: .9375rem; }
 .pdf-pages { color: #625a52; font-size: .8rem; }
 .research-status { color: #625a52; font-size: .8rem; }
 
 .research-lean { margin: 0; color: #625a52; font-size: .85rem; white-space: nowrap; }
 
-.research-topics {
-  gap: .6rem 1.5rem;
-  margin: -1rem 0 2.8rem;
-  font-size: .875rem;
-}
-.research-topics a { text-decoration: underline; text-underline-offset: .2em; }
 .research-topic { margin-top: 3rem; scroll-margin-top: 2rem; }
 .research-topic > h3 {
   margin: 0 0 1.2rem;
@@ -56,20 +52,38 @@
   order: 1;
   flex-basis: 100%;
   box-sizing: border-box;
-  margin-top: .5rem;
+  min-width: 0;
+  margin-top: .75rem;
   max-width: 42rem;
   border-left: 2px solid #d8cbb8;
-  padding-left: 1rem;
-  color: #514a43;
-  font-size: .9375rem;
-  overflow-wrap: anywhere;
+  padding-left: 1.2rem;
+  color: #38332e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.025rem;
+  line-height: 1.75;
+  overflow-wrap: break-word;
 }
-.research-result p { margin: 0 0 .8rem; }
+.research-result p { margin: 0 0 1rem; }
 .research-result p:last-child { margin-bottom: 0; }
-.result-source { color: #756b60; font-size: .8rem; }
+.research-result .research-description { max-width: none; color: inherit; font: inherit; }
+.research-result .katex { font-size: 1.04em; }
+.research-result .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .2rem 0;
+  margin: .85rem 0;
+}
+.result-source {
+  border-top: 1px solid #e2d8c8;
+  padding-top: .7rem;
+  color: #756b60;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: .75rem;
+  line-height: 1.6;
+}
 @media (max-width: 480px) {
   .ai-research .formalization h4 { font-size: 1.25rem; }
-  .research-topics { flex-direction: column; gap: .55rem; }
   .research-result { padding-left: .7rem; }
 }
 @media print {
