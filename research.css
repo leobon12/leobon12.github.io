@@ -2,6 +2,7 @@
 .research-section-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; margin: 1.25rem 0; }
 .research-section-heading h2 { margin: 0; scroll-margin-top: 2rem; }
 .research-github { font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
+.research-disclaimer { max-width: 42rem; margin: -1.15rem 0 2rem; color: #625a52; font-size: .9375rem; }
 .research-description { max-width: 42rem; margin: 0 0 .9rem; color: #625a52; font-size: .9375rem; }
 .pdf-pages { color: #625a52; font-size: .8rem; }
 .research-status { color: #625a52; font-size: .8rem; }
