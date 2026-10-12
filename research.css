@@ -14,12 +14,11 @@
 .research-topics a { text-decoration: underline; text-underline-offset: .2em; }
 .research-topic { margin-top: 3rem; scroll-margin-top: 2rem; }
 .research-topic > h3 {
-  margin: 0 0 1rem;
-  color: #625a52;
-  font-size: .85rem;
-  font-weight: 600;
-  letter-spacing: .055em;
-  text-transform: uppercase;
+  margin: 0 0 1.2rem;
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 650;
+  line-height: 1.4;
 }
 .ai-research .formalization h4 {
   max-width: 42rem;
