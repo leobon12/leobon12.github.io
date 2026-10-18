@@ -1,4 +1,8 @@
 .ai-research { margin-top: 3.5rem; }
+#formalized { margin-top: 0; }
+#unformalized { padding-top: 1rem; border-top: 1px solid #d8cbb8; }
+.research-warning { max-width: 44rem; margin: 0 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--maroon); background: #f0e4d3; color: #38332e; font-size: .9375rem; }
+.research-warning + .coding-intro { margin-top: 0; }
 .research-section-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; margin: 1.25rem 0; }
 .research-section-heading h2 { margin: 0; scroll-margin-top: 2rem; }
 .research-github { font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
