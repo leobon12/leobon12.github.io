@@ -279,306 +279,11 @@ locally uniformly in time, where <span class="katex"><span class="katex-mathml">
       </div>
       <p class="research-warning"><strong>These works have not been formalized in Lean and may contain errors or gaps in their arguments.</strong> Their claims should be checked independently. Please let me know if you find any errors!</p>
       <p class="coding-intro">The AI-generated manuscripts below were developed with ChatGPT and are unrefereed. Human-generated work is listed separately at the end of this section.</p>
-      <section class="research-topic" id="unformalized-metric-foundations" aria-labelledby="unformalized-metric-foundations-title">
-        <h3 id="unformalized-metric-foundations-title">Metric Foundations and LFPP Convergence</h3>
-        <div class="formalization-list">
-          <section class="formalization" id="supercritical-original-axioms" aria-labelledby="supercritical-original-axioms-title">
-            <span class="project-number" aria-hidden="true">01</span>
-            <div class="research-row">
-              <h4 id="supercritical-original-axioms-title">Supercritical Exponential Metrics with the Original Axioms</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Supercritical Exponential Metrics with the Original Axioms">Result</summary>
-                  <div class="research-result">
-                    <p>For the whole-space log-correlated Gaussian field in dimension <i>d</i> ≥ 3, the manuscript proposes construction and uniqueness when <i>Q</i><sub>d</sub>(ζ) &gt; √(2(<i>d</i> − 1)), using the original continuum-finiteness axiom. Weak uniqueness is followed by exact dilation covariance and a comparison with every assignment satisfying the five original strong axioms.</p>
-                    <p>The construction uses the quantitative tightness input stated in Proposition 1.4 and reproduced in the PDF. This input and the stated normalization conventions remain part of the theorem’s scope.</p>
-                    <p class="result-source">Submitted manuscript, 102 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/supercritical-original-axioms.pdf" aria-label="Supercritical Exponential Metrics with the Original Axioms: PDF">PDF <span class="pdf-pages">(102 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="higher-dimensional-metric-submission" aria-labelledby="higher-dimensional-metric-submission-title">
-            <span class="project-number" aria-hidden="true">02</span>
-            <div class="research-row">
-              <h4 id="higher-dimensional-metric-submission-title">Higher-Dimensional Exponential Metrics: Submitted Manuscript</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Higher-Dimensional Exponential Metrics: Submitted Manuscript">Result</summary>
-                  <div class="research-result">
-                    <p>For <i>d</i> ≥ 3 and <i>Q</i>(ξ) &gt; √(2<i>d</i>), the submitted manuscript proposes uniqueness up to a deterministic factor for strong and weak exponential metrics, together with locally uniform convergence in probability of the specified convolution approximations.</p>
-                    <p>This is the 30-page submitted version. The related 32-page manuscript and its accompanying formalization are listed under <a href="#higher-dimensional-lqg-metric">Higher-Dimensional Exponential Metrics</a> above; that formalization is not asserted to cover this submitted version.</p>
-                    <p class="result-source">Submitted manuscript, 30 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/higher-dimensional-exponential-metrics-submitted.pdf" aria-label="Higher-Dimensional Exponential Metrics: Submitted Manuscript: PDF">PDF <span class="pdf-pages">(30 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="almost-sure-higher-dimensional-lfpp" aria-labelledby="almost-sure-higher-dimensional-lfpp-title">
-            <span class="project-number" aria-hidden="true">03</span>
-            <div class="research-row">
-              <h4 id="almost-sure-higher-dimensional-lfpp-title">Almost-Sure Convergence of Higher-Dimensional LFPP</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Almost-Sure Convergence of Higher-Dimensional LFPP">Result</summary>
-                  <div class="research-result">
-                    <p>For each fixed subcritical parameter in dimension <i>d</i> ≥ 3, the manuscript gives a conditional upgrade from locally uniform convergence in probability to locally uniform almost-sure convergence through all real mollification scales.</p>
-                    <p>Assumption 1.1 requires a strong metric assignment and convergence in probability for the prescribed approximation. Those hypotheses must be verified for the intended LFPP model.</p>
-                    <p class="result-source">Submitted manuscript, 17 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/almost-sure-higher-dimensional-lfpp.pdf" aria-label="Almost-Sure Convergence of Higher-Dimensional LFPP: PDF">PDF <span class="pdf-pages">(17 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="almost-sure-supercritical-lfpp" aria-labelledby="almost-sure-supercritical-lfpp-title">
-            <span class="project-number" aria-hidden="true">04</span>
-            <div class="research-row">
-              <h4 id="almost-sure-supercritical-lfpp-title">Almost-Sure Convergence of Supercritical LFPP</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Almost-Sure Convergence of Supercritical LFPP">Result</summary>
-                  <div class="research-result">
-                    <p>For each fixed planar supercritical parameter ξ &gt; ξ<sub>crit</sub>, the manuscript claims almost-sure convergence of heat-kernel LFPP through all positive real cutoffs, in the topology of lower semicontinuous extended metrics.</p>
-                    <p>The field is a unit-circle-pinned whole-plane GFF and the normalization uses the median intrinsic left–right crossing of the unit square. The probability-one event is for a fixed parameter; distances may be infinite.</p>
-                    <p class="result-source">Submitted manuscript, 14 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/almost-sure-supercritical-lfpp.pdf" aria-label="Almost-Sure Convergence of Supercritical LFPP: PDF">PDF <span class="pdf-pages">(14 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-      <section class="research-topic" id="unformalized-lfpp-exponents" aria-labelledby="unformalized-lfpp-exponents-title">
-        <h3 id="unformalized-lfpp-exponents-title">Point-to-Point and Set-to-Set LFPP Exponents</h3>
-        <div class="formalization-list">
-          <section class="formalization" id="set-to-set-lfpp-exponent" aria-labelledby="set-to-set-lfpp-exponent-title">
-            <span class="project-number" aria-hidden="true">05</span>
-            <div class="research-row">
-              <h4 id="set-to-set-lfpp-exponent-title">Existence of the Set-to-Set LFPP Exponent</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Existence of the Set-to-Set LFPP Exponent">Result</summary>
-                  <div class="research-result">
-                    <p>For every <i>d</i> ≥ 2 and ψ &gt; 0, the manuscript establishes a common deterministic exponential rate for distances between disjoint compact sets with nonempty interiors, in the white-noise model with normalized unit-ball indicator kernel.</p>
-                    <p>Theorem 1.1 also addresses fixed quantiles and the almost-sure logarithmic rate for each fixed pair. This statement concerns the specified regularization.</p>
-                    <p class="result-source">Submitted manuscript, 11 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/set-to-set-lfpp-exponent.pdf" aria-label="Existence of the Set-to-Set LFPP Exponent: PDF">PDF <span class="pdf-pages">(11 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="point-set-exponent-separation" aria-labelledby="point-set-exponent-separation-title">
-            <span class="project-number" aria-hidden="true">06</span>
-            <div class="research-row">
-              <h4 id="point-set-exponent-separation-title">Point-to-Point and Set-to-Set Exponents in High Dimension</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Point-to-Point and Set-to-Set Exponents in High Dimension">Result</summary>
-                  <div class="research-result">
-                    <p>An endpoint-attachment argument gives vanishing of the point-to-point exponent in the stated high-dimensional parameter range. Section 7 combines this with the set-to-set result to obtain Q̃(ψ) &lt; 0 = <i>Q</i>(ψ).</p>
-                    <p>The argument uses the normalized unit-ball white-noise field. The separation statement imports the existence of the set-to-set exponent; the point-to-point argument does not assume that separation.</p>
-                    <p class="result-source">Submitted manuscript, 9 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/point-set-exponent-separation.pdf" aria-label="Point-to-Point and Set-to-Set Exponents in High Dimension: PDF">PDF <span class="pdf-pages">(9 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="vanishing-point-lfpp-exponent" aria-labelledby="vanishing-point-lfpp-exponent-title">
-            <span class="project-number" aria-hidden="true">07</span>
-            <div class="research-row">
-              <h4 id="vanishing-point-lfpp-exponent-title">Vanishing of the Point-to-Point LFPP Exponent in High Dimension</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Vanishing of the Point-to-Point LFPP Exponent in High Dimension">Result</summary>
-                  <div class="research-result">
-                    <p>For every fixed ψ &gt; 0, the manuscript claims a finite dimension threshold <i>d</i><sub>0</sub>(ψ) such that <i>Q</i><sub>d</sub>(ψ) = 0 for all <i>d</i> ≥ <i>d</i><sub>0</sub>(ψ). Equivalently, the specified median point-to-point LFPP distance has rate 2<sup>−n+o(n)</sup>.</p>
-                    <p>The dimension threshold depends on ψ. The paper treats the stated smooth white-noise kernels and smooth compactly supported mollifications of the canonical log-correlated field.</p>
-                    <p class="result-source">Submitted manuscript, 12 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/vanishing-point-lfpp-exponent.pdf" aria-label="Vanishing of the Point-to-Point LFPP Exponent in High Dimension: PDF">PDF <span class="pdf-pages">(12 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-      <section class="research-topic" id="unformalized-parameter-continuity" aria-labelledby="unformalized-parameter-continuity-title">
-        <h3 id="unformalized-parameter-continuity-title">Almost-Sure Parameter Continuity</h3>
-        <div class="formalization-list">
-          <section class="formalization" id="subcritical-parameter-continuity" aria-labelledby="subcritical-parameter-continuity-title">
-            <span class="project-number" aria-hidden="true">08</span>
-            <div class="research-row">
-              <h4 id="subcritical-parameter-continuity-title">Almost-Sure Subcritical Parameter Continuity, Including Zero</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Almost-Sure Subcritical Parameter Continuity, Including Zero">Result</summary>
-                  <div class="research-result">
-                    <p>For every fixed <i>d</i> ≥ 2, the manuscript proposes a common-field modification of point-median-normalized metrics that is almost surely continuous in γ ∈ [0, √(2<i>d</i>)) for locally uniform convergence on endpoint pairs, with the Euclidean metric at γ = 0.</p>
-                    <p>Higher dimensions use the stated strong-characterization input. Review of the uniform parameter estimates and geometric comparison remains incomplete; this PDF also claims simultaneous properness and geodesic properties.</p>
-                    <p class="result-source">Submitted manuscript, 24 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/subcritical-parameter-continuity.pdf" aria-label="Almost-Sure Subcritical Parameter Continuity, Including Zero: PDF">PDF <span class="pdf-pages">(24 pp.)</span></a></p>
-                <p class="research-lean">Not formalized · Review incomplete</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="planar-lsc-parameter-continuity" aria-labelledby="planar-lsc-parameter-continuity-title">
-            <span class="project-number" aria-hidden="true">09</span>
-            <div class="research-row">
-              <h4 id="planar-lsc-parameter-continuity-title">Almost-Sure Parameter Continuity of the Planar LQG Metric</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Almost-Sure Parameter Continuity of the Planar LQG Metric">Result</summary>
-                  <div class="research-result">
-                    <p>For a single unit-circle-pinned whole-plane GFF, Theorem 1.1 proposes a jointly measurable modification of the point-median-normalized metrics that is almost surely continuous for every ξ ∈ (0, ∞) in the topology of lower semicontinuous functions.</p>
-                    <p>This topology accommodates infinite distances in the supercritical regime. Review of the quantitative parameter comparison and the construction of the common modification remains incomplete.</p>
-                    <p class="result-source">Submitted manuscript, 38 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/planar-lsc-parameter-continuity.pdf" aria-label="Almost-Sure Parameter Continuity of the Planar LQG Metric: PDF">PDF <span class="pdf-pages">(38 pp.)</span></a></p>
-                <p class="research-lean">Not formalized · Review incomplete</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-      <section class="research-topic" id="unformalized-small-parameter-geometry" aria-labelledby="unformalized-small-parameter-geometry-title">
-        <h3 id="unformalized-small-parameter-geometry-title">Small-Parameter Fluctuations and Geodesics</h3>
-        <div class="formalization-list">
-          <section class="formalization" id="almost-sure-first-order-distance" aria-labelledby="almost-sure-first-order-distance-title">
-            <span class="project-number" aria-hidden="true">10</span>
-            <div class="research-row">
-              <h4 id="almost-sure-first-order-distance-title">Almost-Sure First-Order Distance Fluctuations in Every Dimension</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Almost-Sure First-Order Distance Fluctuations in Every Dimension">Result</summary>
-                  <div class="research-result">
-                    <p>For each fixed <i>d</i> ≥ 2, with unit-sphere-pinned field and median <i>D</i><sup>γ</sup><sub>h</sub>(0, <i>e</i><sub>1</sub>) = 1, the proposed limit of (<i>D</i><sup>γ</sup><sub>h</sub>(0, <i>e</i><sub>1</sub>) − 1)/γ is (1/<i>d</i>)⟨<i>h</i>, μ<sub>[0,e₁]</sub>⟩, almost surely and in every finite <i>L</i><sup>p</sup>.</p>
-                    <p>The almost-sure limit is through all real parameters. Higher-dimensional claims use the stated metric-characterization and quantitative-comparison inputs; the comparison-source review remains incomplete.</p>
-                    <p class="result-source">Submitted manuscript, 21 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/almost-sure-first-order-distance.pdf" aria-label="Almost-Sure First-Order Distance Fluctuations in Every Dimension: PDF">PDF <span class="pdf-pages">(21 pp.)</span></a></p>
-                <p class="research-lean">Not formalized · Review incomplete</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="higher-dimensional-geodesic-wandering" aria-labelledby="higher-dimensional-geodesic-wandering-title">
-            <span class="project-number" aria-hidden="true">11</span>
-            <div class="research-row">
-              <h4 id="higher-dimensional-geodesic-wandering-title">Small-Parameter Geodesic Wandering in Every Dimension</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Small-Parameter Geodesic Wandering in Every Dimension">Result</summary>
-                  <div class="research-result">
-                    <p>The manuscript proposes transverse displacement of order γ<sup>2/3</sup> in each fixed dimension, with moment and tail estimates, tightness of the centered rescaled paths, and a vanishing longitudinal component.</p>
-                    <p>Higher-dimensional conclusions use metric characterization and conformal covariance as inputs. No unique limiting path law is identified. Review of the domain-restriction argument remains incomplete.</p>
-                    <p class="result-source">Submitted manuscript, 32 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/higher-dimensional-geodesic-wandering.pdf" aria-label="Small-Parameter Geodesic Wandering in Every Dimension: PDF">PDF <span class="pdf-pages">(32 pp.)</span></a></p>
-                <p class="research-lean">Not formalized · Review incomplete</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="crossing-normalized-first-order" aria-labelledby="crossing-normalized-first-order-title">
-            <span class="project-number" aria-hidden="true">12</span>
-            <div class="research-row">
-              <h4 id="crossing-normalized-first-order-title">First-Order Fluctuations with Crossing Normalization</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: First-Order Fluctuations with Crossing Normalization">Result</summary>
-                  <div class="research-result">
-                    <p>This companion manuscript converts the point-median first-order expansion to intrinsic unit-cube crossing-median normalization. The normalization contributes a deterministic first-order correction, treated in each fixed dimension <i>d</i> ≥ 2.</p>
-                    <p>Intrinsic crossings constrain paths to the cube and are distinguished from unrestricted face-to-face distances. Higher-dimensional claims retain the companion paper’s inputs; comparison-source review and clarification of the crossing normalization remain incomplete.</p>
-                    <p class="result-source">Submitted manuscript, 26 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/crossing-normalized-first-order.pdf" aria-label="First-Order Fluctuations with Crossing Normalization: PDF">PDF <span class="pdf-pages">(26 pp.)</span></a></p>
-                <p class="research-lean">Not formalized · Review incomplete</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-      <section class="research-topic" id="unformalized-small-disorder-bounds" aria-labelledby="unformalized-small-disorder-bounds-title">
-        <h3 id="unformalized-small-disorder-bounds-title">Small-Disorder Coefficients and Bounds</h3>
-        <div class="formalization-list">
-          <section class="formalization" id="small-parameter-lfpp-submission" aria-labelledby="small-parameter-lfpp-submission-title">
-            <span class="project-number" aria-hidden="true">13</span>
-            <div class="research-row">
-              <h4 id="small-parameter-lfpp-submission-title">Small-Parameter LFPP in Every Dimension: Submitted Manuscript</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Small-Parameter LFPP in Every Dimension: Submitted Manuscript">Result</summary>
-                  <div class="research-result">
-                    <p>For each fixed <i>d</i> ≥ 2 and logarithmic covariance coefficient one, the manuscript claims that ζ<sup>−4/3</sup>λ<sub>d</sub>(ζ) converges to a finite positive constant, identified as the subadditive rate of a Gaussian variational problem with <i>d</i> − 1 transverse coordinates.</p>
-                    <p>This is the 26-page version submitted to the shared project. A distinct public manuscript version and its accompanying Lean work are listed under <a href="#small-gamma-dimension">A Small-Parameter Limit for LFPP in All Dimensions</a> above.</p>
-                    <p class="result-source">Submitted manuscript, 26 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/small-parameter-lfpp-submitted.pdf" aria-label="Small-Parameter LFPP in Every Dimension: Submitted Manuscript: PDF">PDF <span class="pdf-pages">(26 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="quantitative-lfpp-remainders" aria-labelledby="quantitative-lfpp-remainders-title">
-            <span class="project-number" aria-hidden="true">14</span>
-            <div class="research-row">
-              <h4 id="quantitative-lfpp-remainders-title">Quantitative Remainders for Small-Disorder LFPP</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Quantitative Remainders for Small-Disorder LFPP">Result</summary>
-                  <div class="research-result">
-                    <p>For each fixed <i>d</i> ≥ 2 and sufficiently small ζ, the manuscript gives the bounds −<i>C</i><sub>d</sub>ζ<sup>13/9</sup>[log(1/ζ)]<sup>1/3</sup> ≤ λ<sub>d</sub>(ζ) − <i>k</i><sub>d</sub>ζ<sup>4/3</sup> ≤ <i>C</i><sub>d</sub>ζ<sup>5/3</sup>[log(1/ζ)]<sup>1/2</sup>.</p>
-                    <p>The leading-constant identifications and comparison results from the accompanying small-disorder manuscripts are inputs. These remainder bounds do not identify a second coefficient.</p>
-                    <p class="result-source">Submitted manuscript, 11 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/quantitative-lfpp-remainders.pdf" aria-label="Quantitative Remainders for Small-Disorder LFPP: PDF">PDF <span class="pdf-pages">(11 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-          <section class="formalization" id="planar-small-disorder-bounds" aria-labelledby="planar-small-disorder-bounds-title">
-            <span class="project-number" aria-hidden="true">15</span>
-            <div class="research-row">
-              <h4 id="planar-small-disorder-bounds-title">Two Bounds for the Planar Small-Disorder LFPP Constant</h4>
-              <div class="research-actions">
-                <details class="research-details">
-                  <summary aria-label="Result: Two Bounds for the Planar Small-Disorder LFPP Constant">Result</summary>
-                  <div class="research-result">
-                    <p>In the normalization with logarithmic covariance coefficient one and kinetic penalty ½∫|<i>X</i>′|², the manuscript gives 0.76283 &lt; <i>k</i><sub>2</sub> ≤ 3π<sup>2/3</sup>/2<sup>7/3</sup> ≈ 1.27688322.</p>
-                    <p>The LFPP-to-action identification and the finite-graph Parisi formula are external inputs. This is the corrected 16-page PDF from the shared repository.</p>
-                    <p class="result-source">Submitted manuscript, 16 pages. The PDF is identical to the version in the shared LQG/LFPP project on October 25, 2026.</p>
-                  </div>
-                </details>
-                <p class="project-links"><a class="paper-link" href="papers/lqg-2026-10-25/planar-small-disorder-bounds.pdf" aria-label="Two Bounds for the Planar Small-Disorder LFPP Constant: PDF">PDF <span class="pdf-pages">(16 pp.)</span></a></p>
-                <p class="research-lean">Not formalized</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
       <section class="research-topic" id="supercritical-lqg" aria-labelledby="supercritical-lqg-title">
         <h3 id="supercritical-lqg-title">Supercritical Liouville Quantum Gravity</h3>
         <div class="formalization-list">
           <section class="formalization" id="supercritical-conformal-covariance" aria-labelledby="supercritical-conformal-covariance-title">
-            <span class="project-number" aria-hidden="true">16</span>
+            <span class="project-number" aria-hidden="true">01</span>
             <div class="research-row">
               <h4 id="supercritical-conformal-covariance-title">Conformal Covariance of Supercritical LQG</h4>
               <div class="research-actions">
@@ -609,7 +314,7 @@ The multiplicative constant is exactly one, and the equality includes singular e
         <h3 id="unformalized-higher-dimensional-fields-title">Random Geometry in Dimension at Least Three</h3>
         <div class="formalization-list">
           <section class="formalization" id="higher-dimensional-conformal-covariance" aria-labelledby="higher-dimensional-conformal-covariance-title">
-            <span class="project-number" aria-hidden="true">17</span>
+            <span class="project-number" aria-hidden="true">02</span>
             <div class="research-row">
               <h4 id="higher-dimensional-conformal-covariance-title">Conformal Covariance of Higher-Dimensional Exponential Metrics</h4>
               <div class="research-actions">
@@ -643,7 +348,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
             </div>
           </section>
           <section class="formalization" id="odd-dimensional-fields-and-quantum-cones" aria-labelledby="odd-dimensional-fields-and-quantum-cones-title">
-            <span class="project-number" aria-hidden="true">18</span>
+            <span class="project-number" aria-hidden="true">03</span>
             <div class="research-row">
               <h4 id="odd-dimensional-fields-and-quantum-cones-title">Odd-Dimensional Fields and Quantum Cones</h4>
               <div class="research-actions">
@@ -680,7 +385,7 @@ converges in total variation to this cone on every fixed ball <span class="katex
             </div>
           </section>
           <section class="formalization" id="gmc-quenched-convergence" aria-labelledby="gmc-quenched-convergence-title">
-            <span class="project-number" aria-hidden="true">19</span>
+            <span class="project-number" aria-hidden="true">04</span>
             <div class="research-row">
               <h4 id="gmc-quenched-convergence-title">GMC Tilings: Quenched Convergence</h4>
               <div class="research-actions">
@@ -745,7 +450,7 @@ Assign each step the deterministic duration <span class="katex"><span class="kat
         <h3 id="unformalized-tilings-packings-walks-title">Sphere Packings and Orthogonal Tilings</h3>
         <div class="formalization-list">
           <section class="formalization" id="sphere-packing-tilings" aria-labelledby="sphere-packing-tilings-title">
-            <span class="project-number" aria-hidden="true">20</span>
+            <span class="project-number" aria-hidden="true">05</span>
             <div class="research-row">
               <h4 id="sphere-packing-tilings-title">Sphere Packings and Tangency Tilings</h4>
               <div class="research-actions">
@@ -793,7 +498,7 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
         <h3 id="human-generated-title">Human Generated Research</h3>
         <div class="formalization-list">
           <section class="formalization" id="orthogonal-tilings" aria-labelledby="orthogonal-tilings-title">
-        <span class="project-number" aria-hidden="true">21</span>
+        <span class="project-number" aria-hidden="true">06</span>
         <div class="research-row">
           <h4 id="orthogonal-tilings-title">Parameterized walk on orthogonal tilings converges to Brownian motion.</h4>
           <p class="project-links">
