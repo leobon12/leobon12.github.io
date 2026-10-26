@@ -8,7 +8,6 @@
 .research-github { font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
 .research-disclaimer { max-width: 42rem; margin: -1.15rem 0 2rem; color: #625a52; font-size: .9375rem; }
 .research-description { max-width: 42rem; margin: 0 0 .9rem; color: #625a52; font-size: .9375rem; }
-.pdf-pages { color: #625a52; font-size: .8rem; }
 .research-status { color: #625a52; font-size: .8rem; }
 
 .research-lean { margin: 0; color: #625a52; font-size: .85rem; white-space: nowrap; }
@@ -27,7 +26,6 @@
 .research-row > h4 { flex: 1 1 0; min-width: 15rem; }
 .research-lean .lean-label { font: inherit; }
 .lean-link { text-decoration: underline; text-underline-offset: .2em; }
-.ai-research .pdf-pages { font-size: .75rem; }
 .ai-research .research-lean { font-size: .75rem; }
 .ai-research .formalization h4 {
   max-width: none;
