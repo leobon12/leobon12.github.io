@@ -2,11 +2,11 @@
 #formalized { margin-top: 2rem; }
 .research-subsection-title { margin: 0 0 1rem; font-size: 1.35rem; line-height: 1.4; scroll-margin-top: 2rem; }
 #unformalized { padding-top: 1rem; border-top: 1px solid var(--rule); }
-.research-warning { max-width: 44rem; margin: 0 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--maroon); background: var(--surface); color: var(--ink); font-size: .9375rem; }
+.research-warning { max-width: 44rem; margin: 0 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--maroon); background: transparent; color: var(--ink); font-size: .9375rem; }
 .research-section-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; margin: 1.25rem 0; }
 .research-section-heading h2 { margin: 0; scroll-margin-top: 2rem; }
 .research-github { font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
-.research-disclaimer { max-width: 42rem; margin: 0 0 2rem; color: var(--muted); font-size: .9375rem; }
+.research-disclaimer { max-width: 42rem; margin: 0 0 2rem; color: var(--ink); font-size: .9375rem; }
 .research-description { max-width: 42rem; margin: 0 0 .9rem; color: var(--muted); font-size: .9375rem; }
 .research-status { color: var(--muted); font-size: .8rem; }
 
