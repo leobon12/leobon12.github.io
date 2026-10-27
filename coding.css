@@ -1,70 +1,81 @@
-.coding-intro {
-  max-width: 38rem;
-  color: var(--muted);
-  margin: -.6rem 0 2rem;
+/* Compact Lean project list; shared site styles remain unchanged. */
+body.lean-page {
+  max-width: 1440px;
 }
-.formalization-list {
-  border-top: 1px solid var(--rule);
+.coding-page > h2 {
+  display: inline;
+  margin: 0;
 }
-.formalization {
-  display: grid;
-  grid-template-columns: 2.25rem minmax(0, 1fr);
-  column-gap: 1.25rem;
-  padding: 1.7rem 0 1.8rem;
-  border-bottom: 1px solid var(--rule);
-  scroll-margin-top: 2rem;
-}
-.project-number {
-  color: var(--maroon);
-  font-size: .75rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: .08em;
-  padding-top: .35rem;
-}
-.formalization h3 {
-  max-width: 42rem;
-  margin: 0 0 .55rem;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.35;
-  text-wrap: pretty;
-}
-.paper-authors {
-  margin: 0 0 1rem;
+.coding-page .coding-intro {
+  display: inline-block;
+  max-width: none;
+  margin: 0 0 0 1rem;
   color: var(--muted);
   font-size: .9375rem;
 }
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .7rem 1.5rem;
-  margin: 0;
-  font-size: .875rem;
+.coding-page .formalization-list {
+  margin-top: 1.25rem;
 }
-.paper-link {
-  text-decoration: underline;
-  text-underline-offset: .2em;
-  text-decoration-color: var(--link-rule);
-}
-.paper-link:hover { text-decoration-color: currentColor; }
-.lean-placeholder {
-  display: inline-flex;
-  gap: .55rem;
+.coding-page .formalization {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr) auto;
   align-items: baseline;
-  color: var(--muted);
+  gap: .25rem 1rem;
+  padding: .7rem 0;
 }
-.lean-label {
-  color: var(--ink);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .8rem;
+.coding-page .project-number {
+  padding: 0;
+  font-size: .7rem;
 }
-@media (max-width: 480px) {
-  .formalization { grid-template-columns: 1.4rem minmax(0, 1fr); column-gap: .65rem; }
-  .formalization h3 { font-size: 1.25rem; }
-  .project-links { gap: .55rem 1.1rem; }
+.coding-page .project-description {
+  min-width: 0;
+  line-height: 1.5;
+}
+.coding-page .formalization h3 {
+  display: inline;
+  max-width: none;
+  margin: 0;
+  font-size: .9375rem;
+  font-weight: 400;
+  line-height: inherit;
+  text-wrap: wrap;
+}
+.coding-page .paper-authors {
+  display: inline;
+  margin: 0;
+  font-size: .8125rem;
+}
+.coding-page .paper-authors::before {
+  content: " — ";
+}
+.coding-page .project-links {
+  flex-wrap: nowrap;
+  gap: .85rem;
+  margin: 0;
+  font-size: .8125rem;
+  white-space: nowrap;
+}
+.coding-page .paper-link {
+  display: inline-block;
+  padding: .15rem 0;
+}
+@media (max-width: 640px) {
+  .coding-page .formalization {
+    grid-template-columns: 1.2rem minmax(0, 1fr);
+    column-gap: .6rem;
+  }
+  .coding-page .project-links {
+    grid-column: 2;
+  }
+}
+@media (max-width: 360px) {
+  .coding-page .coding-intro {
+    display: block;
+    margin: .25rem 0 0;
+  }
 }
 @media print {
-  .formalization { break-inside: avoid; }
+  .coding-page .formalization {
+    break-inside: avoid;
+  }
 }
