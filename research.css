@@ -1,16 +1,16 @@
 .research-collection { margin-top: 3.5rem; }
 #formalized { margin-top: 2rem; }
 .research-subsection-title { margin: 0 0 1rem; font-size: 1.35rem; line-height: 1.4; scroll-margin-top: 2rem; }
-#unformalized { padding-top: 1rem; border-top: 1px solid #d8cbb8; }
-.research-warning { max-width: 44rem; margin: 0 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--maroon); background: #f0e4d3; color: #38332e; font-size: .9375rem; }
+#unformalized { padding-top: 1rem; border-top: 1px solid var(--rule); }
+.research-warning { max-width: 44rem; margin: 0 0 1.5rem; padding: .85rem 1rem; border-left: 3px solid var(--maroon); background: var(--surface); color: var(--ink); font-size: .9375rem; }
 .research-section-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; margin: 1.25rem 0; }
 .research-section-heading h2 { margin: 0; scroll-margin-top: 2rem; }
 .research-github { font-size: .875rem; text-decoration: underline; text-underline-offset: .2em; }
-.research-disclaimer { max-width: 42rem; margin: 0 0 2rem; color: #625a52; font-size: .9375rem; }
-.research-description { max-width: 42rem; margin: 0 0 .9rem; color: #625a52; font-size: .9375rem; }
-.research-status { color: #625a52; font-size: .8rem; }
+.research-disclaimer { max-width: 42rem; margin: 0 0 2rem; color: var(--muted); font-size: .9375rem; }
+.research-description { max-width: 42rem; margin: 0 0 .9rem; color: var(--muted); font-size: .9375rem; }
+.research-status { color: var(--muted); font-size: .8rem; }
 
-.research-lean { margin: 0; color: #625a52; font-size: .85rem; white-space: nowrap; }
+.research-lean { margin: 0; color: var(--muted); font-size: .85rem; white-space: nowrap; }
 
 .research-topic { margin-top: 1.8rem; scroll-margin-top: 2rem; }
 .research-topic > h4 {
@@ -60,9 +60,9 @@
   min-width: 0;
   margin-top: .6rem;
   max-width: 42rem;
-  border-left: 2px solid #d8cbb8;
+  border-left: 2px solid var(--rule);
   padding-left: 1.2rem;
-  color: #38332e;
+  color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.025rem;
   line-height: 1.75;
@@ -80,9 +80,9 @@
   margin: .85rem 0;
 }
 .result-source {
-  border-top: 1px solid #e2d8c8;
+  border-top: 1px solid var(--rule);
   padding-top: .7rem;
-  color: #756b60;
+  color: var(--muted);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: .75rem;
   line-height: 1.6;

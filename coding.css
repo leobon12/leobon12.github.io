@@ -1,17 +1,17 @@
 .coding-intro {
   max-width: 38rem;
-  color: #625a52;
+  color: var(--muted);
   margin: -.6rem 0 2rem;
 }
 .formalization-list {
-  border-top: 1px solid #d8cbb8;
+  border-top: 1px solid var(--rule);
 }
 .formalization {
   display: grid;
   grid-template-columns: 2.25rem minmax(0, 1fr);
   column-gap: 1.25rem;
   padding: 1.7rem 0 1.8rem;
-  border-bottom: 1px solid #d8cbb8;
+  border-bottom: 1px solid var(--rule);
   scroll-margin-top: 2rem;
 }
 .project-number {
@@ -32,7 +32,7 @@
 }
 .paper-authors {
   margin: 0 0 1rem;
-  color: #625a52;
+  color: var(--muted);
   font-size: .9375rem;
 }
 .project-links {
@@ -46,17 +46,17 @@
 .paper-link {
   text-decoration: underline;
   text-underline-offset: .2em;
-  text-decoration-color: #c5a99d;
+  text-decoration-color: var(--link-rule);
 }
 .paper-link:hover { text-decoration-color: currentColor; }
 .lean-placeholder {
   display: inline-flex;
   gap: .55rem;
   align-items: baseline;
-  color: #625a52;
+  color: var(--muted);
 }
 .lean-label {
-  color: #3c3732;
+  color: var(--ink);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: .8rem;
 }
