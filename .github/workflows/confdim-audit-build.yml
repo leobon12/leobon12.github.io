@@ -62,6 +62,8 @@ jobs:
       - name: Commit build only to the audit branch
         run: |
           set -eu
+          cd "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           cp .confdim-build/work/paper.tex papers/conformal-dimension-exponential-metrics-d-ge-2.tex
           cp .confdim-build/work/paper.pdf papers/conformal-dimension-exponential-metrics-d-ge-2.pdf
           cp .confdim-build/work/build-record.json .confdim-build/build-record.json
