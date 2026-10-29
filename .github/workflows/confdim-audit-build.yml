@@ -1,0 +1,72 @@
+name: Build audited conformal-dimension manuscript
+on:
+  push:
+    branches: ['audit/conformal-dimension-20261029']
+    paths: ['.confdim-build/**', '.github/workflows/confdim-audit-build.yml']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: debian:trixie-slim
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Install PDF build tools
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          set -eu
+          apt-get update -qq
+          apt-get install -y --no-install-recommends git ca-certificates python3 texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: audit/conformal-dimension-20261029
+      - name: Restore and verify the exact audited source
+        run: |
+          set -eu
+          python3 - <<'PY'
+          from pathlib import Path
+          import bz2, hashlib
+          root = Path('.confdim-build')
+          parts = [root / f'source.part-{i}' for i in range(4)]
+          data = bz2.decompress(b''.join(p.read_bytes() for p in parts))
+          expected = '4245105bd701874fabc69b55b26cf9cb99f0240aeb4928382df4f9c36014341c'
+          assert hashlib.sha256(data).hexdigest() == expected, 'Audited source checksum mismatch'
+          work = root / 'work'
+          work.mkdir(exist_ok=True)
+          (work / 'paper.tex').write_bytes(data)
+          print('Audited source verified:', expected)
+          PY
+      - name: Compile and check the manuscript
+        run: |
+          set -eu
+          cd .confdim-build/work
+          for pass in 1 2 3; do
+            pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error paper.tex > "build-$pass.txt"
+          done
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, subprocess, hashlib, json
+          log = Path('paper.log').read_text()
+          assert not re.search(r'undefined|Overfull \\hbox|Overfull \\vbox', log), 'Unresolved references or layout overflow'
+          info = subprocess.check_output(['pdfinfo', 'paper.pdf'], text=True)
+          pages = int(re.search(r'Pages:\s+(\d+)', info).group(1))
+          assert pages == 28, f'Unexpected page count: {pages}'
+          record = {'source_sha256': hashlib.sha256(Path('paper.tex').read_bytes()).hexdigest(), 'pdf_sha256': hashlib.sha256(Path('paper.pdf').read_bytes()).hexdigest(), 'pages': pages, 'tex_version': subprocess.check_output(['pdflatex', '--version'], text=True).splitlines()[0]}
+          Path('build-record.json').write_text(json.dumps(record, indent=2) + '\n')
+          print(json.dumps(record, indent=2))
+          PY
+      - name: Commit build only to the audit branch
+        run: |
+          set -eu
+          cp .confdim-build/work/paper.tex papers/conformal-dimension-exponential-metrics-d-ge-2.tex
+          cp .confdim-build/work/paper.pdf papers/conformal-dimension-exponential-metrics-d-ge-2.pdf
+          cp .confdim-build/work/build-record.json .confdim-build/build-record.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/conformal-dimension-exponential-metrics-d-ge-2.tex papers/conformal-dimension-exponential-metrics-d-ge-2.pdf .confdim-build/build-record.json
+          git commit -m 'Build manuscript from checksum-verified three-round audit source'
+          git push origin HEAD:refs/heads/audit/conformal-dimension-20261029
