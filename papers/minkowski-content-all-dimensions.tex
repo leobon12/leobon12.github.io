@@ -1,0 +1,1118 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{microtype,enumitem}
+\usepackage{xcolor}
+\definecolor{paperlink}{RGB}{0,0,114}
+\usepackage[colorlinks=true,linktoc=all,linkcolor=paperlink,citecolor=paperlink,urlcolor=paperlink]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Minkowski content of exponential metrics}
+\fancyhead[R]{\small\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{1em}
+\hypersetup{pdftitle={The Minkowski content measure for exponential metrics in all dimensions}}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.25em}
+\setlist[enumerate]{itemsep=3pt,topsep=4pt}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm d}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\osc}{osc}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\title{The Minkowski content measure for exponential metrics in all dimensions}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We identify subcritical Gaussian multiplicative chaos as the covering-number Minkowski content of an exponential metric in each dimension $d\ge2$, under the strong metric axioms and one internal-diameter moment of order greater than $\gamma/\xi$. The covering counts converge in probability on random compact continuity sets. Their deterministic normalization is comparable to $\varepsilon^{-\gamma/\xi}$ and regularly varying with index $-\gamma/\xi$. The proof conditions on the coarse scales of a finite-range white-noise field. A recursive moment estimate controls the conditional fluctuations, while a Gaussian averaging identity determines the normalization and identifies the conditional means with chaos. No planar metric theorem or auxiliary space-filling curve is used. In dimension one, cumulative chaos mass gives the corresponding result pathwise.
+\end{abstract}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+
+The metric and volume measure of a log-correlated random geometry are constructed by different limiting procedures. We ask whether the volume can be recovered by counting small metric balls. Gwynne--Sung~\cite[Theorem~1.1 and Proposition~1.3]{GS} answer this question for planar Liouville quantum gravity. We prove the corresponding implication from the strong exponential-metric axioms in every dimension~$d\ge2$. The construction of the metric is an external input.
+
+The proof uses the Gaussian field rather than an auxiliary random curve. After conditioning on the field above a fixed Euclidean scale, local covering counts depend on fine fields with finite range of dependence. Two estimates make this useful: a covering moment of order strictly larger than one, which controls the conditional fluctuations, and regular variation of the expected covering count, which identifies the conditional means with Gaussian multiplicative chaos. We prove both estimates below.
+
+\subsection{The field and metric}
+
+Fix an integer $d\ge2$ and parameters
+\begin{equation}\label{eq:parameters}
+  0<\gamma<\sqrt{2d},\qquad
+  Q=\frac d\gamma+\frac\gamma2,\qquad
+  \xi>0,\qquad \Delta=\frac\gamma\xi.
+\end{equation}
+For the exponential metric obtained from LFPP, $\xi$ is chosen with $Q(\xi)=d/\gamma+\gamma/2$, where $Q(\xi)$ is its distance exponent. The abstract result below uses the displayed parameters together with its explicit diameter moment hypothesis. The whole-space log-correlated Gaussian field (LGF) is defined modulo an additive constant by
+\begin{equation*}
+ \Cov((h,f),(h,g))
+ =\iint_{\R^d\times\R^d} f(x)g(y)\log\frac1{|x-y|}\dd x\dd y,
+ \qquad \int f=\int g=0.
+\end{equation*}
+A representative can, for example, be fixed by setting its unit-sphere average equal to zero. The field in this statement is the LGF in every dimension; for $d>2$ it is different from the usual Gaussian free field.
+
+We use a measurable metric assignment $h\mapsto D_h$ with the following properties, also for a whole-space LGF plus a possibly dependent random continuous function.
+\begin{enumerate}[label=(\roman*)]
+\item $D_h$ is a finite length metric inducing the Euclidean topology.
+\item For every deterministic open set $U$, the internal metric
+$D_h(\cdot,\cdot;U)$ is measurable with respect to $h|_U$.
+\item Almost surely, simultaneously for continuous $f$,
+$D_{h+f}=e^{\xi f}\cdot D_h$, where the right-hand side minimizes the integral of $e^{\xi f}$ along paths parametrized by $D_h$-length.
+\item For fixed $r>0$ and $z\in\R^d$, almost surely for all $u,v$,
+\begin{equation}\label{eq:similarity}
+ D_h(ru+z,rv+z)
+ =D_{h(r\cdot+z)+Q\log r}(u,v).
+\end{equation}
+\end{enumerate}
+These are the strong metric axioms. The higher-dimensional metric of Bonanno~\cite{Bonanno} is the intended application. The theorem below states separately every property of that construction which it uses. In particular, exact similarity covariance is an input; it is not deduced from tightness across scales. Neither construction nor uniqueness of a higher-dimensional metric is proved here.
+
+Put $C_0=[0,1]^d$, and let $3C_0=(-1,2)^d$. Let $h^0$ denote the whole-space field with unit-sphere average zero. Our quantitative assumption is that, for some $q_0>\Delta$,
+\begin{equation}\label{eq:single-moment}
+ \E\!\left[\diam\bigl(C_0;D_{h^0}(\cdot,\cdot;3C_0)\bigr)^{q_0}\right]<\infty\,.
+\end{equation}
+A smaller moment exponent can always be used. The relation $\gamma^2<2d$ ensures that we can choose $q$ strictly between $\Delta$ and both $q_0$ and $2d/(\xi\gamma)$.
+
+\subsection{Covering numbers and chaos}
+
+For a metric $D$, write $N_\eps(A;D)$ for the least number of
+\emph{closed} $D$-balls of radius $\eps$ which cover $A$. Centers may lie
+anywhere in the ambient metric space. For internal metrics, centers lie in the indicated open domain. Closed balls make the bounded Borel-set statement unambiguous: $N_\eps(A;D)=N_\eps(\overline A;D)$. On compact sets the open-ball convention has the same limiting content, as explained in Remark~\ref{rem:boundary}.
+
+Fix a smooth compactly supported probability mollifier $\rho$ and write $\rho_\eta(x)=\eta^{-d}\rho(x/\eta)$. We use the geometric $\gamma$-GMC normalization
+\begin{equation}\label{eq:geometric-gmc}
+ \mu_h(\dd x)
+ =\lim_{\eta\downarrow0}
+       \eta^{\gamma^2/2}e^{\gamma(h*\rho_\eta)(x)}\dd x,
+\end{equation}
+where the limit is locally weak in probability. Choosing another standard regularization changes this convention by a fixed deterministic factor, which is absorbed into $b_\eps$. In particular,
+\begin{equation}\label{eq:gmc-weyl}
+ \mu_{h+f}=e^{\gamma f}\mu_h
+\end{equation}
+for continuous $f$, including functions coupled with $h$.
+
+The covering counts used here are measurable. For nonempty compact $A$, let
+\begin{equation*}
+ R_{k,M}(A,D)=\min_{z_1,\ldots,z_k\in[-M,M]^d}
+                   \max_{x\in A}\min_{1\le j\le k}D(x,z_j).
+\end{equation*}
+The minimum is attained and the functional is continuous for local uniform convergence of $D$ and Hausdorff convergence of $A$ on bounded sets. Thus $\{N_\eps(A;D)\le k\}=\bigcup_M\{R_{k,M}(A,D)\le\eps\}$ is measurable. For internal metrics on boxes, use a compact exhaustion of the open domain for the centers. The empty-set count is zero.
+
+\begin{theorem}\label{thm:main}
+Assume properties~\textup{(i)--(iv)} and the moment condition~\eqref{eq:single-moment}. There are deterministic constants $b_\eps>0$, depending on the metric and GMC normalizations, such that
+\begin{equation}\label{eq:b-properties}
+ b_\eps\asymp\eps^{-\Delta},\qquad
+ \lim_{\eps\downarrow0}\frac{b_{a\eps}}{b_\eps}=a^{-\Delta}
+ \quad\text{for every }a>0.
+\end{equation}
+Let $h$ be a whole-space LGF plus a possibly dependent random continuous function. If $A$ is either a deterministic bounded Borel set or a random compact set, and
+\begin{equation}\label{eq:continuity-set}
+ \mu_h(\partial A)=0\quad\text{almost surely},
+\end{equation}
+then
+\begin{equation}\label{eq:main-limit}
+ \frac{N_\eps(A;D_h)}{b_\eps}
+ \xrightarrow[\eps\downarrow0]{\P}\mu_h(A).
+\end{equation}
+For random compact sets, measurability is with respect to the Borel $\sigma$-algebra for Euclidean Hausdorff distance. The convergence is asserted for each joint law of the field, its continuous perturbation, and $A$; no simultaneous almost sure assertion over all such sets or perturbations is made.
+\end{theorem}
+
+This is the higher-dimensional version of the main result of Gwynne--Sung~\cite{GS}. In their terminology, $\mu_h$ is the $\Delta$-dimensional Minkowski content measure of $D_h$. The boundary hypothesis applies to both types of sets in the theorem. It cannot be discarded: a countable dense subset of a cube has zero GMC mass but the same covering asymptotics as the cube. We prove convergence in probability, and do not assert almost sure convergence along all radii or convergence of $\eps^\Delta b_\eps$ to a constant.
+
+\paragraph{Relation to the planar proof.}
+Gwynne--Sung~\cite{GS} obtain independent quantum surfaces from the mating-of-trees description of a space-filling SLE on a quantum cone. Here we instead condition on the Gaussian field above a deterministic Euclidean scale. Local covering counts then have finite-range dependence. The moment estimate below makes their centered sum negligible, and their conditional means converge to the GMC approximations. This replaces the source of independence; it does not dispense with the sharp covering estimates or the normalization argument. When the metric inputs hold in dimension two, the same proof applies there.
+
+The only quantitative metric assumption is a diameter moment strictly above $\Delta$. The following published estimate supplies it for the class of weak metrics considered in~\cite{CZ}.
+
+\begin{lemma}[Imported metric estimate]\label{lem:input-moment}
+Let $h$ be the whole-space LGF with unit-sphere average zero, and let $D_h$ be a weak $\gamma$-exponential metric in the sense of~\cite{CZ}. If $C$ is a compact cube contained in an open cube $U$, then
+\begin{equation}\label{eq:diameter-input}
+ \E\!\left[\diam(C;D_h(\cdot,\cdot;U))^q\right]<\infty
+ \quad\text{for }0<q<q_+:=\frac{2d}{\xi\gamma}
+                         =\frac{2Q-\gamma}{\xi}.
+\end{equation}
+\end{lemma}
+
+The proof below needs only one moment above $\Delta$ for the stationary field of Section~\ref{sec:field}. We obtain it from~\eqref{eq:single-moment} by Weyl comparison and H\"older's inequality.
+
+For metrics in the class considered by Contreras Hip--Zhuang, estimate~\eqref{eq:diameter-input} is~\cite[Theorem~1.4(1) and Proposition~4.11]{CZ}; their exponent $2d d_\gamma/\gamma^2$ equals $2d/(\xi\gamma)$ because $d_\gamma=\gamma/\xi$. Setting $C=C_0$ and $U=3C_0$ gives~\eqref{eq:single-moment}, since $\Delta<q_+$ is equivalent to $\gamma^2<2d$. This is a quantitative input independent of exact similarity covariance. The abstract theorem assumes~\eqref{eq:single-moment} directly and does not require a deduction of the moment theorem from properties~\textup{(i)--(iv)}. The other imported probabilistic facts are the subcritical GMC construction, its $L^1$ convergence, and independence of regularization. All covering estimates and the normalization argument are proved here.
+
+We will repeatedly use the internal version of Weyl comparison:
+\begin{equation}\label{eq:internal-weyl}
+ e^{\xi\inf_U f}D_h(\cdot,\cdot;U)
+ \le D_{h+f}(\cdot,\cdot;U)
+ \le e^{\xi\sup_U f}D_h(\cdot,\cdot;U).
+\end{equation}
+For completeness, continuous positive reweighting preserves the rectifiable curves on every compact path image and changes the length of a curve $P$ to $\int_Pe^{\xi f}\,\dd s_{D_h}$. The upper length bound follows by using each subpath as a competitor. For the reverse bound, subdivide a path into small neighborhoods on which the weight oscillates by at most $\eta$. A path leaving one of these neighborhoods must first pay a fixed positive cost, by positivity of the weight and the distance to its boundary. Thus sufficiently short weighted connections stay in that neighborhood, where weighted distance is at least the local infimum of the weight times unweighted distance. Refine partitions and then let $\eta\downarrow0$. This also proves the converse assertion about rectifiability, using the positive minimum of the weight on a neighborhood of the compact path image. Taking the infimum over curves in $U$ gives~\eqref{eq:internal-weyl}. The same comparison applies to a path stopped at its first exit from a compact cube.
+
+\section{A stationary field with independent fine scales}\label{sec:field}
+
+We first replace the normalized whole-space field by a stationary field with a largest noise scale. The two fields differ by a continuous function, so Weyl scaling will transfer the result back. Compact support of the noise kernel makes sufficiently separated fine fields independent.
+
+Choose a nonnegative smooth radial function $K$ of compact support with $\int K^2=1$, and put $k=K*\check K$, where $\check K(x)=K(-x)$. Then $k(0)=1$, $k\le1$, and
+\begin{equation}\label{eq:k-bound}
+ 0\le1-k(z)\le C\min\{|z|^2,1\}.
+\end{equation}
+Let $W$ be white noise on $\R^d\times(0,\infty)$. The generalized Gaussian field
+\begin{equation}\label{eq:cutoff-field}
+ X(x)=\int_0^1\int_{\R^d}
+       t^{-(d+1)/2}K((x-y)/t)\,W(\dd y,\dd t)
+\end{equation}
+is understood after pairing with smooth test functions. It is stationary and has covariance, off the diagonal,
+\begin{equation*}
+ \E[X(x)X(y)]=\int_0^1 k((x-y)/t)\frac{\dd t}{t}.
+\end{equation*}
+Write $X_r$ for the same integral over $(0,r)$ and $H_r$ for the integral over $[r,1]$, so that
+\begin{equation}\label{eq:scale-split}
+ X=X_r+H_r,\qquad X_r(r\cdot)\stackrel d=X,\qquad
+ X_r\perp H_r,\qquad \Var H_r(x)=\log(1/r).
+\end{equation}
+The field $H_r$ is smooth. At each fixed spatial point $x$, the process $s\mapsto H_{e^{-s}}(x)$ is standard Brownian motion: disjoint scale intervals use independent white noise, and its increment variance is the length of the scale interval. This assertion concerns the white-noise cutoff, not spherical averages of a higher-dimensional LGF. If $K$ is supported in $B_R(0)$, the restrictions of $X_r$ to sets at distance greater than $2Rr$ are independent. By locality this is also true of internal metric functionals on these sets.
+
+The integral over $t\ge1$ with its value at $x=0$ subtracted defines a smooth Gaussian function $Y$. The field $X+Y$, modulo constants, is the whole-space LGF. One way to verify this directly is to note that, for $a,b>0$,
+\begin{equation*}
+ \int_0^\infty\bigl(k(ae_1/t)-k(be_1/t)\bigr)\frac{\dd t}{t}
+ =\log(b/a).
+\end{equation*}
+Radiality and $k(0)=1$ give the claimed logarithmic covariance after pairing with zero-integral test functions. This construction is the usual white-noise representation of the LGF; see also~\cite{CZ}. Consequently the metric axioms apply to $X$ and to every $X_r$. They imply
+\begin{equation}\label{eq:fine-metric-scaling}
+ D_{X_r}(r\cdot,r\cdot)\stackrel d=r^{\xi Q}D_X.
+\end{equation}
+
+We transfer the moment assumption to $X$ without assuming independence of the correcting function. The normalized whole-space field in this coupling is $h^0=X+G$, where $G$ is a smooth Gaussian function minus one Gaussian scalar. Its supremum on $3C_0$ has exponential moments of every linear order. (The unit-sphere average exists in $L^2$ since the logarithmic singularity is integrable on the product of two spheres when $d\ge2$.) Write $V(Y)=\diam(C_0;D_Y(\cdot,\cdot;3C_0))$. For $0<q<q_0$, choose $a>1$ with $aq<q_0$, and let $a'=a/(a-1)$. Internal Weyl comparison and H\"older's inequality give
+\begin{equation}\label{eq:cutoff-diameter}
+ \E V(X)^q
+ \le \bigl(\E V(h^0)^{aq}\bigr)^{1/a}
+      \bigl(\E e^{a'q\xi\|G\|_{\infty,3C_0}}\bigr)^{1/a'}
+ <\infty\,.
+\end{equation}
+Thus one may choose $\Delta<q<\min\{q_0,q_+\}$ throughout the proof. When~\eqref{eq:diameter-input} is available in its full range, the same argument gives every exponent below $q_+$, for each fixed pair $C\Subset U$.
+
+The mean-Lebesgue normalization of the chaos of $X$ is
+\begin{equation}\label{eq:cutoff-chaos}
+ M_r(A)=\int_A
+   \exp\!\left(\gamma H_r(x)-\frac{\gamma^2}{2}\log(1/r)\right)\dd x,
+ \qquad M_r\longrightarrow M_X.
+\end{equation}
+For $\gamma^2<2d$, this martingale converges locally weakly and in $L^1$ on bounded sets; $\E M_X(A)=|A|$. We use the usual subcritical GMC construction and its independence of regularization~\cite{RV,Shamov}.
+
+For a different fixed GMC normalization there is a deterministic $c_K>0$ such that
+\begin{equation}\label{eq:normalization-factor}
+ \mu_{X+f}=c_K e^{\gamma f}M_X
+\end{equation}
+for continuous $f$. The factor depends also on the chosen regularization convention. For example, if $\mu_X=\lim_{\eta\downarrow0}\eta^{\gamma^2/2}e^{\gamma X*\rho_\eta}\dd x$ for a fixed probability mollifier $\rho$, then
+\begin{equation*}
+ c_K=\exp\!\left\{\frac{\gamma^2}{2}
+   \lim_{\eta\downarrow0}
+       \left(\Var((X*\rho_\eta)(0))-\log(1/\eta)\right)\right\}.
+\end{equation*}
+The limit is finite since the covariance of $X$ is $\log(1/|x-y|)$ plus a smooth function near the diagonal. This constant will be absorbed into $b_\eps$ at the end.
+
+In what follows, all auxiliary cubes and boxes are nondegenerate and have sides parallel to the coordinate axes, $C_0=[0,1]^d$, and $3C$ denotes the concentric \emph{open} cube with three times the side length of $C$.
+
+\section{Sharp upper bounds for covering numbers}
+\label{mom:sec}
+
+We cover a cube by subdividing it whenever its internal metric diameter is too large. Rather than estimate the resulting random tree directly, we count all cubes with large diameter, without conditioning on their ancestors. This larger count has a first-moment bound from a Gaussian occupation estimate and a higher-moment bound from finite-range dependence.
+
+For a closed Euclidean cube $C$, set
+\begin{equation*}
+ V_C(Y):=\diam\bigl(C;D_Y(\cdot,\cdot;3C)\bigr),
+ \qquad C_0=[0,1]^d.
+\end{equation*}
+We use the diameter moment input from the setup only in the following form: for some
+\begin{equation}\label{mom:diam-input}
+ \Delta<q<q_+:=\frac{2Q-\gamma}{\xi}
+                 =\frac{2d}{\xi\gamma},
+ \qquad \E[V_{C_0}(X)^q]<\infty.
+\end{equation}
+Recall that $\Delta=\gamma/\xi$ and $\gamma Q=d+\gamma^2/2$.
+
+\begin{proposition}\label{mom:main}
+Choose
+\begin{equation*}
+ 1<p<2,\qquad p\Delta<q,\qquad p<\frac{2d}{\gamma^2},
+ \qquad
+ \zeta(p):=p\gamma Q-\frac{p^2\gamma^2}{2}.
+\end{equation*}
+There is a deterministic constant $C_p<\infty$ such that, for every Euclidean cube $C$ of side length $r\in(0,1]$ and every $\eps>0$,
+\begin{equation}\label{mom:cube-lp}
+ \E\!\left[
+   \bigl(\eps^\Delta
+     N_\eps(C;D_X(\cdot,\cdot;3C))\bigr)^p
+ \right]
+ \le C_p\bigl(\eps^{p\Delta}+r^{\zeta(p)}\bigr).
+\end{equation}
+Moreover,
+\begin{equation}\label{mom:cube-l1}
+ \E N_\eps(C;D_X(\cdot,\cdot;3C))
+ \le C\bigl(1+\eps^{-\Delta}r^d\bigr).
+\end{equation}
+The constants may depend on $d,\gamma,\xi,K,p,q$ and the moment in~\eqref{mom:diam-input}, but not on the location or side length of $C$, or on $\eps$. Here
+\begin{equation*}
+ \zeta(p)-d=(p-1)\left(d-\frac{p\gamma^2}{2}\right)>0\,.
+\end{equation*}
+In particular, the normalized covering numbers of a fixed cube are uniformly integrable as $\eps\to0$.
+\end{proposition}
+
+Such a $p>1$ exists for every $q$ in~\eqref{mom:diam-input}.  If the diameter moment input is available for every $q<q_+$, the proposition holds for every $1<p<\min\{2,2d/\gamma^2\}$.
+
+\subsection{Coarse-field estimates}
+
+\begin{lemma}\label{mom:coarse}
+Let $B\subset\R^d$ be a fixed compact cube.  For $r=e^{-s}\in(0,1)$ and $z\in\R^d$, put
+\begin{equation*}
+ \Omega_s=H_r(z),\qquad
+ \delta_s(u)=H_r(z+ru)-H_r(z),\quad u\in B.
+\end{equation*}
+Then $\Omega_s$ is centered Gaussian with variance $s$, and
+\begin{equation}\label{mom:coarse-cov}
+ -C_B\le
+ \operatorname{Cov}(\delta_s(u),\Omega_s)
+ =\int_r^1\bigl(k(ru/t)-1\bigr)\,\frac{dt}{t}
+ \le0.
+\end{equation}
+The random variables $\|\delta_s\|_\infty$ have uniformly bounded exponential moments of every fixed order.  Consequently, for every $b>0$,
+\begin{equation}\label{mom:coarse-tilt}
+ \E\exp\!\left(b\sup_{u\in B}H_r(z+ru)\right)
+ \le C_{b,B}r^{-b^2/2}.
+\end{equation}
+For all sufficiently large $s$, there is a nonnegative random variable $R_s$, independent of $\Omega_s$, such that
+\begin{equation}\label{mom:positive-part}
+ \Omega_s+\sup_{u\in B}\delta_s(u)
+ \le(\Omega_s)_++R_s,
+ \qquad
+ \sup_s\E e^{bR_s}<\infty\quad(b>0).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The covariance formula follows from the white-noise decomposition. The bounds on $1-k$ give~\eqref{mom:coarse-cov}.  They also give uniform variance bounds for $\delta_s(u)$.  Every derivative of positive order with respect to $u$ has uniformly bounded variance: for a multi-index $\alpha\ne0$, its variance is bounded by
+\begin{equation*}
+ C_\alpha\int_r^1(r/t)^{2|\alpha|}\,\frac{dt}{t}\le C_\alpha.
+\end{equation*}
+These bounds imply a uniform exponential-square moment for $\|\delta_s\|_\infty$.  Indeed, apply Sobolev's inequality with an integer order greater than $d/2$, square the resulting bound, and then use Jensen's inequality for the finitely many integrals of squared Gaussian derivatives.  The exponential moment of the square of a centered Gaussian is uniformly bounded when its variance is uniformly bounded and the exponential coefficient is sufficiently small.
+
+Gaussian tilting by $e^{b\Omega_s}$ gives
+\begin{equation*}
+ \begin{split}
+ &\E\!\left[
+    e^{b\Omega_s+b\sup_{u\in B}\delta_s(u)}
+  \right]\\
+ &\quad=e^{b^2s/2}\,
+  \E\exp\!\left(
+    b\sup_{u\in B}
+      \{\delta_s(u)+b\operatorname{Cov}(\delta_s(u),\Omega_s)\}
+  \right)
+  \le C_{b,B}e^{b^2s/2},
+ \end{split}
+ \end{equation*}
+which proves~\eqref{mom:coarse-tilt}.
+
+For the last assertion, Gaussian regression gives
+\begin{equation*}
+ \delta_s(u)=a_s(u)\Omega_s+Z_s(u),\qquad
+ a_s(u)=\frac{\operatorname{Cov}(\delta_s(u),\Omega_s)}s,
+ \end{equation*}
+where $Z_s$ is independent of $\Omega_s$. By~\eqref{mom:coarse-cov}, $0\le1+a_s(u)\le1$ when $s\ge C_B$.  Hence
+\begin{equation*}
+ (1+a_s(u))\Omega_s+Z_s(u)
+ \le(\Omega_s)_++|Z_s(u)|.
+\end{equation*}
+Gaussian conditioning decreases the variance of each derivative, so the preceding Sobolev argument applies to $Z_s$ with the same uniform bounds.  Taking $R_s=\|Z_s\|_\infty$ proves~\eqref{mom:positive-part}.
+\end{proof}
+
+\subsection{A Gaussian occupation estimate}
+
+\begin{lemma}\label{mom:potential}
+Let $a>0$, and let $B$ be standard Brownian motion.  There is $C_a<\infty$ such that, for every $t\in\R$,
+\begin{equation}\label{mom:potential-bound}
+ \sum_{n=1}^{\infty}e^{dna}
+   \P[B_{na}\ge Qna-t]
+ \le C_a e^{\gamma t}.
+\end{equation}
+The same estimate, with an additional factor of two, holds with $(B_{na})_+$ in place of $B_{na}$.
+\end{lemma}
+
+\begin{proof}
+Put $\nu=Q-\gamma>0$, and let $\varphi_s(x)=(2\pi s)^{-1/2}e^{-x^2/(2s)}$. Since $d=\gamma Q-\gamma^2/2$, exponential tilting gives
+\begin{equation*}
+ e^{ds}\P[B_s\ge Qs-t]
+ =e^{\gamma t}\int_0^\infty
+       e^{-\gamma y}\varphi_s(y-t+\nu s)\,dy.
+ \end{equation*}
+It therefore suffices to show
+\begin{equation}\label{mom:potential-density}
+ \sup_{u\in\R}\sum_{n=1}^{\infty}
+       \varphi_{na}(u+\nu na)<\infty.
+\end{equation}
+
+For $u\ge0$, expand the square in the Gaussian exponent and bound the sum by
+\begin{equation*}
+ \sum_{n\ge1}(2\pi na)^{-1/2}e^{-\nu^2na/2}<\infty.
+\end{equation*}
+For $u=-v<0$ with $v\le1$, the same argument costs at most the factor $e^\nu$.  Suppose now that $v>1$, and divide the indices according to
+\begin{equation*}
+ na<\frac{v}{2\nu},\qquad
+ \frac{v}{2\nu}\le na\le\frac{2v}{\nu},\qquad
+ na>\frac{2v}{\nu}.
+\end{equation*}
+In the first range, the sum is bounded by $C_a\sqrt v\,e^{-\nu v/4}$. In the last range, it is bounded by $\sum_{n\ge1}C(na)^{-1/2}e^{-\nu^2na/8}$. In the middle range, it is bounded by
+\begin{equation*}
+ C v^{-1/2}\sum_{n\in\mathbb Z}
+       \exp\!\left(-c\frac{(na-v/\nu)^2}{v}\right)
+ \le C_a.
+ \end{equation*}
+This proves~\eqref{mom:potential-density}.  Integrating against $e^{-\gamma y}\,dy$ proves~\eqref{mom:potential-bound}. Finally, for every real $b$, $\P[(B_s)_+\ge b]\le2\P[B_s\ge b]$: this is equality up to the factor two when $b>0$, and follows from $\P[B_s\ge b]\ge1/2$ when $b\le0$.
+\end{proof}
+
+\subsection{The full-tree first moment}
+
+Fix an integer $m\ge2$.  Let $\mathcal T_n$ consist of all $m$-adic subcubes of $C_0$ in generations $0,\ldots,n$, and set
+\begin{equation}\label{mom:tree-definition}
+ J_\eps^{(n)}(Y)
+   :=\sum_{C\in\mathcal T_n}\ind_{\{V_C(Y)>\eps\}},
+ \qquad
+ J_\eps(Y):=\lim_{n\to\infty}J_\eps^{(n)}(Y).
+\end{equation}
+This is a full-tree count: no condition is imposed on the ancestors of a counted cube.
+
+\begin{lemma}\label{mom:tree-l1}
+For every fixed $m\ge2$, there is $A_m<\infty$ such that
+\begin{equation}\label{mom:tree-l1-bound}
+ \E J_\eps(X)\le A_m\eps^{-\Delta},
+ \qquad \eps>0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $C$ have side $r=e^{-s}$, and center $z$. Similarity covariance and the local Weyl bound give
+\begin{equation*}
+ V_C(X)\le
+ e^{-\xi Qs+\xi\Omega_s+\xi\sup\delta_s}\,V,
+ \end{equation*}
+where $V$ has the law of $V_{C_0}(X)$ and is independent of the coarse field.  The fixed compact cube in Lemma~\ref{mom:coarse} is chosen to contain the rescaled triple of $C$.  For sufficiently large $s$,~\eqref{mom:positive-part} therefore gives
+\begin{equation}\label{mom:diam-domination}
+ V_C(X)\le e^{-\xi Qs+\xi(\Omega_s)_+}Y_s,
+ \qquad
+ Y_s=e^{\xi R_s}V.
+\end{equation}
+The variable $Y_s$ is independent of $\Omega_s$, and $\sup_s\E Y_s^q<\infty$. Consequently, there is a single positive random variable $Y\ge1$ which stochastically dominates every $Y_s$ and satisfies $\E Y^\Delta<\infty$. Explicitly, if $A\ge1$ bounds $\sup_s\E Y_s^q$, take
+\begin{equation*}
+ \P[Y>y]=\min\{1,Ay^{-q}\},\qquad y\ge1\,.
+\end{equation*}
+Markov's inequality gives the domination, and tail integration gives finiteness of the $\Delta$-moment because $q>\Delta$.  This is only a comparison of one-dimensional distributions; independence between different cubes is not asserted.
+
+For $\eps\le1$, apply Lemma~\ref{mom:potential} with
+\begin{equation*}
+ a=\log m,\qquad
+ t=\xi^{-1}\log\eps^{-1}+\xi^{-1}\log Y.
+ \end{equation*}
+There are $e^{ds}=m^{dn}$ cubes in generation $n$. Summing~\eqref{mom:diam-domination} over all sufficiently large generations and then averaging over $Y$ gives a bound of $C_m\eps^{-\Delta}\E Y^\Delta$. The finitely many remaining generations contribute a deterministic constant, which is absorbed because $\eps\le1$.
+
+For $\eps\ge1$, Lemma~\ref{mom:coarse} and the independence of the fine field give
+\begin{equation}\label{mom:diam-scale}
+ \E V_C(X)^q
+ \le C r^{\chi(q)},\qquad
+ \chi(q):=\xi Qq-\frac{\xi^2q^2}{2}.
+\end{equation}
+The two roots of $\chi(u)=d$ are $\Delta$ and $q_+$. Thus $\chi(q)>d$, and Markov's inequality yields
+\begin{equation*}
+ \E J_\eps(X)
+ \le \eps^{-q}\sum_{n=0}^{\infty}
+        C m^{n(d-\chi(q))}
+ \le C_m\eps^{-q}
+ \le C_m\eps^{-\Delta}.
+ \end{equation*}
+This proves the estimate on the entire positive half-line.
+\end{proof}
+
+\subsection{A finite-range moment recursion}
+
+\begin{lemma}\label{mom:tree-lp}
+For $p$ as in Proposition~\ref{mom:main}, one can choose a fixed integer $m$ sufficiently large that
+\begin{equation}\label{mom:tree-lp-bound}
+ \sup_{\eps>0}\eps^{p\Delta}\E[J_\eps(X)^p]<\infty.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put $r=1/m$, and write the first-generation cubes as $C_i=z_i+rC_0$, $1\le i\le m^d$.  Split $X=X_r+H_r$, and set
+\begin{equation*}
+ M_i=\sup_{3C_i}H_r,\qquad
+ a_i=r^{\xi Q}e^{\xi M_i},\qquad
+ \delta_i=\eps/a_i,\qquad
+ X^{(i)}(u)=X_r(z_i+ru).
+\end{equation*}
+Each $X^{(i)}$ has the law of $X$ and is independent of $H_r$. If $C\subset C_i$ is a descendant cube, then $3C\subset3C_i$. Local Weyl scaling and similarity covariance therefore give the pathwise inequality
+\begin{equation}\label{mom:recursion}
+ J_\eps^{(n)}(X)
+ \le \ind_{\{V_{C_0}(X)>\eps\}}
+       +\sum_{i=1}^{m^d}J_{\delta_i}^{(n-1)}(X^{(i)}).
+\end{equation}
+
+There is a coloring of the first-generation cubes with $L$ colors, where $L$ depends only on $d$ and the support of $K$, such that the restrictions of $X_r$ to the triples of cubes of a common color are independent.  Indeed, these restrictions use white noise within distance $O(r)$ of the corresponding triples.  The number $L$ does not depend on $m$. By locality, every descendant count in~\eqref{mom:recursion} is a function of the fine field on the appropriate triple.  Thus, conditionally on $H_r$, the summands are independent within each color class.
+
+We use the following elementary consequence of symmetrization: if nonnegative random variables $Y_i$ are independent within $L$ color classes and $1<p\le2$, then
+\begin{equation}\label{mom:centered-sum}
+ \E\left(\sum_iY_i\right)^p
+ \le C_{p,L}\sum_i\E Y_i^p
+       +C_{p,L}\left(\sum_i\E Y_i\right)^p.
+\end{equation}
+The constant is independent of the number of variables. To verify this, center the variables and first sum within colors. For independent centered variables, symmetrization followed by
+\begin{equation*}
+ \E_{\sigma}\left|\sum_i\sigma_i w_i\right|^p
+ \le\left(\sum_iw_i^2\right)^{p/2}
+ \le\sum_i|w_i|^p
+ \end{equation*}
+gives the requisite bound; here the $\sigma_i$ are independent symmetric signs.  Summing the $L$ centered color sums and then adding back the mean proves~\eqref{mom:centered-sum}. The same argument applies conditionally.
+
+Define
+\begin{equation*}
+ B_n:=\sup_{\eps>0}
+       \eps^{p\Delta}\E[(J_\eps^{(n)}(X))^p].
+\end{equation*}
+Each $B_n$ is finite.  Indeed, the tree is finite and
+\begin{equation*}
+ (J_\eps^{(n)})^p
+ \le|\mathcal T_n|^{p-1}
+       \sum_{C\in\mathcal T_n}\ind_{\{V_C>\eps\}},
+ \qquad
+ \eps^{p\Delta}\P[V_C>\eps]\le\E V_C^{p\Delta}<\infty.
+\end{equation*}
+The last moment is available since $p\Delta<q$.
+
+Apply~\eqref{mom:centered-sum} conditionally on $H_r$ to $Y_i=J_{\delta_i}^{(n-1)}(X^{(i)})$.  Then
+\begin{equation*}
+ \E[Y_i^p\mid H_r]\le B_{n-1}\delta_i^{-p\Delta},
+ \qquad
+ \E[Y_i\mid H_r]\le A_m\delta_i^{-\Delta},
+\end{equation*}
+where the second inequality uses Lemma~\ref{mom:tree-l1} for all positive values of $\delta_i$. Since $\xi\Delta=\gamma$,~\eqref{mom:coarse-tilt} gives
+\begin{equation}\label{mom:diagonal}
+ \eps^{p\Delta}\sum_i\E\delta_i^{-p\Delta}
+ =\sum_i\E a_i^{p\Delta}
+ \le C m^{d-\zeta(p)}.
+\end{equation}
+The constant $C$ here is independent of $m$. For each fixed $m$, the mean term satisfies
+\begin{equation}\label{mom:mean-term}
+ \eps^{p\Delta}
+  \E\left(\sum_i\E[Y_i\mid H_r]\right)^p
+ \le A_m^p\,\E\left(\sum_i a_i^\Delta\right)^p
+ <\infty.
+\end{equation}
+This bound is independent of $\eps,n$; uniformity in $m$ is not needed. The roles of the constants are different: the coefficient multiplying $B_{n-1}$ must be uniform in $m$, whereas the additive term is evaluated only after one subdivision factor $m$ has been fixed.  Finally,
+\begin{equation*}
+ \sup_{\eps>0}
+   \eps^{p\Delta}\P[V_{C_0}(X)>\eps]
+ \le\E V_{C_0}(X)^{p\Delta}<\infty.
+\end{equation*}
+
+Combining~\eqref{mom:recursion}--\eqref{mom:mean-term} gives
+\begin{equation}\label{mom:contract}
+ B_n\le c\,m^{d-\zeta(p)}B_{n-1}+C_m,
+\end{equation}
+where $c$ is independent of $m,n$. Since $\zeta(p)>d$, choose $m$ so large that the coefficient of $B_{n-1}$ is less than one.  Iterating~\eqref{mom:contract} gives $\sup_n B_n<\infty$. For each $\eps>0$, monotone convergence in~\eqref{mom:tree-definition} proves~\eqref{mom:tree-lp-bound}.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{mom:main}]
+Use the fixed $m$ chosen in Lemma~\ref{mom:tree-lp}. Starting from $C_0$, subdivide every cube $C$ for which $V_C(X)>\eps/2$, and stop otherwise. Lemma~\ref{mom:tree-l1} implies that $J_{\eps/2}(X)<\infty$ almost surely.  Thus the stopped tree is finite: an infinite nonterminal branch would contribute infinitely many terms to $J_{\eps/2}$.  Its terminal cubes cover $C_0$, and their number is at most $1+(m^d-1)J_{\eps/2}(X)$.
+
+Each terminal cube has internal diameter at most $\eps/2$ in its triple and hence is covered by one closed $\eps$-ball for the metric internal to $3C_0$. Consequently,
+\begin{equation}\label{mom:cover-tree}
+ N_\eps(C_0;D_X(\cdot,\cdot;3C_0))
+ \le1+(m^d-1)J_{\eps/2}(X).
+\end{equation}
+In particular, no separate H\"older estimate or assumption about termination is used.  Lemmas~\ref{mom:tree-l1} and~\ref{mom:tree-lp} give, for every $\delta>0$,
+\begin{equation*}
+ \E N_\delta(C_0;D_X(\cdot,\cdot;3C_0))
+     \le C(1+\delta^{-\Delta}),\qquad
+ \E N_\delta(C_0;D_X(\cdot,\cdot;3C_0))^p
+     \le C_p(1+\delta^{-p\Delta}).
+\end{equation*}
+
+Now let $C=z+rC_0$, where $r\le1$. Condition on $H_r$, and apply similarity covariance and the upper local Weyl bound with
+\begin{equation*}
+ a=r^{\xi Q}\exp\!\left(\xi\sup_{3C}H_r\right).
+\end{equation*}
+The preceding unit-cube bounds, with $\delta=\eps/a$, imply
+\begin{equation*}
+ \E\!\left[
+   \bigl(\eps^\Delta
+      N_\eps(C;D_X(\cdot,\cdot;3C))\bigr)^p
+       \,\middle|\,H_r
+ \right]
+ \le C_p(\eps^{p\Delta}+a^{p\Delta}).
+\end{equation*}
+By~\eqref{mom:coarse-tilt}, $\E a^{p\Delta}\le C_p r^{\zeta(p)}$. This proves~\eqref{mom:cube-lp}. The same argument with the first moment gives $\E a^\Delta\le C r^{\gamma Q-\gamma^2/2}=Cr^d$, which proves~\eqref{mom:cube-l1}.
+\end{proof}
+
+\section{A matching lower bound}\label{low:section}
+
+A lower bound requires separated points, not merely large diameters. We retain cubes at the first ancestral scale where the coarse field reaches a prescribed level and require a positive fine-field exit distance. The retained cubes form an antichain, and their centers are separated in the metric. Counting them in expectation gives the matching exponent.
+
+\begin{proposition}\label{low:lower}
+There is a deterministic $c>0$ such that
+\begin{equation*}
+    \E N_\eps(C_0;D_X)\ge c\eps^{-\Delta},
+    \qquad 0<\eps<1.
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+\emph{Step 1: Coarse-field selection.}
+Set $\nu=\xi(Q-\gamma)>0$. We first record the Gaussian estimates used to construct a packing. Choose an integer $m\ge1$, to be fixed below, and write $\ell=m\log 2$. At level $n$, partition $C_0$ into cubes of side $r=e^{-s}$, where $s=n\ell$. For such a cube $C$, let $x_C$ be its center and set
+\begin{equation*}
+    U_C=\xi\bigl(Qs-H_{e^{-s}}(x_C)\bigr).
+\end{equation*}
+If $C'$ is a strict ancestor at level $j<n$, put $v=j\ell$. Since $|x_C-x_{C'}|\le c_d e^{-v}$, the covariance formula for the coarse field gives
+\begin{equation}\label{low:cov}
+    \operatorname{Cov}\bigl(H_{e^{-s}}(x_C),H_{e^{-v}}(x_{C'})\bigr)
+       =v+e_{C,C'},\qquad -c_0\le e_{C,C'}\le0,
+\end{equation}
+with $c_0$ independent of the cubes and levels. Indeed, the covariance is the integral of $k((x_C-x_{C'})/t)$ over $t\in[e^{-v},1]$ against $dt/t$. Here $k\le k(0)=1$ and $|1-k(z)|\le c\min\{|z|^2,1\}$, so the difference from $v$ is uniformly bounded.
+
+Condition on $U_C=u$, and write $b=Qs-u/\xi$. Gaussian regression and~\eqref{low:cov} yield
+\begin{align}
+ \E[U_{C'}\mid U_C=u]
+   &=\frac{v}{s}u-\xi e_{C,C'}\frac{b}{s},\label{low:mean}\\
+ \operatorname{Var}(U_{C'}\mid U_C=u)
+   &=\xi^2\left(v-\frac{(v+e_{C,C'})^2}{s}\right)
+     \le\xi^2(s-v+2c_0).\label{low:var}
+\end{align}
+For $t$ large, restrict attention to levels in the window
+\begin{equation}\label{low:window}
+    \left|s-\frac{t}{\nu}\right|\le\sqrt t
+\end{equation}
+and values $u\in[t,t+1]$. On this window $|b|/s$ is uniformly bounded and $t/s\ge\nu/2$, once $t$ is sufficiently large. Consequently,~\eqref{low:mean} gives
+\begin{equation*}
+ t-\E[U_{C'}\mid U_C=u]
+      \ge \frac\nu2(s-v)-1-c_1.
+\end{equation*}
+Combining this with~\eqref{low:var}, and then summing the Gaussian tail bound over the ancestors, shows that we can choose $m$ large enough that
+\begin{equation}\label{low:ancestors}
+ \P\bigl[U_{C'}\ge t\text{ for some strict ancestor }C'
+              \mid U_C=u\bigr]\le\frac14.
+\end{equation}
+More explicitly, after increasing $\ell$, the summand for an ancestor with $s-v=k\ell$ is at most $e^{-c_2k\ell}$, uniformly under~\eqref{low:window} and $u\in[t,t+1]$. The sum of this geometric series can be made smaller than $1/4$.
+
+We also need a bound for the coarse oscillation
+\begin{equation*}
+    M_C=\sup_{y\in C}
+       |H_{e^{-s}}(y)-H_{e^{-s}}(x_C)|.
+\end{equation*}
+There is a deterministic $L<\infty$ such that, on the same window,
+\begin{equation}\label{low:oscillation}
+    \P[M_C>L\mid U_C=u]\le\frac14.
+\end{equation}
+Here is a direct verification. After rescaling $C$ to a fixed cube, the increment field $H_{e^{-s}}(x_C+e^{-s}z)-H_{e^{-s}}(x_C)$ and all its first derivatives have uniformly bounded variances. Their covariances with $H_{e^{-s}}(x_C)$ are also uniformly bounded. Under the stated conditioning, their means and mean derivatives are therefore uniformly bounded, since $|b|/s$ is bounded; Gaussian regression can only decrease their centered variances. For any fixed $q_{\mathrm S}>d$, the expected $q_{\mathrm S}$th power of their $W^{1,q_{\mathrm S}}$ norm on the rescaled cube is uniformly bounded. Sobolev embedding and Markov's inequality prove~\eqref{low:oscillation}. In particular,~\eqref{low:ancestors} and~\eqref{low:oscillation} imply
+\begin{equation}\label{low:coarse-good}
+ \P\bigl[M_C\le L,\ U_{C'}<t\text{ for every strict ancestor }C'
+               \mid U_C=u\bigr]\ge\frac12.
+\end{equation}
+No independence between these coarse events is being used.
+
+\emph{Step 2: Metric separation.}
+We add an independent fine-field crossing event. Write $x_0=(1/2,\ldots,1/2)$ and let
+\begin{equation*}
+    Z=\dist_{D_X}(x_0,\partial C_0).
+\end{equation*}
+This is strictly positive almost surely, since $D_X$ induces the Euclidean topology. It is local: its value is the infimum of the lengths of paths from $x_0$ up to their first encounter with $\partial C_0$. Every such initial path segment stays in $C_0$, and the same first-exit observation applies to any ambient competitor. Thus $Z$ is determined by the internal metric on a fixed open neighborhood of $C_0$. Choose a deterministic $\kappa>1$ such that
+\begin{equation}\label{low:fine-positive}
+    \P\left[Z>\frac{3e^{1+\xi L}}{\kappa}\right]\ge\frac34,
+\end{equation}
+and now set $t=\log(1/(\kappa\eps))$.
+
+For a cube $C=z_C+rC_0$ at one of the levels in~\eqref{low:window}, let $\widehat X_C(w)=X_r(z_C+rw)$, and define $Z_C=\dist_{D_{\widehat X_C}}(x_0,\partial C_0)$. The field $\widehat X_C$ has the law of $X$ and is independent of all noise at scales at least $r$. Retain $C$ if
+\begin{equation}\label{low:retain}
+ \begin{gathered}
+ U_C\in[t,t+1],\qquad M_C\le L,\qquad
+ U_{C'}<t\text{ for every strict ancestor }C',\\
+ Z_C>3e^{1+\xi L}/\kappa.
+ \end{gathered}
+\end{equation}
+All conditions in the first line concern only noise at scales at least $r$, so the last condition is independent of them. By~\eqref{low:coarse-good} and~\eqref{low:fine-positive}, the conditional probability of retention given $U_C=u\in[t,t+1]$ is at least $3/8$.
+
+The first-exit characterization, Weyl scaling on $C$, and similarity covariance give, for every retained cube,
+\begin{equation}\label{low:crossing}
+ \dist_{D_X}(x_C,\partial C)
+       \ge e^{-U_C-\xi M_C}Z_C>3\eps.
+\end{equation}
+Retained cubes form an antichain: a retained cube has $U_C\ge t$, whereas every strict ancestor of a retained cube has its $U$ value smaller than $t$. Their interiors are therefore pairwise disjoint. Every path between two retained centers must exit the first cube, so~\eqref{low:crossing} implies that these centers have $D_X$-distance greater than $2\eps$. A ball of radius $\eps$ contains at most one of them. Hence $N_\eps(C_0;D_X)$ is at least the number of retained cubes. Only finitely many levels are being used, so no assertion about termination of an infinite stopping partition is needed.
+
+\emph{Step 3: Expected number of retained cubes.}
+At a fixed level, the retention probability is bounded below using the one-point density of $U_C$. At level $s=n\ell$ there are $e^{ds}$ cubes, and $U_C$ has density
+\begin{equation*}
+ \frac{1}{\xi\sqrt{2\pi s}}
+       \exp\left(-\frac{(Qs-u/\xi)^2}{2s}\right).
+\end{equation*}
+The identity $d=\gamma Q-\gamma^2/2$ gives
+\begin{equation}\label{low:saddle}
+ ds-\frac{(Qs-u/\xi)^2}{2s}
+   =\Delta u-
+      \frac{((Q-\gamma)s-u/\xi)^2}{2s}.
+\end{equation}
+On~\eqref{low:window}, for $u\in[t,t+1]$, the last term in~\eqref{low:saddle} is uniformly bounded and $s$ is comparable to $t$. The expected number of retained cubes at each such level is therefore at least $c_3e^{\Delta t}/\sqrt t$. There are at least $c_4\sqrt t$ levels in the window for all sufficiently large $t$, where $c_4$ may depend on the fixed $\ell$. Summing over these levels proves
+\begin{equation*}
+    \E N_\eps(C_0;D_X)
+       \ge c_5e^{\Delta t}
+       =c_5\kappa^{-\Delta}\eps^{-\Delta}
+\end{equation*}
+for all sufficiently small $\eps$. Decreasing the constant extends the bound to $0<\eps<1$, since a nonempty cube requires at least one covering ball.
+\end{proof}
+
+\section{Additivity and regular variation}
+
+Metric balls can cross Euclidean partition boundaries, so covering numbers are not exactly additive. We remove thin boundary strips and use the sharp first-moment bound to show that their contribution is negligible. Stationarity then identifies the spatial intensity of expected covering counts. A Gaussian averaging identity rules out nonconstant subsequential profiles under fixed multiplicative changes of radius.
+
+\begin{proposition}\label{prop:additivity}
+Let $A$ be a fixed compact box contained in an open box $U$. Then
+\begin{equation}\label{eq:local-cover-equality}
+ N_\eps(A;D_X(\cdot,\cdot;U))=N_\eps(A;D_X)
+\end{equation}
+for all sufficiently small $\eps$, almost surely. The difference, multiplied by $\eps^\Delta$, converges to zero in $L^1$. If $A=\bigcup_{i=1}^m A_i$ is a fixed finite partition into compact boxes with disjoint interiors, then
+\begin{equation}\label{eq:additivity}
+ \eps^\Delta\left(\sum_{i=1}^m N_\eps(A_i;D_X)
+                         -N_\eps(A;D_X)\right)\longrightarrow0
+ \quad\text{in }L^1.
+\end{equation}
+Each count on an $A_i$ can instead use the internal metric in any fixed open box containing $A_i$ compactly.
+\end{proposition}
+
+\begin{proof}
+Set $a=\dist_{D_X}(A,U^c)>0$. Positivity follows from compactness and equality of the two topologies. If $\eps<a/3$, an ambient ball meeting $A$ has its center in $U$. Any almost minimizing path of length at most $\eps+o(1)<a$ joining that center to a point of $A$ remains in $U$: otherwise the segment from $A$ to its first exit already costs at least $a$. Letting the approximation error decrease to zero shows that the ambient and internal balls have the same intersection with $A$, which proves~\eqref{eq:local-cover-equality}. The covering moment estimate gives uniform integrability after multiplication by $\eps^\Delta$. For a general pair $A\Subset U$, cover $A$ by finitely many small cubes whose triples lie in $U$ to obtain the required moment bound.
+
+Subadditivity gives the nonnegativity in~\eqref{eq:additivity}. For $\delta>0$, remove a Euclidean strip of width $\delta$ from each boundary and let $A_i^\delta$ be the resulting compact cores. They have pairwise positive $D_X$-distance almost surely. For all sufficiently small $\eps$, one $\eps$-ball cannot meet two cores, and hence
+\begin{equation*}
+ N_\eps(A;D_X)\ge\sum_iN_\eps(A_i^\delta;D_X).
+\end{equation*}
+On the exceptional event, the normalized error is bounded by a finite sum of uniformly $L^p$-bounded counts. H\"older's inequality shows that its expectation tends to zero.
+
+The omitted strips can be covered by $O_A(\delta^{-(d-1)})$ Euclidean cubes of side $\delta$. The local first-moment estimate therefore gives
+\begin{equation*}
+ \limsup_{\eps\downarrow0}\eps^\Delta
+       \E N_\eps\!\left(\bigcup_i(A_i\setminus A_i^\delta);D_X\right)
+ \le C_A\delta.
+\end{equation*}
+Use these strip covers separately for each $i$ and let $\delta\downarrow0$. This proves~\eqref{eq:additivity}. The assertion for internal counts follows from localization.
+\end{proof}
+
+Write
+\begin{equation}\label{eq:b-star}
+ b_\eps^*=\E N_\eps(C_0;D_X).
+\end{equation}
+The two covering bounds give
+\begin{equation}\label{eq:b-star-bounds}
+ c\eps^{-\Delta}\le b_\eps^*\le C\eps^{-\Delta},\qquad 0<\eps\le1.
+\end{equation}
+Stationarity and rational tilings, followed by inner and outer box approximations, give for every fixed compact box $A$,
+\begin{equation}\label{eq:intensity-before-rv}
+ \eps^\Delta\bigl(\E N_\eps(A;D_X)-|A|b_\eps^*\bigr)
+ \longrightarrow0.
+\end{equation}
+For clarity, partitioning $C_0$ into $m^d$ cubes first proves this for cubes of side $1/m$. Finite unions prove it for rational boxes. The local first-moment estimate controls the strips needed to approximate any other box. Localization gives the same conclusion for internal counts.
+
+\begin{proposition}\label{prop:regular-variation}
+For every $a>0$,
+\begin{equation}\label{eq:regular-variation}
+ \frac{b_{a\eps}^*}{b_\eps^*}\longrightarrow a^{-\Delta}.
+\end{equation}
+Moreover, for every fixed pair of boxes $A\Subset U$,
+\begin{equation}\label{eq:normalized-intensity}
+ (b_\eps^*)^{-1}
+   \E N_\eps(A;D_X(\cdot,\cdot;U))\longrightarrow |A|.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The second assertion follows from~\eqref{eq:intensity-before-rv} and~\eqref{eq:b-star-bounds}. To prove regular variation, take an arbitrary sequence $\eps_j\downarrow0$ and consider
+\begin{equation*}
+ F_j(t)=(\eps_j e^{-t})^\Delta b_{\eps_j e^{-t}}^*,\qquad t\in\R.
+\end{equation*}
+The functions $e^{\Delta t}F_j(t)$ are nondecreasing. Helly selection gives a subsequence and a function $f$ such that
+\begin{equation}\label{eq:helly}
+ F_j(t)\longrightarrow f(t)
+\end{equation}
+at every continuity point of a nondecreasing function $e^{\Delta t}f(t)$. The exceptional set is countable, and $c\le f\le C$ at every continuity point, with the constants in~\eqref{eq:b-star-bounds}.
+
+Fix $s>0$, put $r=e^{-s}$, and split $X=H_r+X_r$. We claim that, at each continuity point $t$,
+\begin{equation}\label{eq:harmonic-profile}
+ f(t)=\E f\bigl(t-\xi(Q-\gamma)s+\xi B_s\bigr),
+ \qquad B_s\sim N(0,s).
+\end{equation}
+Here and below the values assigned to $f$ at its countable exceptional set do not affect a Gaussian expectation.
+
+To prove the claim, partition $C_0$ into cubes $A_i$ of side $a=1/m$, let $U_i=3A_i$, and choose $x_i\in A_i$. For this fixed mesh, Proposition~\ref{prop:additivity} reduces the expected total count to the sum of the expected internal counts, with an error $o_j((\eps_j e^{-t})^{-\Delta})$. Set $h_i^\pm=\sup_{U_i}H_r,\inf_{U_i}H_r$, respectively. Conditional Weyl comparison brackets the $i$th conditional mean between fine-field counts at radii
+\begin{equation*}
+ \eps_j e^{-t}r^{-\xi Q}e^{-\xi h_i^-}
+ \quad\text{and}\quad
+ \eps_j e^{-t}r^{-\xi Q}e^{-\xi h_i^+}
+\end{equation*}
+on the rescaled pair of boxes $A_i/r\Subset U_i/r$. For a fixed value $v$, put $u=t-\xi Qs+\xi v$. Equations~\eqref{eq:intensity-before-rv} and~\eqref{eq:helly} give, whenever $u$ is a continuity point,
+\begin{align}\label{eq:profile-cell}
+ &(\eps_j e^{-t})^\Delta
+ \E N_{\eps_j e^{-u}}(A_i/r;D_X(\cdot,\cdot;U_i/r))\\
+ &\hspace{3em}\longrightarrow
+ |A_i|r^{-d}e^{\gamma v-\gamma Qs}
+          f(t-\xi Qs+\xi v).\notag
+\end{align}
+Translation of the boxes does not change the expectation.
+
+Before using~\eqref{eq:profile-cell} at random shifts, we must exclude the countable exceptional set of the Helly limit. We do not assume that a coarse-field extremum has an atomless law. Fix $\eta>0$ and, on $\{\osc_{U_i}H_r\le\eta\}$, use the weaker bounds $H_r(x_i)-\eta$ and $H_r(x_i)+\eta$ instead. Each frozen value is a translate of a nondegenerate Gaussian, so its corresponding $u$ avoids the exceptional set almost surely. The first-moment estimate and Gaussian exponential moments justify dominated convergence. The normalized expected contribution on a bad cell is bounded, apart from a term vanishing with $j$, by
+\begin{equation*}
+ C|A_i|r^{\gamma^2/2}
+ \E\!\left[e^{\gamma\sup_{U_i}H_r}
+       \ind_{\{\osc_{U_i}H_r>\eta\}}\right].
+\end{equation*}
+The same bound controls the frozen comparison counts there. For fixed $r,\eta$, the expectation tends uniformly in $i$ to zero as $a/r\to0$: the smooth field has uniformly vanishing oscillations on these shrinking translates, and its exponential supremum moments on a fixed-size translate are finite. The sum of the volumes $|A_i|$ is one. The term which vanishes with $j$ is bounded by a constant times $a^{-d}\eps_j^\Delta$ for fixed $r,\eta,t$. It is discarded before the mesh is refined; no estimate uniform in both $a$ and $j$ is claimed.
+
+Let $j\to\infty$ first, then $a\to0$. Stationarity of $H_r$ makes all frozen Gaussian expectations equal. The resulting lower and upper bounds for $f(t)$ are
+\begin{equation*}
+ r^{-d}\E\!\left[
+  e^{\gamma(B_s\pm\eta)-\gamma Qs}
+  f(t-\xi Qs+\xi B_s\pm\xi\eta)\right].
+\end{equation*}
+The bounds converge as $\eta\downarrow0$ by dominated convergence, because a Gaussian shift avoids all discontinuity points of $f$ and $f$ is bounded. Thus
+\begin{equation*}
+ f(t)=r^{-d}\E\!\left[
+       e^{\gamma B_s-\gamma Qs}
+       f(t-\xi Qs+\xi B_s)\right].
+\end{equation*}
+Since $d=\gamma Q-\gamma^2/2$, Gaussian tilting proves~\eqref{eq:harmonic-profile}.
+
+For a fixed $s>0$, the right side of~\eqref{eq:harmonic-profile} is smooth in $t$. Approaching any exceptional point from either side through continuity points shows that the left and right limits of $e^{\Delta t}f(t)$ agree. Thus $f$ has a unique continuous extension, and~\eqref{eq:harmonic-profile} holds for every $t$ and $s>0$. Monotonicity of $e^{\Delta t}F_j(t)$ and two-sided sandwiches then extend~\eqref{eq:helly} to every $t$. Taking $s=1$ shows that all derivatives of $f$ are bounded. Differentiation at $s=0$ is therefore justified and gives
+\begin{equation*}
+ \frac{\xi^2}{2}f''-\xi(Q-\gamma)f'=0.
+\end{equation*}
+The general solution is $f(t)=a_0+a_1e^{2(Q-\gamma)t/\xi}$. Boundedness on all of $\R$ and $Q-\gamma>0$ force $a_1=0$.
+
+We have shown that every initial sequence has a subsequence whose shifted profiles converge at every $t$ to one positive constant. Taking the ratio at $t=-\log a$ and $t=0$ proves~\eqref{eq:regular-variation} by the subsequence criterion.
+\end{proof}
+
+\section{Identification of the limiting measure}
+
+We now condition on a coarse scale and sum local covering counts. Finite-range dependence and the spatial moment exponent $\zeta(p)>d$ control the centered sum. Regular variation identifies upper and lower bounds for its conditional mean; a Gaussian tilt shows that the difference between these bounds vanishes as the partition is refined.
+
+For an open set $U$, write $D_X^U$ for the internal metric of $D_X$ on $U$. The mean-one chaos $M_X$ is as in~\eqref{eq:cutoff-chaos}, and we retain the normalization
+\begin{equation*}
+ b_\eps^*=\E N_\eps(C_0;D_X),\qquad C_0=[0,1]^d,
+\end{equation*}
+from Proposition~\ref{prop:regular-variation}.
+
+\begin{proposition}\label{prop:cutoff-convergence}
+For every deterministic closed box $C\subset\R^d$,
+\begin{equation*}
+ (b_\eps^*)^{-1}N_\eps(C;D_X)\longrightarrow M_X(C)
+ \quad\text{in }L^1\quad\text{as }\eps\to0.
+\end{equation*}
+The same statement holds for finite unions of such boxes and, for $C\Subset U$, with $D_X$ replaced by $D_X^U$.
+\end{proposition}
+
+\begin{proof}
+Fix
+\begin{equation*}
+ 1<p<\min\{2,2d/\gamma^2,q/\Delta\},\qquad
+ \zeta(p)=p\gamma Q-\frac{p^2\gamma^2}{2}.
+\end{equation*}
+Proposition~\ref{mom:main} applies to this $p$, and
+\begin{equation}\label{eq:positive-zeta-gap}
+ \zeta(p)-d=(p-1)\left(d-\frac{p\gamma^2}{2}\right)>0.
+\end{equation}
+We give the proof for $C_0$. Fix $\delta=1/m$, with $m\ge10$ an integer, and take $r=1/n$. Partition $C_0$ into boxes $C_i$ of side $\delta r$, and let $U_i$ be the concentric open triple of $C_i$. Define
+\begin{equation*}
+ Z_{i,\eps}=(b_\eps^*)^{-1}N_\eps(C_i;D_X^{U_i}),
+ \qquad m_{i,\eps}=\E[Z_{i,\eps}\mid H_r].
+\end{equation*}
+For fixed $r,\delta$, Proposition~\ref{prop:additivity} gives
+\begin{equation}\label{eq:local-cover-sum}
+ (b_\eps^*)^{-1}N_\eps(C_0;D_X)-\sum_iZ_{i,\eps}
+ \longrightarrow0\quad\text{in }L^1.
+\end{equation}
+
+\emph{Step 1: Conditional fluctuations.} Conditional on $H_r$, each $Z_{i,\eps}$ depends only on $X_r|_{U_i}$. The compact support of the white-noise kernel therefore gives a dependency graph with at most $C\delta^{-d}$ colors, independent of $r$ and $\eps$, such that variables of each color are conditionally independent. The conditional von Bahr--Esseen inequality within each color, followed by the inequality
+$|\sum_{j=1}^M a_j|^p\le M^{p-1}\sum_j|a_j|^p$, gives
+\begin{equation*}
+ \E\left|\sum_i(Z_{i,\eps}-m_{i,\eps})\right|^p
+ \le C_\delta\sum_i\E|Z_{i,\eps}|^p.
+\end{equation*}
+The spatial covering moment estimate and $b_\eps^*\asymp\eps^{-\Delta}$ imply
+\begin{equation*}
+ \E|Z_{i,\eps}|^p
+ \le C\left(\eps^{p\Delta}+(\delta r)^{\zeta(p)}\right).
+\end{equation*}
+There are $(\delta r)^{-d}$ cells. Consequently,
+\begin{equation}\label{eq:conditional-cover-concentration}
+ \limsup_{\eps\to0}
+ \E\left|\sum_i(Z_{i,\eps}-m_{i,\eps})\right|^p
+ \le C_\delta r^{\zeta(p)-d}.
+\end{equation}
+In particular, for each fixed $\delta$, the right side tends to zero as $r\to0$. The number of colors can diverge as $\delta\downarrow0$, and no uniform bound on $C_\delta$ is used.
+
+\emph{Step 2: Conditional means.} Set
+\begin{equation*}
+ h_i^- =\inf_{U_i}H_r,\qquad h_i^+=\sup_{U_i}H_r,
+ \qquad s=\log(1/r).
+\end{equation*}
+Weyl comparison and similarity covariance bracket $m_{i,\eps}$ between the normalized expected fine-field covering counts at radii
+\begin{equation*}
+ \eps r^{-\xi Q}e^{-\xi h_i^-}
+ \quad\text{and}\quad
+ \eps r^{-\xi Q}e^{-\xi h_i^+}
+\end{equation*}
+in a box of side $\delta$, with its concentric triple as the internal domain. The expectation-intensity conclusion and regular variation in Proposition~\ref{prop:regular-variation} imply that these two bounds converge, for fixed $r,\delta,H_r$, respectively to
+\begin{equation}\label{eq:conditional-mean-brackets}
+ L_i=r^{\gamma Q}\delta^d e^{\gamma h_i^-},
+ \qquad U_i'=r^{\gamma Q}\delta^d e^{\gamma h_i^+}.
+\end{equation}
+These convergences also hold in $L^1$. Indeed, the first-moment bound dominates the normalized expected count at a radius $\eps/a$ by $C_\delta(\eps^\Delta+a^\Delta)$, and here $a=r^{\xi Q}e^{\xi h_i^\pm}$ has moments of every positive order. This assertion concerns convergence of the two bounds; it does not assert that $m_{i,\eps}$ has a limit for fixed $r,\delta$.
+
+Consider the coarse chaos approximation
+\begin{equation*}
+ M_r(C_0)=\int_{C_0}
+ e^{\gamma H_r(x)-\frac12\gamma^2s}\,dx.
+\end{equation*}
+Since $\gamma Q=d+\gamma^2/2$, it lies between $\sum_iL_i$ and $\sum_iU_i'$. We claim that
+\begin{equation}\label{eq:coarse-oscillation-gap}
+ \E\sum_i(U_i'-L_i)\le C\delta,
+\end{equation}
+with $C$ independent of $r$ and $\delta\le1/10$.
+
+To verify this, choose the center $x_i$ of $C_i$ and write
+\begin{equation*}
+ V_i(y)=H_r(y)-H_r(x_i),\qquad
+ S_i=\sup_{y\in U_i}|V_i(y)|\,.
+\end{equation*}
+The derivative bounds used in Lemma~\ref{mom:coarse}, applied on a fixed rescaled cube containing $U_i$, give constants $c,C>0$ such that
+\begin{equation}\label{eq:small-oscillation-square}
+ \sup_{0<r<1,\,0<\delta\le1/10}\E\exp\bigl(c(S_i/\delta)^2\bigr)\le C\,.
+\end{equation}
+Indeed, the mean value theorem bounds $S_i/\delta$ by a constant times the supremum of $r\nabla H_r$ on that cube. The Gaussian Sobolev argument of Lemma~\ref{mom:coarse} applies to each derivative of this rescaled gradient, uniformly in $r$.
+
+Under the probability measure with density $\exp(\gamma H_r(x_i)-\gamma^2s/2)$, the increment field has its original covariance and its mean is increased by
+\begin{equation*}
+ \gamma\Cov(V_i(y),H_r(x_i))
+ =-\frac{\gamma}{2}\Var V_i(y)\,.
+\end{equation*}
+The absolute value of this shift is at most $C\delta^2$, uniformly in $r$ and $y\in U_i$, by~\eqref{eq:k-bound}. Thus its tilted supremum is bounded in law by $S_i+C\delta^2$. Using $e^{\gamma v}-e^{\gamma u}\le2\gamma S e^{\gamma S}$ for $-S\le u\le v\le S$, and then~\eqref{eq:small-oscillation-square}, gives
+\begin{align*}
+ e^{-\gamma^2s/2}\E\left(e^{\gamma h_i^+}-e^{\gamma h_i^-}\right)
+ &\le 2\gamma\E\left[(S_i+C\delta^2)e^{\gamma(S_i+C\delta^2)}\right]\\
+ &\le C\delta\,.
+\end{align*}
+Here the expectation on the right is under the original centered Gaussian law. Since $r^{\gamma Q}\delta^d=|C_i|e^{-\gamma^2s/2}$, summing the last bound proves~\eqref{eq:coarse-oscillation-gap}. Keeping the tilt exact is essential: H\"older's inequality here would introduce an unwanted power of $r$.
+
+\emph{Step 3: Passage to chaos.}
+Combining~\eqref{eq:local-cover-sum}--\eqref{eq:coarse-oscillation-gap}, we obtain
+\begin{equation}\label{eq:cover-versus-coarse-chaos}
+ \limsup_{\eps\to0}
+ \E\left|(b_\eps^*)^{-1}N_\eps(C_0;D_X)-M_r(C_0)\right|
+ \le C_\delta r^{(\zeta(p)-d)/p}+C\delta.
+\end{equation}
+The subcritical GMC martingale $M_r(C_0)$ converges in $L^1$ to $M_X(C_0)$. The complete order of limits is $\eps\downarrow0$, then $r\downarrow0$ with $\delta$ fixed, and finally $\delta\downarrow0$. More explicitly, the triangle inequality and~\eqref{eq:cover-versus-coarse-chaos} give
+\begin{align*}
+ &\limsup_{\eps\downarrow0}\E\left|(b_\eps^*)^{-1}N_\eps(C_0;D_X)-M_X(C_0)\right|\\
+ &\qquad\le C_\delta r^{(\zeta(p)-d)/p}+C\delta+\E|M_r(C_0)-M_X(C_0)|\,.
+\end{align*}
+Letting $r\downarrow0$ for each fixed $\delta$, and then $\delta\downarrow0$, makes the right side zero. This proves the assertion for $C_0$.
+
+The same proof applies to boxes with rational side lengths by choosing meshes that tile them exactly. Translation invariance handles their translates. Inner and outer rational-box approximations give convergence in probability for arbitrary boxes; the uniform covering $L^p$ bound upgrades it to $L^1$. Finally, finite unions and internal metrics follow from Proposition~\ref{prop:additivity}.
+\end{proof}
+
+\section{Continuous perturbations and continuity sets}
+
+The coarse-scale argument was proved for deterministic boxes and the stationary field. Local Weyl comparison extends it to continuous perturbations without an independence assumption. Finite dyadic approximations then extend it to random compact continuity sets.
+
+\begin{lemma}\label{lem:uniform-radius-shifts}
+Let $C\Subset U$ be fixed boxes. For every $M<\infty$,
+\begin{equation*}
+ \sup_{|c|\le M}\left|
+ (b_\eps^*)^{-1}N_{\eps e^{-\xi c}}(C;D_X^U)
+ -e^{\gamma c}M_X(C)\right|
+ \longrightarrow0\quad\text{in probability}.
+\end{equation*}
+In particular, the same convergence holds after substituting any almost surely finite random variable for $c$, with arbitrary dependence on $X$.
+\end{lemma}
+
+\begin{proof}
+At each fixed $c$, the assertion follows from Proposition~\ref{prop:cutoff-convergence} and regular variation. Choose a finite mesh of $[-M,M]$ and use this convergence simultaneously at its mesh points. The covering number is nondecreasing in $c$, while $c\mapsto e^{\gamma c}M_X(C)$ is continuous. Sandwiching between adjacent mesh points, then refining the mesh, proves the first assertion. For random $c$, restrict to $|c|\le M$ and then let $M\to\infty$.
+\end{proof}
+
+\begin{proposition}\label{prop:weyl-extension}
+Let $f$ be a random continuous function on $\R^d$, possibly depending on $X$, and set $M_{X+f}=e^{\gamma f}M_X$. For every deterministic closed box $C$, or finite union of such boxes,
+\begin{equation*}
+ (b_\eps^*)^{-1}N_\eps(C;D_{X+f})\longrightarrow M_{X+f}(C)
+ \quad\text{in probability}.
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+Partition $C$ into rectangular boxes $C_i$ whose side lengths all lie in $[\ell/2,\ell]$, and let $U_i$ be their concentric open triples. Such partitions exist for arbitrarily small $\ell$. The argument for a finite union is identical, after first partitioning that union into boxes. Put $f_i^- =\inf_{U_i}f$ and $f_i^+=\sup_{U_i}f$. Weyl comparison and subadditivity give
+\begin{equation}\label{eq:weyl-cover-upper}
+ N_\eps(C;D_{X+f})
+ \le\sum_i N_{\eps e^{-\xi f_i^+}}(C_i;D_X^{U_i}).
+\end{equation}
+For $\eta\in(0,1/4)$, remove a Euclidean strip of width $\eta\ell$ from each cell, leaving a compact core $C_i^\eta$. The nonempty cores are mutually separated by positive $D_{X+f}$-distance. Thus an $\eps$-ball meets at most one core for all sufficiently small $\eps$, almost surely. Localizing each core inside $U_i$ and using Weyl comparison gives, for all sufficiently small $\eps$,
+\begin{equation}\label{eq:weyl-cover-lower}
+ N_\eps(C;D_{X+f})
+ \ge\sum_i N_{\eps e^{-\xi f_i^-}}(C_i^\eta;D_X^{U_i}).
+\end{equation}
+All localization and separation assertions concern a fixed finite partition; their random thresholds tend to be satisfied with probability one as $\eps\to0$.
+
+For fixed $\ell,\eta$, Lemma~\ref{lem:uniform-radius-shifts} identifies the limits of the normalized sums in~\eqref{eq:weyl-cover-upper} and~\eqref{eq:weyl-cover-lower} as
+\begin{equation*}
+ \sum_i e^{\gamma f_i^+}M_X(C_i),
+ \qquad
+ \sum_i e^{\gamma f_i^-}M_X(C_i^\eta),
+\end{equation*}
+respectively. Deterministic box boundaries have zero $M_X$-mass almost surely, since $\E M_X$ is Lebesgue measure. Let $\eta\to0$ and then $\ell\to0$. Uniform continuity of $f$ and local finiteness of $M_X$ imply that both sums converge almost surely to $\int_C e^{\gamma f}\,dM_X$. The two bounds prove the result. No independence between $f$ and $X$ is used.
+\end{proof}
+
+\begin{proposition}\label{prop:random-sets}
+Let $(D,\mu)$ be one of the metric-measure pairs covered by Proposition~\ref{prop:weyl-extension}. Suppose that $A$ is either a deterministic bounded Borel set or a random compact set measurable for the Hausdorff topology. If
+\begin{equation*}
+ \mu(\partial A)=0\quad\text{almost surely},
+\end{equation*}
+then
+\begin{equation*}
+ (b_\eps^*)^{-1}N_\eps(A;D)\longrightarrow\mu(A)
+ \quad\text{in probability}.
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+The empty set causes no difficulty; give it an isolated point in the space of compact sets. First restrict to the event $A\subset[-M,M]^d$. For a dyadic mesh of side $2^{-n}$, let $A_n^+$ be the union of all closed cells meeting $A$, and let $A_n^-$ be the union of all closed cells contained in $\operatorname{int}A$. These unions are measurable functions of a random compact $A$. Indeed, a fixed closed cell meets $A$ precisely when its distance to $A$ is zero. A cell lies in $\operatorname{int}A$ precisely when one of its closed $1/k$-neighborhoods is contained in $A$; containment of a fixed compact set is a Borel condition in the Hausdorff topology. For fixed $M,n$, there are only finitely many possible unions of the relevant cells. The convergence for deterministic finite unions therefore holds uniformly over the random choice of a union, by a finite union bound. In particular,
+\begin{equation*}
+ (b_\eps^*)^{-1}N_\eps(A_n^\pm;D)\longrightarrow\mu(A_n^\pm)
+ \quad\text{in probability}
+\end{equation*}
+for fixed $M,n$.
+
+Monotonicity gives
+\begin{equation*}
+ N_\eps(A_n^-;D)\le N_\eps(A;D)\le N_\eps(A_n^+;D).
+\end{equation*}
+As $n\to\infty$, the inner masses increase to $\mu(\operatorname{int}A)$ and the outer masses decrease to $\mu(\overline A)$. Both equal $\mu(A)$ by the boundary hypothesis. The sandwich proves the result on $A\subset[-M,M]^d$. Finally let $M\to\infty$, using almost sure boundedness of $A$.
+\end{proof}
+
+\begin{remark}\label{rem:boundary}
+The boundary hypothesis in Proposition~\ref{prop:random-sets} applies to deterministic Borel sets as well as random compact sets. It cannot be dropped: a countable dense subset of a box has zero GMC mass, while its closed-ball covering numbers equal those of the box. For compact sets the open-ball counts are measurable and satisfy, for $0<\eta<1$,
+\begin{equation*}
+ N_\eps^{\mathrm{closed}}(A;D)
+ \le N_\eps^{\mathrm{open}}(A;D)
+ \le N_{(1-\eta)\eps}^{\mathrm{closed}}(A;D).
+\end{equation*}
+Regular variation and then $\eta\downarrow0$ give the same limiting content with open balls.
+\end{remark}
+
+\section{The whole-space field and the chosen GMC normalization}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The preceding arguments apply to the stationary cutoff field $X$. In particular, Propositions~\ref{prop:regular-variation},~\ref{prop:cutoff-convergence},~\ref{prop:weyl-extension}, and~\ref{prop:random-sets} show that
+\begin{equation*}
+ (b_\eps^*)^{-1}N_\eps(A;D_{X+F})
+ \xrightarrow{\P} \int_A e^{\gamma F}\,\dd M_X
+\end{equation*}
+for every random continuous $F$ and every set in the theorem with zero boundary mass for the measure on the right.
+
+Couple the whole-space LGF, with its chosen additive normalization, as $X+Y_0$, where $Y_0$ is continuous. Such a coupling was constructed in Section~\ref{sec:field}: add the smooth large-scale white-noise field, and subtract the scalar needed to impose the normalization. That scalar may depend on $X$, which is allowed by Proposition~\ref{prop:weyl-extension}. To preserve any originally prescribed dependence of $h$ on its continuous perturbation and its random set, first couple the normalized field to $(X,Y_0)$ and then attach those variables by their conditional law given the normalized field. This is possible on the standard Borel spaces of distributions, continuous functions, and compact sets. Any additional continuous perturbation is included in $Y_0$. Equation~\eqref{eq:normalization-factor} gives
+\begin{equation*}
+ \mu_h=c_K e^{\gamma Y_0}M_X.
+\end{equation*}
+Set
+\begin{equation}\label{eq:final-b}
+ b_\eps=\frac{b_\eps^*}{c_K}.
+\end{equation}
+The preceding convergence is now exactly~\eqref{eq:main-limit}. The sharp bounds and regular variation are unchanged by division by $c_K$, proving~\eqref{eq:b-properties}.
+\end{proof}
+
+\section{The one-dimensional case}
+
+For completeness, let $d=1$ and $0<\gamma<\sqrt2$. Fix the additive constant of the whole-line LGF, for example by its pairing with a smooth compactly supported probability density. Its subcritical GMC $\mu_h$ is almost surely locally finite, atomless, and positive on every nonempty open interval~\cite{RV,Shamov}. These properties also hold after a possibly dependent continuous perturbation of $h$. The one-dimensional exponential metric is
+\begin{equation*}
+ D_h(x,y)=c_D\mu_h([\min\{x,y\},\max\{x,y\}]),
+ \qquad c_D>0,
+\end{equation*}
+where $c_D$ fixes the deterministic metric normalization. Indeed, the one-dimensional regularized path infimum is the integral of $e^{\gamma h_\eta}$ over the interval between the endpoints, so the GMC normalization gives precisely this metric. Here $\xi=\gamma$, $Q=1/\gamma+\gamma/2$, and $\Delta=1$.
+
+\begin{proposition}\label{prop:one-dimensional}
+Almost surely, simultaneously for every compact $A\subset\R$,
+\begin{equation*}
+ \frac{2\eps}{c_D}N_\eps(A;D_h)\longrightarrow\mu_h(A).
+\end{equation*}
+For every bounded Borel $A$, the same limit equals $\mu_h(\overline A)$, and therefore equals $\mu_h(A)$ whenever $\mu_h(\partial A)=0$. These assertions also apply to random sets, and the compact-set assertion holds with open balls as well. Thus one may take $b_\eps=c_D/(2\eps)$ in dimension one.
+\end{proposition}
+
+\begin{proof}
+Work on the probability-one event with the stated properties of $\mu_h$. Set
+\begin{equation*}
+ F(x)=\begin{cases}
+ c_D\mu_h([0,x]),&x\ge0,\\
+ -c_D\mu_h([x,0]),&x<0.
+ \end{cases}
+\end{equation*}
+Then $F$ is an increasing homeomorphism from $\R$ onto an open interval $I$, possibly with finite endpoints. It is an isometry from $(\R,D_h)$ to $(I,|\cdot|)$, and $F_*(c_D\mu_h)$ is Lebesgue measure on $I$.
+
+Let $K=F(A)$ for a compact $A$. For all sufficiently small $\eps$,
+\begin{equation*}
+ |K|\le 2\eps N_\eps(K;I)\le |K_{2\eps}|,
+ \qquad K_a=\{x\in\R:\dist(x,K)\le a\}.
+\end{equation*}
+The lower bound follows because each ball has length at most $2\eps$. For the upper bound, partition $\R$ into half-open intervals of length $2\eps$ and select those meeting $K$. Their closures are closed $\eps$-balls about their midpoints, their interiors are disjoint, and their union is contained in $K_{2\eps}$. The midpoints lie in $I$ once $\eps$ is small, since $K$ is compactly contained in $I$. Continuity from above of Lebesgue measure gives $|K_{2\eps}|\to|K|=c_D\mu_h(A)$. This deterministic argument holds for every compact $A$ on the same probability-one event. Closed-ball covers of bounded Borel sets equal those of their compact closures. Finally, the open-ball assertion follows from the radius sandwich in Remark~\ref{rem:boundary}.
+\end{proof}
+
+\begin{thebibliography}{9}
+
+\bibitem{Bonanno}
+L.~Bonanno.
+\emph{Higher-dimensional exponential metrics:
+A proposed axiomatic existence and uniqueness proof}. Research manuscript, 2 October 2026.
+\href{https://github.com/leobon12/ai-generated-mathematics/blob/main/papers/higher-dimensional-lqg-metric.pdf}{Manuscript}.
+The strong metric axioms and the metric construction are used as inputs.
+
+\bibitem{CZ}
+A.~A.~Contreras Hip and Z.~Zhuang.
+\emph{Weak exponential metrics for high-dimensional log-correlated
+Gaussian fields}.
+\href{https://arxiv.org/abs/2512.06292}{arXiv:2512.06292}, 2025.
+
+\bibitem{GS}
+E.~Gwynne and J.~Sung.
+\emph{The Minkowski content measure for the Liouville quantum gravity metric}.
+\href{https://arxiv.org/abs/2211.04701}{arXiv:2211.04701}, 2022;
+version 2, 2023.
+
+\bibitem{RV}
+R.~Robert and V.~Vargas.
+\emph{Gaussian multiplicative chaos revisited}.
+\emph{Ann. Probab.} \textbf{38}(2):605--631, 2010.
+\href{https://arxiv.org/abs/0807.1030}{arXiv:0807.1030}.
+
+\bibitem{Shamov}
+A.~Shamov.
+\emph{On Gaussian multiplicative chaos}.
+Journal of Functional Analysis \textbf{270}(9):3224--3261, 2016.
+\href{https://arxiv.org/abs/1407.4418}{arXiv:1407.4418}.
+
+\end{thebibliography}
+\end{document}
