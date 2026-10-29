@@ -1,0 +1,1114 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage[margin=1.05in,footskip=28pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{pdftitle={Conformal dimension of exponential metrics in d >= 2},pdfauthor={},pdfsubject={Conformal dimension of log-correlated Gaussian exponential metrics in every dimension}}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[LE,RO]{\small EXPONENTIAL METRICS IN $d\ge2$}\fancyhead[LO,RE]{\small RESEARCH MANUSCRIPT}\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\Cdim}{\operatorname{Cdim}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\inrad}{\operatorname{inrad}}
+\newcommand{\outrad}{\operatorname{outrad}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\GMC}{\operatorname{GMC}}
+\newcommand{\len}{\operatorname{len}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Osc}{\operatorname{osc}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\Hb}[2]{H^{\bullet}_{#1}(#2)}
+\newcommand{\Ho}[2]{H^{\circ}_{#1}(#2)}
+\newcommand{\Be}{B^{\mathrm E}}
+\newcommand{\bd}{B^{D}}
+\newcommand{\bh}{B^{D_h}}
+\newcommand{\sig}{\sigma}
+\title[Conformal dimension of exponential metrics in $d\ge2$]{Conformal dimension of exponential metrics in $d\ge2$}
+\author{}
+\date{}
+\begin{document}
+\begin{abstract}
+Let $d\ge 2$ and $0<\gamma<\sqrt{2d}$. We prove that the ordinary conformal dimension of the subcritical $\gamma$-exponential metric on $\mathbb R^d$ is $d$. For $d\ge3$ we use the higher-dimensional metric of \cite{Bonanno}, while for $d=2$ we use the usual Liouville quantum gravity metric. The proof uses the good-annulus and hyperbolic-filling method of Miller and Tian, with a Brownian time-change argument for the required multiscale estimates. A circle-average process in a fixed two-dimensional plane gives the exact exponent in every ambient dimension. We also deduce that the conformal dimension of the $\gamma$-Liouville quantum gravity sphere is two for all $\gamma\in(0,2)$.
+\end{abstract}
+\maketitle
+\noindent\textit{This extension is a research argument and has not been independently refereed.}
+
+\section{Introduction}\label{sec:intro}
+For a metric space $(X,D)$, its \emph{ordinary conformal dimension} is
+\begin{equation}\label{eq:cdim}
+\Cdim(X,D)=\inf\{\dim_{\rm H}(X,\delta):\mathrm{id}:(X,D)\to(X,\delta)\text{ is quasisymmetric}\}.
+\end{equation}
+Let $h$ be the whole-space log-correlated Gaussian field on $\R^d$, defined modulo constants by the covariance kernel $-\log|x-y|$. For $d=2$ this is the whole-plane Gaussian free field. For $d\ge3$ it is not the ordinary $d$-dimensional Gaussian free field. Fix $0<\gamma<\sqrt{2d}$ and write
+\begin{equation}\label{eq:parameters}
+Q=\frac d\gamma+\frac\gamma2,\qquad \xi=\frac\gamma{d_\gamma},\qquad a=Q-\gamma=\frac d\gamma-\frac\gamma2>0,
+\end{equation}
+where $d_\gamma$ is the Hausdorff dimension of the associated exponential metric. We let $D_h^\gamma$ denote the strong subcritical exponential metric of \cite[Definition 1.1 and Theorem 1.2]{Bonanno} for $d\ge3$ and the canonical $\gamma$-LQG metric of \cite{GM} for $d=2$. Our arguments require only the metric properties and estimates stated in Section~\ref{sec:inputs}. The strong higher-dimensional characterization in~\cite{Bonanno} is a research-manuscript input, not a theorem reproved here. The proof below establishes the conformal-dimension conclusion for that metric using the properties stated in Section~\ref{sec:inputs}.
+
+\begin{theorem}\label{thm:main}
+For every integer $d\ge2$ and every $\gamma\in(0,\sqrt{2d})$,
+\begin{equation}\label{eq:main}
+\Cdim(\R^d,D_h^\gamma)=d\qquad\text{almost surely}.
+\end{equation}
+More precisely, for each fixed $p>d$, almost surely there is a metric $\delta_p$ on all of $\R^d$ such that $\mathrm{id}:(\R^d,D_h^\gamma)\to(\R^d,\delta_p)$ is quasisymmetric and $\Hh^p_{\delta_p}(\R^d)=0$.
+\end{theorem}
+The statement concerns each fixed $\gamma$. It does not assert that the infimum in the definition of conformal dimension is attained or that the exponential metric is quasisymmetric to the Euclidean metric.
+
+The proof follows the good-annulus and hyperbolic-filling strategy of Miller and Tian \cite[Sections 5--6]{MT}, who used it to determine the conformal dimension of the Brownian sphere. We give the deterministic argument in full and do not use their conformal-dimension theorem. The probabilistic input is different: it comes from an exact spectral calculation for a stationary Brownian time change. Indeed, with
+\begin{equation}\label{eq:key-exponent}
+\lambda(p)=\sqrt{a^2+2p}-a,
+\end{equation}
+the identity $Q^2-a^2=2d$ gives
+\[
+\lambda(d)=\gamma,\qquad \lambda(p)/\xi>d_\gamma\quad (p>d).
+\]
+The strict inequality allows the losses from exceptional annular scales. We first obtain a rooted product estimate, then use Gaussian multiplicative chaos to integrate it over the field, and finally turn it into a Hausdorff covering bound for a single globally quasisymmetric metric.
+
+The higher-dimensional geometric input is the distance between arbitrary crossings of a Euclidean annulus, which replaces the separating loops available in the plane. For filled metric balls we work with an intrinsic hull-arrival coordinate, since a filled ball may contain points at root-distance greater than its radius.
+
+Throughout, $\Be_r(x)$ denotes a Euclidean ball and $\bd_r(x)$ a ball for the metric under discussion. We write $D(E,F;U)$ for internal distance within $U$, and $\mu_h$ for the $\gamma$-Gaussian multiplicative chaos measure. Constant shifts satisfy $D_{h+c}=e^{\xi c}D_h$ and $\mu_{h+c}=e^{\gamma c}\mu_h$.
+
+\section{The exponential metric and its basic estimates}\label{sec:inputs}
+We use the metric $D_h=D_h^\gamma$ of \cite{Bonanno} for $d\ge3$ and \cite{GM} for $d=2$. It is a measurable local length metric inducing the Euclidean topology; its internal metrics are determined locally by the field. It satisfies simultaneous Weyl scaling by continuous functions and affine covariance. In particular, adding a constant $c$ multiplies distances by $e^{\xi c}$.
+
+The normalized internal distance between fixed disjoint nontrivial compact connected sets in a fixed Euclidean domain has positive and negative moments of every order \cite[Proposition 4.7]{CHZ}. For a fixed Euclidean annulus, define the \emph{around distance} by
+\begin{equation}\label{eq:around}
+U_D(A)=\sup_{P_1,P_2}D(P_1,P_2;A),
+\end{equation}
+where the supremum ranges over continuous paths crossing $A$. Its normalized positive and negative moments of every order are finite by~\cite[Proposition 4.10]{CHZ}. These estimates apply to the metric $D_h^\gamma$ by its characterization and normalization in \cite{Bonanno}; for $d=2$ they are the standard LQG annular estimates. We never use all positive moments of an arbitrary metric diameter: the available diameter moment range is $b<2dd_\gamma/\gamma^2$ \cite[Proposition 4.11]{CHZ}.
+
+Let $h_r^{\rm sph}(z)$ be the spherical average of $h$. For a fixed shell shape $A$, fixed disjoint connected endpoint sets $K_1,K_2\Subset U$, and every $b>0$,
+\begin{equation}\label{eq:basic-moments}
+\sup_{z,r}\E\!\left[\left(r^{-\xi Q}e^{-\xi h_r^{\rm sph}(z)}U_D(z+rA)\right)^b
++\left(r^{-\xi Q}e^{-\xi h_r^{\rm sph}(z)}D(z+rK_1,z+rK_2;z+rU)\right)^{\pm b}\right]<\infty.
+\end{equation}
+As usual, a $\pm b$-power denotes the sum of the $b$- and $(-b)$-powers. Whenever an endpoint lies on the boundary of a shell, we work first in a slightly enlarged fixed shell and then trim the relevant crossing.
+
+The metric covariance theorem in \cite{Bonanno} is stated for each fixed affine map. Since the radial normalization below selects a dilation from the field, we use the following version simultaneously under all dilations.
+\begin{proposition}[An equivariant metric version]\label{prop:scale}
+The metric $D_h$ admits a version which agrees with it almost surely and for which
+\begin{equation}\label{eq:exact-dilate}
+D_h(sx,sy)=D_{h(s\cdot)+Q\log s}(x,y),\qquad s>0,
+\end{equation}
+holds along the full dilation orbit of a single field realization. Its local metric laws, Weyl scaling, and the moment estimates above are unchanged.
+\end{proposition}
+\begin{proof}
+For $r>0$ set $D_h^{[r]}(x,y)=r^{-\xi Q}D_{h(\cdot/r)}(rx,ry)$. Fixed-map covariance implies $D_h^{[r]}=D_h$ almost surely for each deterministic $r$. Apply Fubini with respect to $\dd r/r$, using a countable dense set of point pairs and continuity of each metric. On one event of probability one there is a set $E_h\subset(0,\infty)$ of full $\dd r/r$-measure such that $D_h^{[r]}=D_h$ on all point pairs for every $r\in E_h$.
+
+We need the same exceptional set for continuous perturbations. Intersect the preceding event with the simultaneous Weyl-scaling event at $h$. Apply Fubini once more to the simultaneous Weyl-scaling event at $h(\cdot/r)$, and reduce $E_h$ accordingly. For every continuous $f$, every $r\in E_h$, and all point pairs, the Weyl rule now gives
+\begin{equation*}
+D_{h+f}^{[r]}=e^{\xi f}\cdot D_h^{[r]}=e^{\xi f}\cdot D_h=D_{h+f}.
+\end{equation*}
+Here a weighted metric is defined by integrating the weight along rectifiable paths. In particular, this identity is simultaneous in $f$; no intersection over an uncountable family of null events is involved.
+
+Define
+\begin{equation*}
+q_g(x,y)=\operatorname*{ess\,sup}_{r>0}r^{-\xi Q}D_{g(\cdot/r)}(rx,ry).
+\end{equation*}
+For $g=h+f$ on the preceding event, this equals $D_{h+f}$ everywhere. Measurability on a countable dense set follows from parameter integration, and the continuous extension gives a measurable metric version. For $s>0$ and continuous $f$, substitute $r=st$ and use constant Weyl scaling at the fields $h(\cdot/t)$, for $t\in E_h$. This gives the identity
+\begin{equation*}
+q_{h(s\cdot)+Q\log s+f}(x,y)
+=q_{h+f(\cdot/s)}(sx,sy).
+\end{equation*}
+It proves finiteness, continuity, the length property, and the claimed covariance on the entire dilation and continuous-perturbation orbit. It also proves the simultaneous Weyl rule there by changing variables in weighted path lengths.
+
+Locality can be retained in the same construction. For a countable basis of relatively compact domains $U$, disintegration with respect to $(r,g|_U)$ supplies a jointly measurable local version of the family of internal metrics $D_g^{[r]}(\cdot,\cdot;U)$. On a compact path contained in $U$, sufficiently short segments are computed internally: leaving $U$ costs a positive amount, whereas their lengths tend to zero. The preceding almost-everywhere identities therefore identify the internal metric obtained from $q_g$ with the version determined by $g|_U$. Exhaustion gives this assertion for every open domain. The moment estimates are unchanged, since $q_h=D_h$ almost surely.
+
+For an insertion $h-\gamma\log|\cdot|$, apply the Weyl rule on punctured relatively compact domains. Continuous truncations of $-\gamma\log|\cdot|$ agree on such a domain once the truncation is sufficiently fine, so these local metrics are consistent. Their path metric on the punctured space satisfies the same dilation identity. The inward annular diameter bounds, with $Q-\gamma>0$, show that its completion adds one point at the origin; see Lemma~\ref{lem:completion}. The covariance extends to that point by continuity. We henceforth use this version and retain the notation $D_h$.
+\end{proof}
+
+\section{A Brownian coordinate for the log-correlated field}\label{sec:brownian}
+When $d>2$, averaging over $(d-1)$-spheres does not give the exact Brownian process used below. Instead, fix an oriented two-dimensional plane $E\subset\R^d$, and let $\sigma_r^z$ be uniform probability measure on the circle $z+rS^1\subset z+E$. Circle averages $h_r^\circ(z)=(h,\sigma_r^z)$ are well-defined by finite logarithmic energy; this does not require restricting $h$ to a sample path or to an arbitrary codimension-one hypersurface.
+
+\begin{lemma}[Brownian circle averages]\label{lem:circle}
+Normalize the field by $h_1^\circ(0)=0$. Then $B_t=h_{e^t}^\circ(0)$, $t\in\R$, is a continuous two-sided standard Brownian motion started at zero. Moreover,
+\[
+\theta_t h=h(e^t\cdot)-h_{e^t}^\circ(0)
+\]
+defines a measure-preserving flow on the normalized-field law. Local measurable functionals of this flow are stationary in physical logarithmic time.
+\end{lemma}
+\begin{proof}
+For circles in the same two-dimensional plane, logarithmic potential theory gives
+\[
+\iint\log|x-y|\,\sigma^0_{e^s}(\dd x)\sigma^0_{e^t}(\dd y)=\max(s,t).
+\]
+Apply the covariance of the field to the signed, total-mass-zero measures $\sigma^0_{e^s}-\sigma^0_1$ and $\sigma^0_{e^t}-\sigma^0_1$. This gives
+\[
+\E[B_sB_t]=-\max(s,t)+\max(s,0)+\max(t,0)
+=\frac{|s|+|t|-|s-t|}{2}.
+\]
+This is precisely the covariance of two-sided Brownian motion. The circle integrals are defined as limits of smooth averages in the Gaussian energy norm; their continuous versions can be chosen jointly in the center and radius as in Lemma~\ref{lem:uniform-circle}. This makes the rescaling identities compatible with the measurable distributional action. Gaussian continuity gives the stated Brownian version. Covariance invariance under translation in logarithmic scale, modulo field constants, proves invariance under $\theta_t$ and the flow identity $\theta_s\theta_t=\theta_{s+t}$. The remaining field need not be independent of $B$.
+\end{proof}
+
+Changing the spherical average to this circle average does not alter any moment range. Indeed $h_r^{\rm sph}(z)-h_r^\circ(z)$ has a centered Gaussian law of bounded variance independent of $(z,r)$, by scaling of the covariance kernel. Consequently it has exponential moments of every order. H\"older's inequality converts \eqref{eq:basic-moments} to the normalization $r^{\xi Q}e^{\xi h_r^\circ(z)}$. The same observation applies to normalized GMC masses and the finite moment range for diameters.
+
+\begin{lemma}[Annular Gaussian product inequality]\label{lem:gaussian-holder}
+For $b,H>0$, set $A_b=\{e^{-b}<|x|<e^b\}$. There is $p_0=p_0(d,b,H)<\infty$ such that if $F_k\ge0$ is measurable with respect to $(\theta_{kH}h)|_{A_b}$, then for each finite $I\subset\mathbb Z$,
+\begin{equation}\label{eq:gaussian-holder}
+\E\prod_{k\in I}F_k\le\prod_{k\in I}(\E F_k^{p_0})^{1/p_0}.
+\end{equation}
+The statement is unchanged by deterministic local mean shifts. If the windows are spaced by $L\to\infty$, their common exponent can be chosen to tend to one.
+\end{lemma}
+\begin{proof}
+Each centered Gaussian functional of the restriction has a representation by a signed measure of total mass zero, supported in a fixed compact annulus. Such a measure has covariance norm given, up to a dimensional factor, by
+\[
+\|\nu\|_h^2=\int_{\R^d}|\widehat\nu(\zeta)|^2|\zeta|^{-d}\dd\zeta.
+\]
+For two windows whose logarithmic centers are separated by $T>2b+2$, rescale so their supports have relative scale $\rho=e^{-T}$. Using the zero-mass condition, their covariance is a bilinear form with kernel
+\[
+K_\rho(x,y)=\chi(x)\chi(y)\{-\log|x-\rho y|+\log|x|\},
+\]
+where $\chi$ is a smooth cutoff equal to one on the relevant compact supports. Every derivative of $K_\rho$ is $O(\rho)$. Fourier duality between the covariance Sobolev space and its dual bounds the maximal Gaussian correlation of the two window spaces by $Ce^{-T}$. For overlapping windows use the bound one. The resulting correlations $\rho_j$ satisfy $\sum_{j\ge1}\rho_j<\infty$.
+
+For every finite collection of block Gaussian variables, Cauchy--Schwarz and $2uv\le u^2+v^2$ give the covariance matrix comparison
+\[
+\Sigma\le p_0\,\operatorname{diag}(\Sigma_{kk}),\qquad p_0>1+2\sum_{j\ge1}\rho_j.
+\]
+Apply the Gaussian H\"older inequality of \cite[Theorem 1(i)]{CDP}. Finite-dimensional approximations and monotone convergence give \eqref{eq:gaussian-holder} for arbitrary nonnegative block functionals. Deterministic shifts affect means, not the covariance matrix. For $L$-separated windows the correlation row sum is $O(e^{-L})$.
+\end{proof}
+
+\begin{lemma}[Uniform circle averages and exponential integrals]\label{lem:uniform-circle}
+For a smooth additive normalization and every compact $K\subset\R^d$ and $\varepsilon>0$, almost surely
+\begin{equation}\label{eq:sup-circle}
+\sup_{x\in K}|h_r^\circ(x)|\le (\sqrt{2d}+\varepsilon)\log r^{-1}
+\quad\text{for all sufficiently small }r.
+\end{equation}
+The circle averages admit a jointly continuous version on $\R^d\times(0,\infty)$. If $Q>\sqrt{2d}$, then
+\begin{equation}\label{eq:clock-center}
+J_x(t)=\int_{-\infty}^t e^{\xi h_{e^s}^\circ(x)+\xi Qs}\dd s
+\end{equation}
+is finite, positive, jointly continuous in $(x,t)$, and tends to zero uniformly as $t\to-\infty$ for $x$ in compact sets. The conclusions persist under continuous field perturbations.
+\end{lemma}
+\begin{proof}
+The circle measure has finite $\beta$-Riesz energy for $0<\beta<1$. The Fourier covariance representation implies
+$\E[(h_1^\circ(x)-h_1^\circ(y))^2]\le C_\beta|x-y|^\beta$; scaling gives the analogous estimate at radius $r$. In logarithmic radius the increment variance is $|\log(r/s)|$. Gaussian moment bounds and Kolmogorov's criterion give joint continuity away from $r=0$.
+
+At $r=2^{-m}$, a grid of mesh $r$ contains $O(r^{-d})$ points in a fixed compact set. Their average variances are $\log r^{-1}+O(1)$. Gaussian tails show that the probability any grid value exceeds $b\log r^{-1}$ is summable over $m$ whenever $b>\sqrt{2d}$. The oscillations of $h_{rv}^\circ(z+ru)-h_r^\circ(z)$ for $(u,v)$ in a fixed compact set have a uniformly bounded Gaussian supremum with Gaussian tails, by the increment estimate and Borell's inequality. A union bound over the same grid controls interpolation errors of order $\varepsilon\log r^{-1}$; these probabilities are summable. This proves \eqref{eq:sup-circle} for all small radii.
+
+Choose $\varepsilon$ so that $Q>\sqrt{2d}+\varepsilon$. For sufficiently negative $s$, the integrand in \eqref{eq:clock-center} is at most $e^{\xi(Q-\sqrt{2d}-\varepsilon)s}$ uniformly over compact sets of centers. Dominated convergence proves all remaining assertions. A continuous perturbation has uniformly bounded circle averages over these sets and radii.
+\end{proof}
+
+\section{Filled balls and geometric shell estimates}\label{sec:geometry}
+We first justify properness and the metric completion at a logarithmic insertion; all subsequent topology is deterministic.
+
+\begin{lemma}[Completion at the root]\label{lem:completion}
+For $\kappa\in\{0,\gamma\}$, the local metric for $h-\kappa\log|\cdot|$ on the punctured space completes by adding exactly one point at the origin. It induces the Euclidean topology on $\R^d$, is proper, and is geodesic.
+\end{lemma}
+\begin{proof}
+On each punctured compact set, define the metric by locality and continuous truncations of the logarithm, as in Proposition~\ref{prop:scale}. At dyadic radii $r_k=2^k$, its annular normalization is
+\begin{equation*}
+m_k=r_k^{\xi(Q-\kappa)}e^{\xi h_{r_k}^\circ(0)}
+=\exp\{\xi(Q-\kappa)k\log2+o(|k|)\}\quad\text{almost surely},
+\end{equation*}
+by Lemma~\ref{lem:circle}. Choose one positive diameter moment below $2dd_\gamma/\gamma^2$. The normalized intrinsic diameters of compact annuli inside slightly larger open annuli have this moment uniformly in $k$; the normalized crossings have a negative moment uniformly in $k$. The logarithmic perturbation is bounded after rescaling each such annulus, so the cited estimates apply. Markov's inequality and Borel--Cantelli show, simultaneously for all integer $k$, that the normalized diameters are at most $e^{\varepsilon|k|}$ eventually and the normalized crossings are at least $e^{-\varepsilon|k|}$ eventually.
+
+Since $Q-\kappa>0$, take $\varepsilon$ smaller than $\xi(Q-\kappa)\log2$. The unnormalized inward annular diameter bounds are summable. Consecutive annuli overlap, so the entire punctured neighborhood $0<|z|<2^{-n}$ has diameter tending to zero as $n\to\infty$. It therefore adds precisely one completion point. Conversely, a fixed annular crossing has strictly positive length, so convergence to this point in the metric forces Euclidean convergence to zero.
+
+The outward crossings diverge in length as $k\to\infty$. A path escaping to Euclidean infinity crosses a disjoint subsequence of these annuli and hence has infinite length. No other completion points occur, because away from the origin and infinity the metric is locally bilipschitz to the original metric after a bounded continuous Weyl weight. The completed metric thus induces the Euclidean topology, and its closed bounded balls are Euclidean bounded and compact. It is a proper length metric, hence geodesic.
+\end{proof}
+
+In what follows, let $D$ be a proper geodesic metric inducing the Euclidean topology. Lemma~\ref{lem:completion} supplies these properties for each field used in the probabilistic argument. In particular, only one positive diameter moment, not moments of every order, was used to construct the inserted root.
+
+Denote by $H_r^\circ(x)$ the complement of the unbounded component of $\R^d\setminus\bd_r(x)$, and by $H_r^\bullet(x)$ the complement of the unbounded component of $\R^d\setminus\overline{\bd_r(x)}$. The two conventions need not agree at an exceptional radius. The former is open, the latter compact, and both are bounded and connected. Filling is always towards infinity.
+
+\begin{lemma}[Filled-ball topology]\label{lem:hulls}
+The boundaries $\partial H_r^\circ(x)$ and $\partial H_r^\bullet(x)$ are connected compact separators of $x$ from infinity. Every point of either boundary has $D$-distance exactly $r$ from $x$. For $0<r<R$, the mixed band
+\begin{equation}\label{eq:mixed-band}
+A_{r,R}(x)=H_R^\circ(x)\setminus H_r^\bullet(x)
+\end{equation}
+is open and connected, has two connected complementary components in the one-point compactification, and its internal distance from its inner boundary to each point of its outer boundary is $R-r$.
+\end{lemma}
+\begin{proof}
+Metric balls are path connected, and filling preserves connectedness. Sonneborn's connected-boundary lemma \cite[Lemma 1]{Sonneborn} in $S^d$, $d\ge2$, applied to the exterior complementary component gives boundary connectedness. A boundary point of a filled ball cannot have distance below $r$, since it would lie in the interior of the ball. If its distance were above $r$, a small connected neighborhood avoiding the closed ball would lie wholly in one complementary component, contradicting that it is a boundary point. This proves the boundary-level identity.
+
+The inner and outer complementary continua of \eqref{eq:mixed-band} are disjoint. Each is nonseparating, and Alexander duality (or the elementary connected-complement argument on $S^d$) gives connectedness of the complement of their union. It is open, hence path connected. An inward geodesic from the outer boundary crosses the levels $r$ and $R$ in order. Its terminal segment of length $R-r$ remains inside the mixed band: after crossing level $r$ it cannot reenter and leave the filled inner hull, since any subsequent exit would have root distance $r$; the corresponding observation holds at the outer hull. The triangle inequality gives the reverse inequality. Boundary completion points follow by interior approximation.
+\end{proof}
+
+\subsection{Filled annuli and the intrinsic arrival coordinate}\label{subsec:good}
+For $t,s>0$ put
+\[
+A=A(o;t,s):=H_{t+8s}^\circ(o)\setminus H_t^\bullet(o),\qquad
+I=\partial H_t^\bullet(o),\quad O=\partial H_{t+8s}^\circ(o).
+\]
+The relevant middle layers are defined by \emph{arrival in a filled hull}, not by the distance from $o$. Points swallowed into a filled hull can have larger distance from $o$ than its radius. Write
+\begin{equation*}
+\tau_o(z)=\inf\{r:z\in H_r^\circ(o)\}.
+\end{equation*}
+For $z\in A$ let $d_A(I,z)$ be the infimum of lengths of paths in $A$ from $z$ to points approaching $I$. For $0<q<8s$ take the internal $q$-neighborhood $N_q$ of $I$, adjoin $H_t^\bullet(o)$, and fill toward the outer complementary continuum. Denote the resulting open filled set by $\mathfrak H_q$, and write $\mathfrak H_q^\bullet=H_{t+q}^\bullet(o)$ for its closed-hull counterpart.
+
+\begin{lemma}[Arrival levels and short balls]\label{lem:intrinsic-arrival}
+For $z\in A$ and $0<q<8s$,
+\begin{equation}\label{eq:intrinsic-identification}
+d_A(I,z)=D(o,z)-t,\qquad
+\mathfrak H_q=H_{t+q}^\circ(o),\qquad
+T_A(z):=\inf\{q:z\in\mathfrak H_q\}=\tau_o(z)-t.
+\end{equation}
+The coordinate $T_A$ is $1$-Lipschitz for the ambient metric on $A$, and it extends continuously to $I\cup O$ with values $0$ and $8s$. Any path from $\mathfrak H_u^\bullet$ to the complement of $\mathfrak H_v$, for $0<u<v<8s$, has length at least $v-u$. If $T_A(z)\in[2s,6s]$, every ambient path of length less than $s$ starting at $z$ stays in $A$. Consequently its ambient and internal open $s$-balls agree.
+\end{lemma}
+\begin{proof}
+Let $P:[0,D(o,z)]\to\R^d$ be an arclength-parameterized geodesic from $o$ to $z\in A$. For each $v\in(t,D(o,z)]$, its tail after time $v$ is a connected subset of $\{D(o,\cdot)>t\}$ containing $z$. Since $z\notin H_t^\bullet(o)$, that tail belongs to the exterior component of this open set. Hence $P(t)\in I$ and $P((t,D(o,z)])$ avoids $H_t^\bullet(o)$. The same geodesic stays in $H_{t+8s}^\circ(o)$: if its length is at least $t+8s$, its tail after that time is a connected subset of $\{D(o,\cdot)\ge t+8s\}$ containing $z$, and cannot meet that set's exterior component. Before that time the path lies in the unfilled open ball. We have therefore obtained an internal path from $I$ to $z$ of length $D(o,z)-t$. The triangle inequality gives the reverse bound.
+
+It follows that $H_t^\bullet(o)\cup N_q=H_t^\bullet(o)\cup\bd_{t+q}(o)$. This union is open: the boundary of $H_t^\bullet(o)$ lies in the open ball on the right. Also $H_t^\bullet(o)\subset H_{t+q}^\circ(o)$, so filling this union gives exactly $H_{t+q}^\circ(o)$. This proves the first two identities in~\eqref{eq:intrinsic-identification}.
+
+The global arrival function $\tau_o$ is $1$-Lipschitz. To prove this, suppose $\tau_o(x)<u<v<\tau_o(y)$. A path from $x$ to $y$ exits $H_u^\circ(o)$ at a point of root distance $u$, whereas $D(o,y)\ge v$. Its remaining length is at least $v-u$. Taking path infima and then limits proves the assertion. The strict nesting of filled hulls, together with their boundary-distance identities, gives $\tau_o=t$ on $I$ and $\tau_o=t+8s$ on $O$.
+
+For completeness, $t<\tau_o(z)<t+8s$ for $z\in A$. The first strict inequality follows by joining $z$ to the exterior inside the open set $\{D(o,\cdot)>t\}$ with a positive distance-level margin. For the second, the exterior components of $\{D(o,\cdot)\ge r\}$, viewed in $S^d$, decrease as $r$ increases to $t+8s$; their intersection is the exterior component at that limiting level, by compactness and connectedness. A point in the open filled hull is therefore already in a filled hull of smaller radius. This proves the last identity in~\eqref{eq:intrinsic-identification}. The Lipschitz and boundary assertions now follow from those of $\tau_o$.
+
+The two layer boundaries have arrival values $u$ and $v$, so any connecting path pays at least $v-u$. A path from a point with $T_A\in[2s,6s]$ to the complement of $A$ first hits $I$ or $O$; its initial segment has length at least $2s$. This proves the final statement.
+\end{proof}
+
+Call the mixed band $A$ \emph{good} if, for every $z\in A$ with $T_A(z)\in[2s,6s]$, the inner boundary $I$ is in the component of $\R^d\setminus B_s^D(z)$ containing the outer complementary continuum (equivalently, containing infinity). Lemma~\ref{lem:intrinsic-arrival} ensures that the ball in this definition is contained in $A$. The definition uses no assumptions on the topology of $d_A$-balls.
+
+\begin{lemma}[Failure of goodness forces a short separator]\label{lem:good-failure}
+If $A(x;t,s)$ is not good, then $\diam_D(O)\le18s$.
+\end{lemma}
+\begin{proof}
+There is a $z$ in the intrinsic middle layer such that the ambient $s$-ball about $z$ separates $I$ from $O$. By Lemma~\ref{lem:intrinsic-arrival} it is contained in $A$. For any two points of $O$, their radial geodesics from $x$ have terminal subarcs of length $8s$ within $A$ joining $I$ to $O$. Each such subarc meets the $s$-ball. Two meeting points can be connected through $z$ with length less than $2s$. Concatenating at most the two terminal subarcs and this connection gives $\diam_D(O)\le8s+2s+8s=18s$.
+\end{proof}
+
+Let $R_j=R_0\alpha^j$, $s_j=R_0\alpha^{j-1+\zeta}$, where $\alpha\in(0,1)$ and $\zeta\in(0,1)$. Define $F(x,j)$ to mean that $A(x;t,s_j)$ is good for some
+\[
+R_{j-1}/8\le t<t+8s_j\le R_{j-1}/4.
+\]
+Define $\widetilde F(x,j)$ to mean that \emph{some} good band $A(o;t,s_j)$ satisfies
+\begin{equation}\label{eq:robust-band}
+H_{R_{j-1}/16}^\circ(x)\subset H_t^\bullet(o),\qquad
+H_{t+8s_j}^\circ(o)\subset H_{5R_{j-1}/16}^\circ(x).
+\end{equation}
+Only the following measurable sufficient condition is used in probabilistic integrals:
+\begin{equation}\label{eq:Fstar}
+F_*(x,j)=\left\{\operatorname{Leb}\left\{v\in[3R_{j-1}/16,R_{j-1}/4]:
+\diam_D\partial H_v^\circ(x)>32s_j\right\}>0\right\}.
+\end{equation}
+If $s_j\le R_{j-1}/128$, Lemma~\ref{lem:good-failure} implies $F_*\subset F$, using $t=v-8s_j$. The inclusion properties of filled balls give
+\begin{equation}\label{eq:F-robust}
+F_*(x,j)\implies F(x,j)\implies\widetilde F(y,j)
+\quad\text{whenever }D(x,y)\le R_{j-1}/16.
+\end{equation}
+The same mixed band witnesses the last implication; strict radius margins give \eqref{eq:robust-band}. Thus all probabilistic events remain the explicit Borel events $F_*$, and the extra intrinsic coordinate is only a deterministic ingredient.
+
+\subsection{Shell connectors and integral envelopes}\label{subsec:connectors}
+Fix the Euclidean shell $A=A_{1/4,4}(0)$. A crossing of a smaller concentric shell has finite length by the set-to-set estimates. Two crossings of an overlapping shell can be joined within that overlap at cost at most $U_D$ of \eqref{eq:around}. This is the replacement for the fact that certain planar crossings must intersect.
+
+Let $A=A_{r,R}$ and let $P$ be a path crossing its closed radial span, with interior in $A$ and $D$-length at most $L$. Let $U=U_D(A)$, with boundary endpoints interpreted by interior approximation, and set
+\[
+K=\overline A\cap\{z:D(z,P)\le U+\varepsilon\}.
+\]
+This set is compact by properness. Any path from the inner Euclidean ball to infinity has a subpath crossing the same shell $A$. The definition of $U$ gives a pair of points, one on each crossing, at internal distance at most $U+\varepsilon/2$; hence that path meets $K$. Thus $K$ separates the inner Euclidean ball from infinity. If $P$ is reachable from the root at cost at most $S$, every point of $K$ can be reached with cost at most $S+L+U+2\varepsilon$. Filling the metric ball of this radius therefore contains the inner Euclidean ball. Indeed, a connected complementary component avoiding $K$ lies in one component of the open set $\R^d\setminus K$; its unbounded component cannot meet the separated inner ball. This does not assume that a closed metric-ball complement is path connected. The shell moment estimate applies by choosing the paths and their endpoint sets in a fixed slightly larger domain, then trimming at the indicated radii. This argument uses no planar separating loop.
+
+Choose a uniform phase $\Theta\in[0,1)$, independent of the field, and set $a_k=k+\Theta$. At logarithmic Euclidean scale $a_k$, introduce a lower mark $L_k$ equal to the distance across a fixed shell strictly inside $[a_k,a_k+1]$. Introduce an upper mark $C_k$, a fixed finite sum of across and around distances in enlarged overlapping shells. Short crossings joined by the around marks give a path from the root to the outer crossing, and the preceding separator observation gives
+\begin{equation}\label{eq:discrete-envelopes}
+\sum_{j\le k-1}L_j\le D(0,\partial\Be_{e^{a_k}}(0)),\qquad
+\Be_{e^{a_k+1}}(0)\subset H_{\sum_{j\le k}C_j}^\circ(0).
+\end{equation}
+At the rooted field $H=h-\gamma\log|\cdot|$, define
+\begin{equation}\label{eq:WZ}
+W_t=h_{e^t}^\circ(0)+at,\qquad Z(t)=e^{\xi W_t}.
+\end{equation}
+Normalized marks $e^{-\xi W_{a_k}}L_k$ and $e^{-\xi W_{a_k}}C_k$ are measurable in fixed-width logarithmic windows and have all positive moments; the lower marks also have all negative moments. Since $W_t=at+o(|t|)$ as $t\to-\infty$, the inward sum of the upper marks is finite almost surely. The connecting path consequently converges to the root in the metric completion.
+
+The placement of the discrete marks in the continuous envelopes matters. For each $k\in\mathbb Z$ and $t\in[a_k,a_{k+1})$, set
+\[
+x(t)=C_{k+1}e^{-\xi W_t},\qquad y(t)=L_{k-1}e^{-\xi W_t}.
+\]
+Equivalently, $y(t)=L_k e^{-\xi W_t}$ on $[a_{k+1},a_{k+2})$. These are fixed-width local normalized marks. The upper mark for shell $k+1$ is recorded on the preceding interval, and the lower mark for shell $k-1$ on the succeeding interval. Their integrals over each full interval give exactly the corresponding discrete shell marks. The envelopes
+\begin{equation}\label{eq:envelopes}
+A(t)=\int_{-\infty}^t Z(s)y(s)\dd s,
+\qquad S(t)=\int_{-\infty}^t Z(s)x(s)\dd s
+\end{equation}
+satisfy, for every real $t$,
+\begin{equation}\label{eq:envelope-comparisons}
+A(t)\le D(0,\partial\Be_{e^t}(0)),\qquad
+\Be_{e^t}(0)\subset H_{S(t)}^\circ(0).
+\end{equation}
+Indeed, for $t\in[a_k,a_{k+1})$, the upper integral contains all $C_j$ with $j\le k$, which by \eqref{eq:discrete-envelopes} enclose $\Be_{e^{a_{k+1}}}\supset\Be_{e^t}$. The lower integral contains all $L_j$ with $j\le k-2$ and at most one further fractional contribution from $L_{k-1}$. Each of these crossings is contained in $\Be_{e^t}$, so the fractional contribution cannot invalidate the lower bound. The enlarged shell supports and Gaussian oscillations on unit logarithmic intervals give, for each $b>0$,
+\begin{equation}\label{eq:mark-moments}
+\sup_{k}\E\left[\sup_{t\in[k+\Theta,k+1+\Theta]}
+\max\{x(t),y(t)^{-1},1\}^{b}\right]<\infty.
+\end{equation}
+The complete normalized environment, with translated uniform phase, is stationary under deterministic shifts of physical logarithmic time.
+
+\subsection{A deterministic obstruction to thin hull boundaries}\label{subsec:thin}
+Set $r_k=2^{-k}$ for $k\ge0$. As above there are paths $Q_k$ in $\{r_k/4<|z|<4r_k\}$ whose concatenation runs from the root beyond the unit Euclidean sphere, and whose lengths are at most positive local marks $U_k$ with all normalized positive moments. There are also positive local marks $\ell_k$ with all normalized negative moments such that
+\begin{equation}\label{eq:separator-lower}
+\diam_D(K)\ge\ell_k
+\end{equation}
+for every compact separator $K$ of $0$ and infinity meeting $\{r_k/4<|z|<4r_k\}$. Indeed, cover the latter shell by finitely many small Euclidean balls. If $z$ lies on $K$, separation implies $0\in\operatorname{conv}(K)$; hence some $w\in K$ has $|w-z|\ge|z|$. Every global path connecting the resulting pair $z,w$ crosses one of finitely many small shells. The minimum of the corresponding internal across distances gives $\ell_k$. No connectedness of $K$ is needed.
+
+The hull-arrival function $\tau=\tau_0$ is $1$-Lipschitz by the proof of Lemma~\ref{lem:intrinsic-arrival}. The intervals $\tau(Q_k)$ cover $[0,D(0,\partial\Be_1)]$. If $0<v<w<D(0,\partial\Be_1)$ and
+$\diam_D\partial H_t^\circ(0)\le u$ for almost every $t\in[v,w]$, then
+\begin{equation}\label{eq:thin-obstruction}
+w-v\le\sum_{k\ge0}U_k\1_{\{\ell_k\le u\}}.
+\end{equation}
+For each interval $\tau(Q_k)$ whose interior meets $(v,w)$ in positive length, choose a radius in this intersection outside the exceptional null set. The corresponding path crosses $\partial H_t^\circ$; \eqref{eq:separator-lower} then forces $\ell_k\le u$. The remaining zero-length intervals contribute nothing. This argument deliberately avoids treating a point swallowed into a hole as a hull-boundary point.
+
+\section{The stationary radial clock}\label{sec:clock}
+Under the original Gaussian law $\Pp_0$, write $B_t=h_{e^t}^\circ(0)$ and $W_t=B_t+at$. Define
+\begin{equation}\label{eq:clock}
+J(t)=\int_{-\infty}^t e^{\xi W_s}\dd s,
+\qquad q(t)=\frac{e^{\xi W_t}}{J(t)},
+\qquad u(t)=\xi^{-1}\log\frac{J(t)}{J(0)}.
+\end{equation}
+Almost surely $J$ is strictly increasing from zero to infinity, so $u$ is a bijection of $\R$ with inverse $t(u)$ and $t(0)=0$.
+
+\begin{proposition}[Palm law of the full environment]\label{prop:palm}
+The measure $\Pp_*$ specified by
+\begin{equation}\label{eq:palm}
+\frac{\dd\Pp_*}{\dd\Pp_0}=\frac{q(0)}{\xi a}
+\end{equation}
+is a probability measure. Under $\Pp_*$ the field $F=H-\xi^{-1}\log J(0)$ and metric $D_F=J(0)^{-1}D_H$ have a stationary \emph{full-environment} evolution in the $u$ clock, given by
+\begin{equation}\label{eq:flow-u}
+F\longmapsto F(e^{t(u)}\cdot)+Qt(u)-u.
+\end{equation}
+The independent uniform shell phase is translated by $-t(u)$ modulo one. In particular, the rooted metric law is invariant under a deterministic multiplicative change of metric scale, modulo the indicated Euclidean reembedding.
+
+The process $Y_u=q(t(u))/\xi^2$ is stationary and reversible. Its generator and invariant law are
+\begin{equation}\label{eq:generator}
+\mathcal L_af(y)=\frac\xi2 yf''(y)+\left(a+\frac\xi2-\xi y\right)f'(y),
+\qquad
+\pi_a(\dd y)=\frac{2^{1+2a/\xi}}{\Gamma(1+2a/\xi)}y^{2a/\xi}e^{-2y}\dd y.
+\end{equation}
+Furthermore, $t(v)-t(u)=\xi^{-1}\int_u^vY_w^{-1}\dd w$.
+\end{proposition}
+\begin{proof}
+The normalized whole-field flow $\theta_t$ in Lemma~\ref{lem:circle} is stationary, even though the Brownian coordinate need not be independent of the remaining field. The process $q(t)$ is a stationary functional of this flow and of the Brownian increments prior to $t$. Applying It\^o's formula forward from a deterministic physical time gives
+\[
+\dd q=\xi q\dd B+\left((\xi a+\xi^2/2)q-q^2\right)\dd t.
+\]
+The unique invariant distribution of $q/\xi^2$ is Gamma with shape $2a/\xi$ and rate two, by the stationary zero-current equation. Thus $\E_0q(0)=\xi a$ and \eqref{eq:palm} is normalized.
+
+The time change has speed $v(t)=\dd u/\dd t=q(t)/\xi$. We spell out the invariant-measure argument for the complete environment. Write $\theta_t$ for its physical flow and $\Psi_u$ for the reparameterized flow. For bounded measurable $f$, set $G_u(\omega)=\int_0^u f(\Psi_w\omega)\dd w$. The time-change cocycle gives the pathwise identity
+\[
+G_u(\theta_T\omega)-G_u(\omega)
+=\int_0^T v(\theta_s\omega)
+\{f(\Psi_u\theta_s\omega)-f(\theta_s\omega)\}\dd s.
+\]
+The expectation of the left side is zero by invariance under $\theta_T$. By physical stationarity, the expectation of the right side equals $T\{\E_0[v(f\circ\Psi_u)]-\E_0[vf]\}$. Therefore
+$\E_0[v(f\circ\Psi_u)] =\E_0[vf]$.
+Thus $v\dd\Pp_0/\E_0v=q(0)\dd\Pp_0/(\xi a)$ is invariant under $\Psi_u$. The argument applies to \emph{every} measurable observable of the complete centered LGF and the translated uniform phase, not merely to functions of $q$. It proves stationarity of \eqref{eq:flow-u}. Exact dilation covariance \eqref{eq:exact-dilate} and Weyl scaling identify the metric under this evolution; no independence of radial and nonradial field is used.
+
+Since $\dd u/\dd t=\xi Y$, the diffusion time-change formula gives
+\[
+\dd Y_u=\left(a+\frac\xi2-\xi Y_u\right)\dd u+\sqrt{\xi Y_u}\dd\beta_u.
+\]
+The speed bias changes the Gamma shape to $1+2a/\xi$, proving \eqref{eq:generator}. The generator is symmetric in $L^2(\pi_a)$ by writing it in divergence form. The inverse-clock identity follows by differentiation.
+\end{proof}
+
+\begin{lemma}[Envelope moments under the Palm law]\label{lem:envelope-moment}
+Let $M(t)\ge1$ be a fixed-width local mark of the full normalized physical environment, with $\E_0M(t)^b<\infty$ uniformly in $t$, for every $b>0$. Then under $\Pp_*$ the stationary convolution
+\begin{equation}\label{eq:Rconvolution}
+\mathcal R(u)=\xi\int_{-\infty}^u e^{-\xi(u-v)}M(t(v))\dd v
+\end{equation}
+has moments of every positive order. Taking $M=\max(1,x,y^{-1})$ with \eqref{eq:envelopes} yields
+\begin{equation}\label{eq:ratio-bounds}
+\frac{S(t(u))}{J(t(u))}\le\mathcal R(u),\qquad
+\frac{J(t(u))}{A(t(u))}\le\mathcal R(u).
+\end{equation}
+In particular $D_F(0,\partial\Be_1)$ has negative moments of every order.
+\end{lemma}
+\begin{proof}
+The density in \eqref{eq:palm} has moments of all positive orders (by its Gamma law). H\"older's inequality transfers the local moments to the Palm law. Stationarity of the complete $u$-environment then makes them uniform in $u$. Jensen's inequality for the probability kernel $\xi e^{-\xi(u-v)}\1_{v\le u}\dd v$ gives the moment bound on $\mathcal R$. Since $e^{\xi W_t}\dd t=\dd J=\xi J\dd u$, the first inequality in \eqref{eq:ratio-bounds} follows by comparing the integrands with $M$. The second follows from Jensen's inequality for $z\mapsto z^{-1}$. At $t(0)=0$, the first lower envelope bound in \eqref{eq:envelope-comparisons} gives
+$D_F(0,\partial\Be_1)\ge A(0)/J(0)$, and the second ratio in \eqref{eq:ratio-bounds} bounds its negative powers.
+\end{proof}
+
+\begin{proposition}[Exact Feynman--Kac exponent]\label{prop:spectral}
+For $p>0$ let $\lambda(p)=\sqrt{a^2+2p}-a$. The nonnegative-potential Feynman--Kac semigroup satisfies
+\begin{equation}\label{eq:semigroup-norm}
+\left\|\exp\left\{u\bigl(\mathcal L_a-p/(\xi y)\bigr)\right\}\right\|_{L^2(\pi_a)\to L^2(\pi_a)}=e^{-\lambda(p)u}.
+\end{equation}
+If $I_1,\ldots,I_m$ are deterministic, pairwise disjoint intervals in $u$ time, then
+\begin{equation}\label{eq:disjoint-cores}
+\E_*\exp\left\{-p\sum_{j=1}^m[t(\sup I_j)-t(\inf I_j)]\right\}
+\le \exp\left\{-\lambda(p)\sum_{j=1}^m|I_j|\right\}.
+\end{equation}
+Moreover, for $0<b<a^2/2$,
+\begin{equation}\label{eq:horizon}
+\E_* e^{b(t(U)-t(0))}\le\exp\{(a-\sqrt{a^2-2b})U\},\qquad U\ge0.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Set $\nu=(\sqrt{a^2+2p}-a)/\xi$ and $\psi(y)=y^\nu$. Direct differentiation shows
+\begin{equation}\label{eq:ground}
+(\mathcal L_a-p/(\xi y))\psi=-\lambda(p)\psi.
+\end{equation}
+The reversible Dirichlet form is $\frac\xi2\int y(f')^2\dd\pi_a$. Integration by parts gives, for $f\in C_c^\infty(0,\infty)$,
+\begin{multline}\label{eq:groundstate}
+\frac\xi2\int y(f')^2\dd\pi_a+\frac p\xi\int y^{-1}f^2\dd\pi_a
+-\lambda(p)\int f^2\dd\pi_a\\
+=\frac\xi2\int y\psi^2\bigl((f/\psi)'\bigr)^2\dd\pi_a\ge0.
+\end{multline}
+The ground state lies in $L^2(\pi_a)$ and the form domain: near zero its derivative and potential terms have power $2\sqrt{a^2+2p}/\xi-1>-1$, and the Gamma density controls infinity. Cutoff approximations show it attains the bottom of the spectrum. This proves \eqref{eq:semigroup-norm}, including its equality; the Feynman--Kac identification follows by monotone truncation of the nonnegative potential.
+
+Order the deterministic intervals $I_j$. The left side of \eqref{eq:disjoint-cores} is an $L^2(\pi_a)$ inner product formed by alternating killed semigroups on the intervals and ordinary reversible Markov semigroups on the gaps. These operators have norms bounded by \eqref{eq:semigroup-norm} and one, respectively, and $\|1\|_{L^2(\pi_a)}=1$. This proves \eqref{eq:disjoint-cores} without a conditioning argument.
+
+For \eqref{eq:horizon}, repeat the ground-state computation with potential $-b/(\xi y)$ and exponent $(\sqrt{a^2-2b}-a)/\xi$. The form-domain integrability holds because $a^2-2b>0$. Truncate the positive potential, apply the resulting lower spectral bound uniformly, and use monotone convergence together with the inverse-clock identity.
+\end{proof}
+
+Notice that $Q^2-a^2=2d$. Thus
+\begin{equation}\label{eq:critical}
+\lambda(d)=\sqrt{a^2+2d}-a=Q-a=\gamma,
+\qquad
+\frac{\lambda(d)}{\xi}=d_\gamma.
+\end{equation}
+This is the sole place where the desired conformal dimension enters the numerical part of the argument.
+
+\section{Exceptional scales}\label{sec:exceptions}
+The spectral estimate holds for predetermined clock intervals. To use it for geometric annuli, we must show that sufficiently many intervals correspond to good annuli whose Euclidean shapes are controlled. We establish both statements jointly across many scales; individual high-probability estimates would not suffice.
+
+\begin{lemma}[Simultaneous shape bound]\label{lem:shape}
+For any $\varepsilon,\delta,M>0$, there are $L_0,C<\infty$ such that, for all $L\ge L_0$, $v_0\in\R$, and $n\ge1$,
+\begin{multline}\label{eq:shape}
+\Pp_*\left[\#\left\{1\le j\le n:
+\frac{S(t(v_0+jL))}{J(t(v_0+jL))}>e^{\varepsilon L}
+\text{ or }
+\frac{J(t(v_0+jL))}{A(t(v_0+jL))}>e^{\varepsilon L}\right\}\ge\delta n\right]\\
+\le C e^{-MnL}.
+\end{multline}
+\end{lemma}
+\begin{proof}
+By the full-environment stationarity of Proposition~\ref{prop:palm}, take $v_0=0$. The ratios are bounded by $\mathcal R$ from \eqref{eq:Rconvolution}. The contribution to $\mathcal R(jL)$ from $v<0$ is $e^{-\xi jL}\mathcal R(0)$. If this exceeds $e^{\varepsilon L}/2$ at at least $\delta n/2$ indices, $\mathcal R(0)$ exceeds $c\exp(c_\delta nL)$; arbitrary moments from Lemma~\ref{lem:envelope-moment} make this probability $O(e^{-MnL})$ for arbitrary $M$.
+
+Choose a large $C_*$ so that \eqref{eq:horizon} gives $\Pp_*[t(nL)>C_*nL]\le e^{-MnL}$. On the remaining event, only physical unit intervals $[k,k+1]$ with $0\le k\le\lceil C_*nL\rceil$ need consideration. Put
+\[
+H_k=\sup_{t\in[k,k+1]}\log\max(1,x(t),y(t)^{-1}),\quad
+T_k=H_k+2\Osc_{[k-1,k+1]}W+C_0+1.
+\]
+The $T_k$ are fixed-width local Gaussian marks, and $\sup_k\E_0e^{bT_k}<\infty$ for every $b>0$. The identity $J(k)\ge\int_{k-1}^ke^{\xi W_s}\dd s$ gives
+$u(k+1)-u(k)\le C_0+2\Osc_{[k-1,k+1]}W$.
+If the portion of $\mathcal R(v)$ arising from $w\ge0$ exceeds $e^{\varepsilon L}/2$, there is a witness $w$ with
+$\log M(t(w))>\varepsilon L/2+(\xi/2)(v-w)$. A witness in physical interval $[k,k+1]$ requires $T_k\ge\varepsilon L/2$ and influences at most $C_\varepsilon T_k/L$ grid levels. Hence at least $\delta n/2$ affected levels imply
+\begin{equation}\label{eq:shape-big}
+\sum_{0\le k\le C_*nL+1}T_k\1_{\{T_k\ge\varepsilon L/2\}}\ge c_\varepsilon\delta nL.
+\end{equation}
+For any fixed $b>0$, Lemma~\ref{lem:gaussian-holder} and H\"older's inequality for the Palm density give
+\[
+\E_*\exp\left(b\sum_{k=0}^NT_k\1_{\{T_k\ge\varepsilon L/2\}}\right)
+\le C\exp\{(N+1)\omega_L(b)\},\qquad \omega_L(b)\longrightarrow0.
+\]
+The convergence follows by domination with an exponential moment at a strictly larger parameter. Chernoff's inequality applied to \eqref{eq:shape-big}, first choosing $b$ large and then $L$ large, gives the specified exponential rate. Combining the initial-history, physical-horizon, and exceptional-mark terms proves the lemma.
+\end{proof}
+
+\begin{lemma}[Separated-level Brownian occupation]\label{lem:occupation}
+Let $z(t)=\xi(B_t-at)$ for $t\ge0$, with an arbitrary deterministic initial value. For $0<c<a/\xi$ and real levels $s_1,\ldots,s_n$ separated pairwise by at least one, put
+$T_s=\int_0^\infty e^{-c|z(t)-s|}\dd t$. There are $b,C>0$, independent of the levels and the initial value, for which
+\begin{equation}\label{eq:occupation}
+\E\exp\left(b\sum_{j=1}^nT_{s_j}\right)\le e^{Cn}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $V(x)=\sum_j e^{-c|x-s_j|}$. Separation gives $\|V\|_\infty\le C_c$, $|V'|\le cV$ almost everywhere, and $\int_\R V=2n/c$. Let $f(x)=\exp(b_1\int_{-\infty}^xV(y)\dd y)$. For the generator $\mathcal A=(\xi^2/2)\partial_x^2-a\xi\partial_x$,
+\[
+\frac{\mathcal Af}{f}\le\left(\frac{\xi^2b_1c}{2}+\frac{\xi^2b_1^2\|V\|_\infty}{2}-a\xi b_1\right)V.
+\]
+Choose $b_1$ small and then $b>0$ so that $(\mathcal A+bV)f\le0$. Generalized It\^o's formula applies to $f$, whose derivative is locally absolutely continuous. A positive local supermartingale and Fatou's lemma give \eqref{eq:occupation} using $1\le f\le e^{2b_1n/c}$.
+\end{proof}
+
+\begin{proposition}[Joint absence of thin tubes]\label{prop:notube}
+Fix $0<A<B<\infty$, $C_0,\zeta>0$, and $L_f<\infty$. Let $f$ be any possibly field-dependent continuous function with $\|f\|_\infty\le L_f$, and use $D_{F+f}$. Put $R_j=R_0\alpha^j$ and $\delta_j=\alpha^\zeta R_j$, $0\le j<n$. Let $E_j^f$ be the event
+\begin{equation}\label{eq:thin-event}
+\diam_{D_{F+f}}\partial H_t^\circ(0;D_{F+f})\le C_0\delta_j
+\quad\text{for almost every }t\in[AR_j,BR_j].
+\end{equation}
+For every $\varepsilon,M>0$, after choosing $\alpha$ sufficiently small,
+\begin{equation}\label{eq:notube}
+\Pp_*[\#\{j:E_j^f\}\ge\varepsilon n]\le C\alpha^{Mn},\qquad n\ge1,
+\end{equation}
+uniformly in $R_0>0$ and in all such perturbations. The same bound holds for a common measurable base-field obstruction which contains the bad-scale events for every admissible $f$.
+\end{proposition}
+\begin{proof}
+Set $K=\log(1/\alpha)$ and $\Lambda=e^{\xi L_f}$. Weyl comparison gives $\Lambda^{-1}D_F\le D_{F+f}\le\Lambda D_F$. Hence the paths and lower barriers in \eqref{eq:thin-obstruction} can be estimated for every $f$ by the common base marks $\Lambda U_k$ and $\Lambda^{-1}\ell_k$. This gives simultaneous obstructions without attempting to compare the filled hull boundaries of two different metrics.
+
+By the full clock-stationarity and exact metric covariance, shift the entire $n$-scale pattern to $R_j=\alpha^{n+j}$. The bound in Lemma~\ref{lem:envelope-moment} implies, for arbitrary $M$,
+\[
+\Pp_*[D_F(0,\partial\Be_1)\le\Lambda B\alpha^n]\le C_M\alpha^{Mn}.
+\]
+Outside this event the relevant perturbed hulls lie inside $\Be_1$. Thus the inner path used in \eqref{eq:thin-obstruction}, and no unrestricted outer-shell sum, is sufficient.
+
+Let $r_k=2^{-k}$, $H=\log 2$, and write, under the physical Gaussian law,
+\[
+m_k=\exp z(kH),\qquad z(t)=\xi(B_{-t}-at),\qquad
+\widehat U_k=U_k/m_k,\quad\widehat\ell_k=\ell_k/m_k.
+\]
+Both $\widehat U_k$ and $\widehat\ell_k^{-1}$ have moments of every positive order, uniformly in $k\ge0$. In $D_F$, distances are divided by the original $J(0)$, so the logarithmic threshold levels entering \eqref{eq:thin-obstruction} are
+\[
+s_j=c_0-(n+j+\zeta)K+\log J(0),\qquad 0\le j<n,
+\]
+with a deterministic $c_0$ absorbing $C_0$ and $\Lambda$. Choose $0<c_1<\min(1,a/\xi)$ and $c_2=c_1/2$. The elementary estimate
+\[
+x\1_{\{x\ell\le1\}}\le (1+\ell^{-1-c_1})e^{-c_1|\log x|}\qquad(x,\ell>0)
+\]
+then implies that every bad index has a common obstruction
+\begin{equation}\label{eq:kernel-obstruction}
+\sum_{k\ge0}W_ke^{-c_1|z(kH)-s_j|}\ge c e^{\zeta K},
+\qquad W_k=\widehat U_k(1+\widehat\ell_k^{-1-c_1}).
+\end{equation}
+The variables $W_k$ are fixed-width Gaussian functionals with all positive moments.
+
+We first bound \eqref{eq:kernel-obstruction} for deterministic $K$-separated levels $s_j$ with a common deterministic shift of size at most $L_0nK$. Put
+\[
+\Omega_k=\sup_{[kH,(k+1)H]}|z(t)-z(kH)|,\qquad
+Y_k=\log^+W_k+c_1\Omega_k.
+\]
+They have all exponential moments and satisfy Lemma~\ref{lem:gaussian-holder}. If no $k$ satisfies $Y_k\ge\zeta K/4+(c_1/2)|z(kH)-s_j|$, the sum in \eqref{eq:kernel-obstruction} is at most
+$H^{-1}e^{\zeta K/4}T_{s_j}$ with $T$ as in Lemma~\ref{lem:occupation} and $c=c_2$. For large $K$, the obstruction therefore implies either
+\begin{equation}\label{eq:two-bad-mechanisms}
+T_{s_j}>e^{\zeta K/2}\quad\text{or}\quad
+Y_k\ge\frac{\zeta K}{4}+\frac{c_1}2|z(kH)-s_j|\text{ for some }k.
+\end{equation}
+The occupation estimate and Markov's inequality show that a positive fraction of the first alternative costs $\exp\{Cn-cne^{\zeta K/2}\}$.
+
+For the second alternative, one index $k$ can influence at most $1+4Y_k/(c_1K)$ of the $K$-separated levels, and only if $Y_k\ge\zeta K/4$. Thus a positive fraction of bad levels forces
+\[
+\sum_kY_k\1_{\{Y_k\ge\zeta K/4\}}\ge c_\varepsilon nK.
+\]
+Restrict to $k\le N=\lceil C_*nK\rceil$. This costs an arbitrarily large exponential rate in $nK$: Gaussian tails give $z(kH)\le-a\xi Hk/2$ eventually, and beyond $N$ every relevant level is at distance at least $ck$ from $z(kH)$; an exceptional witness would force $Y_k\ge ck$. For the remaining indices, Lemma~\ref{lem:gaussian-holder} gives, for fixed $b>0$ and arbitrarily large $b'>0$,
+\[
+\log\E_0\exp\left(b\sum_{k\le N}Y_k\1_{\{Y_k\ge\zeta K/4\}}\right)
+\le C_{b,b'}(N+1)e^{-b'\zeta K/(4p_0)}.
+\]
+Chernoff's inequality, choosing $b$ large and then $K$ large, gives any prescribed $\exp(-MnK)$ bound.
+
+Finally the common shift $\log J(0)$ has exponential tails under $\Pp_*$, because $q(0)=1/J(0)$ has a Gamma law with a positive shape parameter. Except on an event of probability $Ce^{-MnK}$, its magnitude is at most $L_0nK$. Split this interval into $O(nK)$ unit bins; the kernel inequality changes by at most a fixed multiplicative factor across a bin. Transfer the preceding deterministic-shift estimates from $\Pp_0$ to $\Pp_*$ by H\"older's inequality and the positive moments of the density \eqref{eq:palm}. Increasing the Gaussian rates absorbs both the H\"older loss and the $O(nK)$ union bound. The resulting base-field obstruction contains all events \eqref{eq:thin-event} for all allowed random $f$, proving \eqref{eq:notube}.
+\end{proof}
+
+\section{The rooted product estimate}\label{sec:product}
+Fix $p>d$. In the normalized rooted metric $D_{F+f}$, with $f$ a bounded continuous perturbation, choose $r_j=R_0\alpha^j$ and $s_j=R_0\alpha^{j-1+\zeta}$. For any bounded filled hull $H$ containing the origin, define its Euclidean outer and inner radii by
+\[
+\outrad_E H=\sup\{|z|:z\in H\},\qquad
+\inrad_E H=\sup\{r:\Be_r(0)\subset H\}.
+\]
+Set
+\begin{equation}\label{eq:v-weights}
+v_j^f=\left(\eta+128\frac{\outrad_E H_{64r_j}^\bullet(0;D_{F+f})}
+{\inrad_E H_{s_j/2}^\circ(0;D_{F+f})}
++2\1_{F_*^f(0,j)^c}\right)\wedge1.
+\end{equation}
+The superscript $f$ in $F_*^f$ means that the event is evaluated using $D_{F+f}$. All factors are measurable and lie in $[\eta,1]$.
+
+\begin{proposition}[Rooted product moment]\label{prop:product}
+Fix $p>d$ and $L_f<\infty$. There are $\zeta\in(0,1)$, $\alpha\in(0,1)$, $\eta\in(0,1/2)$, and $q>d_\gamma$ such that, for every $R_0>0$, $n\ge1$, and every possibly field-dependent continuous $f$ with $\|f\|_\infty\le L_f$,
+\begin{equation}\label{eq:product}
+\E_*\left[\left(\prod_{j=1}^n v_j^f\right)^p\right]\le C\alpha^{qn}.
+\end{equation}
+Here the expectation bound is understood with the same parameters for a finite collection of fixed changes to the inner and outer radii, the no-tube threshold, and the positive numerical coefficient multiplying the Euclidean radius ratio. The parameter $\eta$ may be chosen of the form $\alpha^{M_0}$ with $M_0$ arbitrarily large.
+\end{proposition}
+\begin{proof}
+Write $K=\log(1/\alpha)$, $\Lambda=e^{\xi L_f}$ and $\beta(p)=\lambda(p)/\xi$. By \eqref{eq:critical}, $\beta(p)>d_\gamma$. Choose small $\delta,\zeta,\varepsilon>0$ such that
+\begin{equation}\label{eq:gap}
+\vartheta=(1-\delta)(1-\zeta-4\varepsilon)\beta(p)>d_\gamma,
+\end{equation}
+and then $q\in(d_\gamma,\vartheta)$ and $M_0$ with $M_0p>\beta(p)+1$. Finally set $\eta=\alpha^{M_0}$ and take $K$ large.
+
+For each $j$, introduce the deterministic clock interval
+\begin{equation}\label{eq:cores}
+I_j=[u_j^-,u_j^+],\qquad
+u_j^- =\frac{\log(64r_j)+2\varepsilon K}{\xi},\quad
+u_j^+=\frac{\log(s_j/2)-2\varepsilon K}{\xi}.
+\end{equation}
+Its length is
+\[
+\ell_K=\frac{(1-\zeta-4\varepsilon)K-\log128}{\xi}>0.
+\]
+For large $K$ the intervals $I_j$ are pairwise disjoint, and their lower and upper endpoints each form an arithmetic progression with spacing $K/\xi$.
+
+Call an index $j$ \emph{good} if $F_*^f(0,j)$ occurs and the two envelope ratios in \eqref{eq:ratio-bounds} are at most $e^{\varepsilon K}$ at both endpoints $u_j^-,u_j^+$. Lemma~\ref{lem:shape} and Proposition~\ref{prop:notube} show that, for arbitrary $A_*>0$, the probability of fewer than $(1-\delta)n$ good indices is at most $C\alpha^{A_*n}$. The shape estimate is applied to each arithmetic progression with tolerance adjusted by the constant $\xi$; the no-tube estimate applies with the interval and threshold of \eqref{eq:Fstar}. Both statements are uniform in deterministic clock translation, $R_0$, and the allowed $f$.
+
+At a good index, the lower envelope at $t(u_j^-)$ and the upper envelope at $t(u_j^+)$, together with Weyl comparison and the margins $e^{\varepsilon K}>\Lambda$, give
+\[
+H_{64r_j}^\bullet(0;D_{F+f})\subset\Be_{e^{t(u_j^-)}}(0),\qquad
+\Be_{e^{t(u_j^+)}}(0)\subset H_{s_j/2}^\circ(0;D_{F+f}).
+\]
+Consequently, with $\Delta_j=t(u_j^+)-t(u_j^-)$,
+\begin{equation}\label{eq:ratio-exp}
+(v_j^f)^p\le2^{p-1}(\eta^p+128^p e^{-p\Delta_j}).
+\end{equation}
+For a \emph{deterministic} set $G$ of indices, expand the product of the right-hand side of \eqref{eq:ratio-exp}. Proposition~\ref{prop:spectral}, applied to every deterministic subcollection of the disjoint $I_j$, yields
+\begin{equation}\label{eq:fixed-good-product}
+\E_*\prod_{j\in G}2^{p-1}(\eta^p+128^p e^{-p\Delta_j})
+\le\bigl[2^{p-1}(\eta^p+128^p e^{-\lambda(p)\ell_K})\bigr]^{|G|}.
+\end{equation}
+There is no conditioning of the radial process on the random set of good indices. Instead, on the event that at least $m=\lceil(1-\delta)n\rceil$ indices are good, choose any $m$ good indices and discard the other factors, each of which is at most one. Sum \eqref{eq:fixed-good-product} over at most $2^n$ deterministic choices of $G$. The complement contributes at most $C\alpha^{A_*n}$. We obtain
+\[
+\E_*\left(\prod_{j=1}^nv_j^f\right)^p\le C\alpha^{A_*n}
++2^n\bigl[2^{p-1}(\alpha^{M_0p}+128^p e^{-\lambda(p)\ell_K})\bigr]^m.
+\]
+The second term is at most $C_1^n\alpha^{\vartheta n}$. Choose $A_*>q$, then increase $K$ so that $C_1\alpha^{\vartheta-q}\le1$. This gives \eqref{eq:product}. Changing finitely many fixed radius multipliers alters $\ell_K$ by bounded additive constants, a fixed change in the ratio coefficient alters only the constant $C_1$, and Proposition~\ref{prop:notube} permits changed fixed thresholds. The strict inequality in \eqref{eq:gap} absorbs these changes.
+\end{proof}
+
+\section{Uniform lower bounds for quantum volumes}\label{sec:volume}
+Let $\mu_h$ denote the subcritical $\gamma$-GMC measure, normalized by
+\[
+\mu_h(\dd x)=\lim_{\varepsilon\downarrow0}
+\varepsilon^{\gamma^2/2}e^{\gamma h_\varepsilon(x)}\dd x,
+\]
+with any fixed smooth regularization convention and a fixed additive normalization. We need uniformity over all centers in a compact set, not merely over a typical point sampled from $\mu_h$.
+
+\begin{proposition}[Uniform mass of metric balls]\label{prop:volume}
+For every compact $K\subset\R^d$ and $\varepsilon>0$, almost surely there are random $c,r_0>0$ such that
+\begin{equation}\label{eq:volume}
+\mu_h(\bh_r(x))\ge c\,r^{d_\gamma+\varepsilon},\qquad x\in K,\quad0<r<r_0.
+\end{equation}
+The assertion persists after adding a continuous field perturbation, with locally adjusted constants.
+\end{proposition}
+\begin{proof}
+\emph{Step 1: a metric-to-mass estimate on a grid.} Fix a power-of-two integer $M\gg_d1$. For each dyadic $r\le1$ and $z\in(r/M)\mathbb Z^d$, set
+\[
+L(z,r)=D_h(\mathrm{across}\ A_{r/16,r}(z))
++U_{D_h}(A_{r/4,r/3}(z)),\qquad m(z,r)=\mu_h(\Be_{r/64}(z)).
+\]
+The shell moment bounds, after changing from spherical to circle averages, give
+\[
+\sup_{r,z}\E\left[\left(\frac{L(z,r)}{r^{\xi Q}e^{\xi h_r^\circ(z)}}\right)^b\right]<\infty\quad(b>0).
+\]
+The normalized GMC mass $m(z,r)/(r^{\gamma Q}e^{\gamma h_r^\circ(z)})$ has negative moments of every order; this is the standard subcritical GMC estimate \cite{RV}. Since $\gamma Q/d_\gamma=\xi Q$, H\"older's inequality gives
+\begin{equation}\label{eq:Lmass}
+\sup_{r,z}\E\left[\left(\frac{L(z,r)}{m(z,r)^{1/d_\gamma}}\right)^b\right]<\infty\quad(b>0).
+\end{equation}
+A compact set contains $O(r^{-d})$ relevant grid points. Markov's inequality and Borel--Cantelli therefore imply, for every $\eta>0$, on a single probability-one event and all sufficiently small dyadic $r$,
+\begin{equation}\label{eq:Lgrid}
+L(z,r)\le C_\eta r^{-\eta}m(z,r)^{1/d_\gamma}
+\end{equation}
+uniformly over these points.
+
+\emph{Step 2: uniform upper GMC mass.} The GMC structure function is
+\[
+\zeta_\gamma(b)=\left(d+\frac{\gamma^2}{2}\right)b-\frac{\gamma^2b^2}{2},
+\qquad 1<b<\frac{2d}{\gamma^2}.
+\]
+For every $0<\beta<\gamma(Q-\sqrt{2d})$, take $b=\sqrt{2d}/\gamma$ (which lies in the moment range). Then $\zeta_\gamma(b)-\beta b>d$. A union bound over an $r$-grid followed by Borel--Cantelli gives
+\begin{equation}\label{eq:mass-upper}
+\mu_h(\Be_r(z))\le C_\beta r^\beta
+\end{equation}
+for every $z$ in a prescribed compact set and all small $r$. Enlarged grid balls handle arbitrary centers.
+
+\emph{Step 3: a diameter estimate for the same Euclidean cube.} Let $Q_0$ be an axis-parallel open cube of side at most one, with closure in a fixed compact region. For any two points $x,y\in Q_0$, construct chains of annular crossings inside $Q_0$, leading from a common central crossing to $x$ and $y$. Here are the geometric details needed for uniformity. If a crossing of $A_{r/16,r}(z)$ and a crossing of $A_{r'/16,r'}(z')$ have $r'\in\{r,r/2\}$ and $|z-z'|\le r/32$, both cross $A_{r/4,r/3}(z)$ and can be connected inside that shell at cost at most twice the second term in $L(z,r)$. Choose geometric interpolation points
+\[
+x_j=c+(1-2^{-j})(x-c),\qquad r_j=2^{-j}r_0,\quad r_0\asymp\operatorname{side}(Q_0),
+\]
+where $c$ is the center of $Q_0$ and the implicit constant in $r_0$ is small depending only on $d$. Join the successive interpolation points by monotone axis-parallel paths on the $(r_j/M)$-grid. The number of grid steps per level is bounded, and all their supporting Euclidean $r_j$-balls lie within $Q_0$. At a change of scale the grid centers differ by less than $r_j/32$ after increasing $M$ if necessary. The resulting connected crossing chains have tail supports converging to $x$ and $y$ in Euclidean distance, and their metric lengths are summable by the next estimate. They therefore yield paths entirely within $Q_0$ with common starting crossing and endpoints $x,y$.
+
+Write $V=\mu_h(Q_0)$. Every mass $m(z,r_j)$ used along these chains is at most $V$ and, by \eqref{eq:mass-upper}, at most $C_\beta r_j^\beta$. Using \eqref{eq:Lgrid} and a bounded number of marks per scale,
+\[
+\diam_{D_h}(Q_0;Q_0)
+\le C\sum_{j\ge0}r_j^{-\eta}\min\{V,C_\beta r_j^\beta\}^{1/d_\gamma}
+\le C' V^{1/d_\gamma-\eta/\beta},
+\]
+provided $0<\eta<\beta/d_\gamma$. For the last inequality split the geometric sum where $C_\beta r_j^\beta$ crosses $V$. The event and constants are uniform over all such cubes since the only randomness entered through the fixed countable grid bounds.
+
+\emph{Step 4: metric balls.} Fix $x$ in a compact set, take $r$ sufficiently small, and let $Q_0=x+(-s,s)^d$ be the largest centered open cube contained in $\bh_{r/2}(x)$. Compatibility of the Euclidean and metric topologies implies that its closure stays in the prescribed compact region. Maximality and continuity give some $y\in\partial Q_0$ with $D_h(x,y)=r/2$. Since $x,y$ can be approximated from within $Q_0$,
+\[
+\frac r2\le\diam_{D_h}(Q_0;Q_0)
+\le C\mu_h(Q_0)^{1/d_\gamma-\eta/\beta}
+\le C\mu_h(\bh_r(x))^{1/d_\gamma-\eta/\beta}.
+\]
+Choose $\eta=\beta(1/d_\gamma-1/(d_\gamma+\varepsilon))$. This proves \eqref{eq:volume} uniformly over $x,r$. On compact sets, adding a continuous function compares the metric and the mass by bounded Weyl factors, so the statement transfers.
+\end{proof}
+
+\section{From a rooted estimate to GMC integrals}\label{sec:rooting}
+The rooted estimate is under a speed-biased law for a logarithmically singular field. For the final covering argument we need an almost-sure integral estimate under the ordinary LGF law. This is supplied by the GMC rooting identity, with a localization to control the additive normalization and the random metric scale.
+
+Choose $\rho\in C_c^\infty(\R^d)$ with $\rho\ge0$ and $\int\rho=1$, and normalize the LGF by $(h,\rho)=0$. Its covariance kernel is
+\begin{equation}\label{eq:cov-smooth}
+C(x,z)=-\log|x-z|+g(x)+g(z)+c_0,
+\qquad g(x)=\int\log|x-y|\rho(y)\dd y.
+\end{equation}
+The function $g$ is smooth with bounded first derivatives: differentiation under the integral is justified in dimension $d\ge2$ by the local integrability of $|x|^{-1}$, and the gradient is bounded at infinity by the compact support of $\rho$. The GMC rooting identity \cite{RV} is, for nonnegative measurable $\Phi$,
+\begin{equation}\label{eq:girsanov}
+\E\int_K\Phi(x,h)\mu_h(\dd x)
+=\int_Kw(x)\E\,\Phi(x,h+\gamma C(x,\cdot))\dd x,
+\end{equation}
+where $w$ is positive, smooth, and bounded on compact sets.
+
+For this section take $r_j=\alpha^j$, $s_j=\alpha^{j-1+\zeta}$. Define the Borel, center-dependent factors
+\begin{equation}\label{eq:v-global}
+v_j(x)=\left(\eta+128\frac{\outrad_{E,x}H_{64r_j}^\bullet(x;D_h)}
+{\inrad_{E,x}H_{s_j/2}^\circ(x;D_h)}
++2\1_{F_*(x,j)^c}\right)\wedge1.
+\end{equation}
+The subscripts $E,x$ mean Euclidean radii about $x$, and the event $F_*$ is defined in \eqref{eq:Fstar}. We use $\eta\le v_j\le1$.
+
+\begin{proposition}[GMC integral summability]\label{prop:integrals}
+Fix $p>d$, and choose parameters $\alpha,\eta,\zeta$ in Proposition~\ref{prop:product}, with $q>d_\gamma$. For each $q'\in(d_\gamma,q)$, almost surely, for every compact $K\subset\R^d$ and integer $m\ge1$,
+\begin{equation}\label{eq:integral-bound}
+\sum_{N=m}^\infty\alpha^{-q'N}
+\int_K\left(\prod_{j=m}^N v_j(x)\right)^p\mu_h(\dd x)<\infty.
+\end{equation}
+The same conclusion holds if a finite prefix of the weights is replaced by one.
+\end{proposition}
+\begin{proof}
+\emph{Rooted normalization.} For a deterministic $x$, put $h^x=h+\gamma C(x,\cdot)$,
+\[
+g_x(z)=h(x+z)-h_1^\circ(x),\qquad
+H_x(z)=g_x(z)-\gamma\log|z|,
+\]
+and $c_x=h_1^\circ(x)+\gamma(2g(x)+c_0)$. Translation invariance modulo constants implies that $g_x$ has exactly the circle-pinned LGF law, independent of the deterministic choice of $x$. Equation \eqref{eq:cov-smooth} gives
+\begin{equation}\label{eq:root-field}
+h^x(x+z)=H_x(z)+c_x+\gamma(g(x+z)-g(x)).
+\end{equation}
+Take a smooth cutoff $\chi$ equal to one on $\Be_2$ and supported in $\Be_3$, and put
+$f_x(z)=\gamma\chi(z)(g(x+z)-g(x))$. Its supremum norm is bounded by a deterministic $L$ independent of $x$. In $\Be_2$ the rooted field is $H_x+c_x+f_x$.
+
+We explain how the metric at the inserted root is interpreted. On any relatively compact punctured domain, the laws of $H_x$ and of an ordinary LGF plus a bounded smooth function are mutually absolutely continuous, so locality determines the metric there. Its annular positive diameter moments and $a=Q-\gamma>0$ imply, by Borel--Cantelli, that the diameters of successive inward annuli are summable. The completion therefore adds exactly one point at the insertion. Under the integrated identity \eqref{eq:girsanov}, a probability-one identity for the original field and metric transfers for Lebesgue-almost every root. By locality on punctured domains and uniqueness of this completion, the metric sampled in \eqref{eq:girsanov} agrees with the canonical inserted-root version for the uses below. We do not assert such an identity simultaneously for every deterministic insertion point.
+
+\emph{Localization.} Define
+\[
+c_h(x)=h_1^\circ(x),\quad J_h(x)=\int_{-\infty}^0e^{\xi h_{e^t}^\circ(x)+\xi Qt}\dd t,\quad
+b_h(x)=\inf_{|z-x|=1}D_h(x,z).
+\]
+All three are continuous in $x$, and $J_h,b_h$ are positive. By Lemma~\ref{lem:uniform-circle}, on every compact set there is almost surely an integer $M$ for which
+\begin{equation}\label{eq:localize}
+\mathcal L_M(x;h)=\{M^{-1}\le J_h(x)\le M,\ |c_h(x)|\le M,\ b_h(x)\ge M^{-1}\}
+\end{equation}
+holds for all $x$ in that compact set. We initially insert $\1_{\mathcal L_M(x;h)}$ in every integral.
+
+Let $J_x=\int_{-\infty}^0e^{\xi(B_t+at)}\dd t$ be the exponential integral of $g_x$, and let $J_x^f$ be the same integral with the additional circle average of $f_x$. Since $\|f_x\|_\infty\le L$, we have $e^{-\xi L}J_x\le J_x^f\le e^{\xi L}J_x$. The rooted identity \eqref{eq:root-field} gives $J_{h^x}(x)=e^{\xi c_x}J_x^f$ and $c_{h^x}(x)=c_x+(f_x)_1^\circ(0)$. Thus on $\mathcal L_M(x;h^x)$,
+\begin{equation}\label{eq:root-bounds}
+|c_x|\le M+L,\quad J_x\le T_M,
+\qquad \lambda_x:=\frac{e^{-\xi c_x}}{J_x}\in[\lambda_M^-,\lambda_M^+]
+\end{equation}
+for deterministic $T_M<\infty$ and $0<\lambda_M^-<\lambda_M^+<\infty$.
+
+Under the physical Gaussian law of $g_x$, the Palm law has density $(\xi aJ_x)^{-1}$, since its circle average at one is zero. Consequently, for any nonnegative functional $\Psi$ of the canonical rooted field and the uniformly bounded perturbation $f_x$,
+\begin{equation}\label{eq:palm-convert}
+\E_0[\1_{\mathcal L_M(x;h^x)}\Psi]\le\xi aT_M\,\E_*\Psi.
+\end{equation}
+This does not invoke independence of $c_x$ from $g_x$.
+
+For fixed $M$, choose $j_M$ so large that all geometric events at $j\ge j_M$ are confined to $\Be_1(x)$ whenever \eqref{eq:localize} holds; this follows from the lower bound on $b_{h^x}(x)$ and strict metric-radius margins. Their hulls, diameters, and inner and outer Euclidean radii are therefore determined by the internal metric on $\Be_2(x)$, where \eqref{eq:root-field} holds. Define
+\[
+D_x^f=J_x^{-1}D_{H_x+f_x}.
+\]
+The original $h^x$-observables at scale $r$ coincide with $D_x^f$-observables at scale $\lambda_xr$, with $\lambda_x$ from \eqref{eq:root-bounds}. The rooted product bound applies to $D_x^f$ for every fixed initial scale, uniformly in the bounded (possibly field-dependent) perturbation $f_x$.
+
+\emph{Removing the random scale.} Choose $b\in(1,4/3)$ and divide the deterministic interval $[\lambda_M^-,\lambda_M^+]$ into finitely many multiplicative bins $[\lambda_i,b\lambda_i]$. Within a bin, monotonicity of filled hulls bounds the ratio term in \eqref{eq:v-global} by the corresponding ratio with numerator radius $64b\lambda_i r_j$ and denominator radius $\lambda_i s_j/2$. If $F_*$ fails at the actual multiplier $\lambda_x$, then the boundary-diameter inequality holds almost everywhere on the deterministic interval
+\[
+[3b\lambda_i r_{j-1}/16,\,\lambda_i r_{j-1}/4]
+\]
+with threshold $32b\lambda_i s_j$. It is a nonempty subinterval of the actual one precisely because $b<4/3$. Thus, pathwise, every product of the actual factors is bounded by a sum of finitely many products of fixed-bin majorants. Proposition~\ref{prop:product}, including its fixed-multiplier variants, bounds each of their $p$th moments by $C\alpha^{q(N-j_M+1)}$. By \eqref{eq:palm-convert}, uniformly over roots $x$ in a compact set,
+\begin{equation}\label{eq:localized-integral}
+\E\int_K\1_{\mathcal L_M(x;h)}\left(\prod_{j=1}^N v_j(x)\right)^p\mu_h(\dd x)
+\le C_{K,M}\alpha^{qN}.
+\end{equation}
+Here \eqref{eq:girsanov} was used, and the finite prefix and number of bins only change the constant.
+
+Multiply \eqref{eq:localized-integral} by $\alpha^{-q'N}$ and sum in $N$. Tonelli's theorem gives almost sure summability of the localized integrals for each integer $M$. On a compact set, some finite random $M$ makes every localization event hold, so the localization can be removed. A countable compact exhaustion and $v_j\ge\eta$ allow arbitrary compact $K$ and deletion of any fixed prefix. This proves \eqref{eq:integral-bound}.
+\end{proof}
+
+\section{A global quasisymmetric deformation}\label{sec:global}
+The deterministic argument in this section is based on the good-annulus and hyperbolic-filling construction of Miller and Tian \cite[Sections 5--6]{MT}. We give the details needed for the present noncompact and higher-dimensional setting.
+We now work deterministically with a proper geodesic metric $D$ on $\R^d$, $d\ge2$, which induces the Euclidean topology. We give a deterministic weighted-filling construction and the geometric admissibility argument in full. Working at every integer scale is important: the target must be one metric on the noncompact space, not a collection of unrelated local metrics.
+
+Fix a sufficiently small $\alpha\in(0,1)$ and put $r_j=\alpha^j$, $s_j=\alpha^{j-1+\zeta}$. Let $\widetilde F$ be the intrinsic good-band event defined by \eqref{eq:robust-band}; it is used only pointwise. Define
+\begin{equation}\label{eq:sigma}
+\sigma(x,j)=\left(\frac{\diam_E\bd_{4r_j}(x)}{\inrad_{E,x}H_{s_j}^\circ(x)}\wedge1\right)\1_{\widetilde F(x,j)}
++\1_{\widetilde F(x,j)^c}.
+\end{equation}
+
+\begin{lemma}[Annular admissibility]\label{lem:admissible}
+Suppose $C_i=\bd_{4r_j}(x_i)$, $0\le i\le N$, are consecutive overlapping metric balls, $C_0$ meets $\bd_{r_{j-1}}(y)$, and $C_N$ meets $\R^d\setminus\bd_{2r_{j-1}}(y)$. Then
+\begin{equation}\label{eq:admissible}
+\sum_{i=0}^N\sigma(x_i,j)\ge1.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $R=r_{j-1}$, $r=r_j$, $s=s_j$. If any selected weight equals one, the assertion follows. Otherwise every selected center has a witness $\widetilde F$, and its weight is the ratio in \eqref{eq:sigma}. It is enough to find a consecutive subchain $C_a,\ldots,C_b$ such that, with $\mathcal C=\bigcup_{i=a}^bC_i$,
+\begin{equation}\label{eq:not-contained}
+\mathcal C\not\subset H_s^\circ(x_i)
+\quad\text{for every }i\in[a,b].
+\end{equation}
+Indeed $x_i\in\mathcal C$, so $\inrad_{E,x_i}H_s^\circ(x_i)\le\diam_E\mathcal C$; overlapping of the balls implies $\diam_E\mathcal C\le\sum_{i=a}^b\diam_E C_i$. Dividing and summing yields \eqref{eq:admissible}.
+
+We describe how to choose the subchain, emphasizing the only topological fact required. Choose $z\in C_N$ with $D(y,z)\ge2R$. If $z$ lies in the unbounded component of $\R^d\setminus\overline{\bd_{3R/2}(y)}$, work with the nested centered hulls $K_t^\circ=H_{R+t}^\circ(y)$ and $K_t^\bullet=H_{R+t}^\bullet(y)$, and put $a_0=y$. Otherwise reverse the chain: let $K_t^\circ$ be the component containing $z$ of $\R^d\setminus\overline{\bd_{2R-t}(y)}$, let $K_t^\bullet$ be the corresponding closed component of $\R^d\setminus\bd_{2R-t}(y)$, and put $a_0=z$. (Only the closed convention is used at $t=0$ in the second case.) In either orientation, $K_t^\bullet$ for $0\le t<R/2$ and $K_t^\circ$ for $0<t\le R/2$ are bounded, have connected boundaries and connected complements, and satisfy $K_u^\bullet\subset K_v^\circ$ for $u<v$. No closed set $K_{R/2}^\bullet$ is needed. The chain crosses from $K_0^\bullet$ to the complement of $K_{R/2}^\circ$. Their boundaries are root-distance levels $R+t$ or $2R-t$. Therefore any path from $K_u^\bullet$ to the complement of $K_v^\circ$ has length at least $v-u$ for $u<v$. To trim a chain, join successive intersection points by paths inside the corresponding balls, which are path connected. Stop this concatenated path at its first hit of the outer side and start it at its last preceding hit of the inner side. The retained consecutive balls each meet the closed corridor, and they still form an overlapping chain.
+
+Take the first-exit/last-entry subchain crossing the corridor from $K_{2s}^\bullet$ to the complement of $K_{4s}^\circ$. Every ball in it meets the closed corridor, so its center is within distance $4r$ of the corridor. Suppose first that $a_0\notin H_s^\circ(x_i)$ for each center of this subchain. The two sides of the corridor are at distance at least $2s$, and the open $s$-ball about $x_i$ misses at least one of them. If it misses the outer side, that connected unbounded side is in the unbounded complementary component of the ball. If it misses the inner side, the inner side is connected and contains $a_0$, which is, by assumption, in that same unbounded complementary component. Thus one endpoint of the selected subchain is outside $H_s^\circ(x_i)$ for every $i$, proving \eqref{eq:not-contained}.
+
+Otherwise some selected center $x_k$ swallows $a_0$, namely $a_0\in H_s^\circ(x_k)$. The corridor and margin inequalities give
+\[
+K_0^\bullet\subset H_{R/16}^\circ(x_k),\qquad
+H_{5R/16}^\circ(x_k)\subset K_{R/2}^\circ.
+\]
+For the first inclusion use connectedness of $K_0^\bullet$, its disjointness from $\bd_s(x_k)$, and the fact that it contains $a_0$; for the second use the connected unbounded exterior of $K_{R/2}^\circ$ and the root-distance margin $R/2-4s-4r>5R/16$. The witness $\widetilde F(x_k,j)$ therefore supplies a \emph{good mixed filled-ball band} $A(o;t,s)$ whose inner hull contains $K_0^\bullet$ and whose outer hull is contained in $K_{R/2}^\circ$. The original chain crosses this band.
+
+Apply the intrinsic arrival coordinate $T_A$ of Lemma~\ref{lem:intrinsic-arrival} in this witnessing band. Trim the crossing chain at its first exit from the closed layer $\mathfrak H_{3s}^\bullet$ and its last entry into the complement of the open layer $\mathfrak H_{5s}$. The two sides are at ambient distance at least $2s$: a path remaining in $A$ pays this amount by the arrival coordinate, and a path leaving $A$ first pays at least $3s$ before hitting $I$ or $O$. Every retained $4r$-ball meets the middle corridor. Since $4r<s/16$, its center lies in $A$ with $T_A$ between $2s$ and $6s$, by Lemma~\ref{lem:intrinsic-arrival}. The global $s$-ball about each such center is consequently an internal $s$-ball in $A$, and the good-band condition applies.
+
+Each such $s$-ball misses at least one of the two sides of the trimmed corridor, since the sides are $2s$ apart. The outer side is connected to the unbounded complement of $A$ without meeting the ball, so if it is missed it lies in the unbounded component of the ball complement. If the inner side is missed, its connectedness and its connection to $I$ within the ball complement, together with goodness, put it in the same unbounded component. In either case the corresponding endpoint of the trimmed chain is outside $H_s^\circ(x_i)$. This proves \eqref{eq:not-contained} also in the swallowing case.
+\end{proof}
+
+The following comparison allows us to use only the measurable factors $v_j(x)$ in probabilistic arguments. For $k\ge0$, set
+\begin{equation}\label{eq:tau}
+\tau_k(x,j)=\left(\eta+2\sup_{D(x,y)\le kr_j}\sigma(y,j)\right)\wedge1.
+\end{equation}
+
+\begin{lemma}[Local majorants]\label{lem:majorants}
+For sufficiently small $\alpha$,
+\begin{equation}\label{eq:majorants}
+\tau_{27}(x,j)\le v_j(x).
+\end{equation}
+Moreover, if $D(x,z)\le r_N/3$ and $j\le N$, then $\tau_{26}(x,j)\le\tau_{27}(z,j)$.
+\end{lemma}
+\begin{proof}
+The second inequality follows from the triangle inequality and $r_N\le r_j$. If $F_*(x,j)$ fails, then $v_j(x)=1$ and the first inequality is immediate. Otherwise \eqref{eq:F-robust} gives $\widetilde F(y,j)$ for every $D(x,y)\le27r_j$, provided $27r_j\le r_{j-1}/16$. Let
+\[
+u=\outrad_{E,x}H_{64r_j}^\bullet(x),\qquad
+v=\inrad_{E,x}H_{s_j/2}^\circ(x).
+\]
+By hull inclusion, $\bd_{4r_j}(y)\subset\bd_{31r_j}(x)\subset H_{64r_j}^\bullet(x)$, and $H_{s_j/2}^\circ(x)\subset H_{s_j}^\circ(y)$ if $27r_j\le s_j/2$. Moreover $|x-y|\le u$. If $v>2u$, it follows that
+$\sigma(y,j)\le (2u/(v-u))\wedge1\le4u/v$. If $v\le2u$, the same inequality follows from $\sigma\le1$. Hence
+$\tau_{27}(x,j)\le(\eta+8u/v)\wedge1\le v_j(x)$.
+\end{proof}
+
+\subsection{A weighted filling at every integer scale}\label{subsec:filling}
+For each $j\in\mathbb Z$, take a maximal $r_j$-separated set $\mathcal A_j\subset(\R^d,D)$ and let $V_j=\{(x,j):x\in\mathcal A_j\}$. The sets are countable and locally finite by properness. Vertices in the same level are neighbors, written $u\sim v$, when their $4r_j$-balls overlap; include self-neighbors. Choose a parent $p(u)\in V_{j-1}$ with center at distance at most $r_{j-1}$ from the center of $u$. Give the graph its parent edges and its horizontal neighbor edges.
+
+Decrease $\alpha$ so that $\alpha<10^{-4}$, in addition to all previous parameter restrictions. Take $\beta=32\alpha<1/2$ and $0<\eta<\beta$; the choice $\eta=\alpha^{M_0}$ with $M_0>2$ in Proposition~\ref{prop:product} allows this. For $j\le0$ put $\pi(u)=\beta^j$. For $j\ge1$ define inductively
+\begin{equation}\label{eq:weights-filling}
+\begin{split}
+\nu(u)&=2\max\{\sigma(w,j):u\sim v\sim w,\ v,w\in V_j\},\\
+\mu(u)&=\max\{\eta,\nu(u)\}\wedge(1-\eta),\\
+\pi_0(u)&=\pi(p(u))\mu(u),\\
+\pi(u)&=\max\{\pi_0(u),\ \eta\max_{v\sim u}\pi_0(v)\}.
+\end{split}
+\end{equation}
+Put $\varrho(u)=\pi(u)/\pi(p(u))$. For sufficiently small $\alpha$, parents of vertices at horizontal graph distance at most two are horizontal neighbors. Induction gives
+\begin{align}\label{eq:weight-bounds}
+&\eta\le\varrho(u)\le1-\eta &&(j\ge1),\qquad
+\varrho(u)=\beta &&(j\le0),\notag\\
+&\eta\le\pi(u)/\pi(v)\le\eta^{-1} &&(u\sim v),\qquad
+\mu(u)\le\varrho(u)\le\max_{v\sim u}\mu(v) &&(j\ge1).
+\end{align}
+Here and below a self-neighbor does not create an edge of positive length. To verify the induction, write $A_u=\pi(p(u))$. For $u\sim v$ the term $\eta\pi_0(v)$ is already included in $\pi(u)$. If $u\sim v\sim w$, then $A_w\le\eta^{-1}A_u$ and
+\begin{equation*}
+\eta^2\pi_0(w)\le\eta A_u(1-\eta)\le A_u\mu(u)=\pi_0(u).
+\end{equation*}
+These two observations give $\pi(u)\ge\eta\pi(v)$ for every neighboring pair; interchange $u,v$ for the reverse bound. Also $\pi(u)\ge A_u\mu(u)$. If the smoothing term at a neighbor $v$ determines $\pi(u)$, then
+\begin{equation*}
+\frac{\pi(u)}{A_u}=\eta\frac{A_v}{A_u}\mu(v)\le\mu(v)\le1-\eta.
+\end{equation*}
+This proves all fine-level bounds. At nonpositive levels they follow from the constant weights and $\eta<\beta<1/2$. Each maximum is over a finite horizontal neighborhood, so the argument requires no finite bound on the number of vertices in a whole level.
+
+The key consequence of admissibility is the horizontal crossing inequality
+\begin{equation}\label{eq:horizontal}
+\sum_{i=1}^N\min_{w\sim u_{i-1}\text{ or }w\sim u_i}\varrho(w)\ge1
+\end{equation}
+for any level-$j$ neighbor chain $u_0,\ldots,u_N$ crossing a metric annulus of radii $r_{j-1},2r_{j-1}$. For $j\ge1$, if the minimum of $\mu$ over the horizontal neighbors of the two endpoints of some edge equals $1-\eta$, another edge contributes at least $\eta$; otherwise the definition of $\nu$ and Lemma~\ref{lem:admissible} prove the inequality. For $j\le0$ all the ratios are $\beta$. The chain needs at least $(16\alpha)^{-1}$ edges, since its successive center displacements are at most $8r_j$, hence the sum is at least $(16\alpha)^{-1}\beta\ge1$.
+
+Give every graph edge $(u,v)$ length $\pi(u)+\pi(v)$, and let $d_G$ be the induced path metric. A fine net approximation to $x\in\R^d$ is a sequence $u_j=(x_j,j)$ with $D(x,x_j)<r_j$. Adjacent approximations at successive levels are connected by a uniformly bounded number of edges and have weights at most $C(1-\eta)^j$, hence they form a $d_G$-Cauchy sequence. Different choices have vanishing $d_G$-distance. Write $\iota(x)$ for their common point in the metric completion and define
+\begin{equation}\label{eq:target-metric}
+\delta(x,y)=d_G(\iota(x),\iota(y)).
+\end{equation}
+
+\begin{lemma}[Graph-boundary metric]\label{lem:graph}
+The map $\iota$ is injective and \eqref{eq:target-metric} defines a metric on all of $\R^d$ globally quasisymmetric to $D$. Moreover, for $N\ge1$ and $x\in\mathcal A_N$,
+\begin{equation}\label{eq:pi-diam}
+\diam_\delta\bd_{r_N}(x)\le C\pi(x,N),\qquad \pi(x,N)\le(1-\eta)^N.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For a vertex $u$ let $g_k(u)$ be its ancestor at level $k$. For distinct vertices $u,v$, set
+\begin{equation*}
+k(u,v)=\max\{k\le\min(\operatorname{level}(u),\operatorname{level}(v)):g_k(u)\sim g_k(v)\},
+\quad
+P(u,v)=\max\{\pi(g_k(u)),\pi(g_k(v))\},
+\end{equation*}
+where $k=k(u,v)$ in the last expression. The maximum exists: an ancestor's displacement is at most $r_k/(1-\alpha)$, and $r_k\to\infty$ as $k\to-\infty$. Neighboring ancestors have neighboring parents, so the set in this maximum is an initial interval of integer levels. Following the two ancestor chains and joining at level $k(u,v)$ gives $d_G(u,v)\le CP(u,v)$, since $\varrho\le1-\eta$ at every level.
+
+We prove the reverse inequality for every finite path. Set $\pi_*(u)=\min_{w\sim u}\pi(w)$. Give a horizontal edge $(u,v)$ auxiliary length $\ell(u,v)=\min(\pi_*(u),\pi_*(v))$, and a parent edge $(p(u),u)$ auxiliary length $\ell(p(u),u)=\eta^{-4}\pi_*(u)$. These lengths are at most a constant depending on $\eta$ times the original edge lengths. We use the following four reductions. All paths and all operations in them are finite.
+
+\emph{An annular crossing pays a parent weight.} Let $a=(y,n-1)$ and let $u_0,\ldots,u_M$ be a level-$n$ horizontal chain crossing the annulus of radii $r_{n-1},2r_{n-1}$ about $y$. Stop at its first exit. Every retained $4r_n$-ball meets $B_{2r_{n-1}}^D(y)$. If $w\sim u_i$, then
+\begin{equation*}
+D(y,\operatorname{center}(p(w)))
+<3r_{n-1}+12r_n<8r_{n-1}.
+\end{equation*}
+Thus $p(w)\sim a$ and $\pi(w)\ge\pi_*(a)\varrho(w)$. The horizontal crossing inequality~\eqref{eq:horizontal} gives
+\begin{equation}\label{eq:aux-crossing}
+\ell(u_0,\ldots,u_M)\ge\pi_*(a).
+\end{equation}
+
+\emph{A one-level excursion can be removed, leaving one end edge unpaid.} Suppose $u_0,u_M\in V_n$ and all intermediate vertices lie in $V_{n+1}$. There is a horizontal path at level $n$ from $u_0$ to $u_M$ whose auxiliary length is at most that of the excursion with its first parent edge deleted. By reversing the construction, the last parent edge can instead be deleted. If $u_0\sim u_M$, the final parent edge pays for their horizontal edge, since
+\begin{equation*}
+\ell(u_{M-1},u_M)=\eta^{-4}\pi_*(u_{M-1})
+\ge\eta^{-2}\pi(u_M)\ge\ell(u_0,u_M).
+\end{equation*}
+When they are not neighbors, the horizontal part of the excursion crosses the annulus about $u_0$. Stop at its first exit, say at $u_i$, and replace that crossing by the edge from $u_0$ to $p(u_i)$. These parents are neighbors, since their centers are at distance at most $3r_n+12r_{n+1}<8r_n$. The replacement edge costs at most $\pi_*(u_0)$ and is paid for by~\eqref{eq:aux-crossing}. Repeat from $p(u_i)$ along the unused suffix until the current parent is a neighbor of $u_M$. The final parent edge of the original excursion pays for the last horizontal edge. The crossing portions have disjoint edge sets, so their costs add. The first parent edge was never used in these payments.
+
+\emph{Fine excursions and unequal endpoint levels can be removed.} A path whose endpoints have levels at most $n$ can be made to have all its vertices at levels at most $n$: remove its highest-level excursions one by one using the preceding reduction. The auxiliary length does not increase. Next suppose the endpoints have unequal levels and the finer endpoint has level $m$. First remove all levels above $m$. The terminal segment from the last level-$(m-1)$ vertex to the endpoint has all its other vertices at level $m$. Append the edge to the endpoint's parent and use the reversed preceding reduction, deleting this appended edge from the cost bound. We obtain a path to that parent with no increase in length. Iteration makes the endpoint levels equal.
+
+\emph{Separated parents can replace both endpoints.} Suppose the endpoints $u,v$ are at level $n$ and their parents $a,b$ are not neighbors. Remove all levels above $n$. If the resulting path visits level $n-1$, apply the previous terminal-segment reduction at both ends; the modified end segments are disjoint. This produces a path from $a$ to $b$ without increasing length.
+
+It remains to consider a horizontal path at level $n$. Start at $a$ and stop the fine chain at successive first exits from annuli about the current parent, replacing each such portion by the edge to the parent of its last vertex. Each replacement is paid for by~\eqref{eq:aux-crossing}. Stop when the current parent $a'$ first becomes a neighbor of $b$. At least one crossing has been made because $a\not\sim b$. If $a''$ is the preceding parent, then
+\begin{equation*}
+D(a'',b)\ge8r_{n-1},\qquad
+D(a'',a')\le3r_{n-1}+12r_n.
+\end{equation*}
+The final vertex $v$ is within $r_{n-1}$ of $b$, hence its distance from $a'$ is at least $4r_{n-1}-12r_n>2r_{n-1}$. The unused suffix of the fine chain therefore still crosses the annulus about $a'$. Its cost is at least $\pi_*(a')$, which pays for the final edge from $a'$ to $b$. This proves the reduction also in the horizontal case.
+
+Now fix a path from distinct $u$ to $v$ and let $k=k(u,v)$. If an endpoint already has level $k$, the first edge at that endpoint has auxiliary length at least $\eta^2$ times its weight, which is comparable to $P(u,v)$. Otherwise use the third reduction to equalize the endpoint levels. Use the fourth reduction while their parents are not neighbors. It stops at level $k+1$ with distinct nonneighboring endpoints whose parents are neighbors. Any edge incident to an endpoint $w$ has auxiliary length at least $\eta^2\pi(w)$. Also $\pi(w)\ge\eta\pi(p(w))$ and $\pi(p(w))\ge\eta P(u,v)$. Thus the remaining nontrivial path costs at least $\eta^4P(u,v)$. Since no reduction increased auxiliary length, the original path has this lower bound. Comparison with its original length and then infimization give
+\begin{equation}\label{eq:graph-comparison}
+cP(u,v)\le d_G(u,v)\le CP(u,v),\qquad u\ne v.
+\end{equation}
+No root vertex or lowest level was used. The reductions involve only the finite levels visited by the given path and terminate at its finite last-neighbor level.
+
+If $x\ne y$, choose $k\in\mathbb Z$ with $r_{k+1}<D(x,y)\le r_k$. At level $k$ the ancestors of sufficiently fine approximations of $x,y$ are neighbors; at level $k+2$ they are not, provided $\alpha$ is small. Indeed the displacement of an ancestor's center from its limiting point is $O(r_k)$, whereas $D(x,y)>r_{k+1}$ is much larger than $r_{k+2}$. Hence \eqref{eq:graph-comparison} implies
+\begin{equation}\label{eq:scale-pi}
+c\pi(z_k(x),k)\le\delta(x,y)\le C\pi(z_k(x),k),
+\end{equation}
+where $z_k(x)$ is any level-$k$ net point within $r_k$ of $x$. This proves injectivity. Comparing scales for three distinct points, using \eqref{eq:weight-bounds}, gives the quasisymmetric distortion bound
+\[
+\frac{\delta(x,y)}{\delta(x,z)}\le C
+\begin{cases}
+\bigl(D(x,y)/D(x,z)\bigr)^{a_1},&D(x,y)\le D(x,z),\\
+\bigl(D(x,y)/D(x,z)\bigr)^{a_2},&D(x,y)>D(x,z),
+\end{cases}
+\qquad a_1=\frac{\log(1-\eta)}{\log\alpha},\quad a_2=\frac{\log\eta}{\log\alpha}.
+\]
+Both exponents are positive. Enlarging $C$ produces an increasing homeomorphism of $[0,\infty)$ as distortion function. Finally, if $y,z\in\bd_{r_N}(x)$, their $D$-distance is at most $2r_N$ and \eqref{eq:scale-pi}, with one neighboring parent step, gives $\delta(y,z)\le C\pi(x,N)$. The second inequality of \eqref{eq:pi-diam} is the product of the fine ratios from $\pi(\cdot,0)=1$.
+\end{proof}
+
+\subsection{Covering sums and proof of the theorem}\label{subsec:finish}
+The ancestor of a level-$N$ vertex $(x,N)$ at level $j\le N$ lies within $2r_j$ of $x$. The two-neighbor maximum in \eqref{eq:weights-filling} then involves centers at most $26r_j$ from $x$. From \eqref{eq:weight-bounds}, \eqref{eq:tau}, and Lemma~\ref{lem:majorants},
+\begin{equation}\label{eq:pi-product}
+\pi(x,N)\le\prod_{j=1}^N\tau_{26}(x,j),\qquad
+\pi(x,N)^p\le\left(\prod_{j=m}^Nv_j(z)\right)^p
+\end{equation}
+whenever $D(x,z)\le r_N/3$ and $m\le N$. The first inequality follows from the smoothing and ancestor comparison, and the second from $\tau_{26}\le1$ and \eqref{eq:majorants}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $p>d$ and the parameters of Proposition~\ref{prop:integrals}. The deterministic construction above, applied once to $(\R^d,D_h)$, gives one globally quasisymmetric metric $\delta$. Fix compact sets $K\subset\operatorname{int}K'\subset K'\subset\operatorname{int}V$. At level $N$ retain the vertices $A_N\subset\mathcal A_N$ whose $D_h$-balls of radius $r_N$ meet $K$. Their $r_N$-balls cover $K$; for all large $N$, their centers lie in $K'$. Their $r_N/3$-balls are disjoint and contained in $V$.
+
+Choose $d_\gamma+\varepsilon<q'<q$. By the uniform lower mass bound in Proposition~\ref{prop:volume} and the product comparison \eqref{eq:pi-product},
+\begin{align}\label{eq:covering-sum}
+\sum_{x\in A_N}\pi(x,N)^p
+&\le C r_N^{-d_\gamma-\varepsilon}
+\sum_{x\in A_N}\int_{\bh_{r_N/3}(x)}\left(\prod_{j=m}^Nv_j(z)\right)^p\mu_h(\dd z)\\
+&\le C\alpha^{-(d_\gamma+\varepsilon)N}
+\int_V\left(\prod_{j=m}^Nv_j(z)\right)^p\mu_h(\dd z)\longrightarrow0.
+\notag
+\end{align}
+The limit follows from \eqref{eq:integral-bound}, since $q'>d_\gamma+\varepsilon$. By \eqref{eq:pi-diam}, the $\delta$-diameters of the covering balls tend uniformly to zero and their total $p$-power cost tends to zero. Therefore $\Hh^p_\delta(K)=0$. A countable compact exhaustion yields $\Hh^p_\delta(\R^d)=0$ for this \emph{same} target metric. We have shown $\Cdim(\R^d,D_h)\le p$.
+
+Apply the construction on the countable sequence $p=d+1/k$, $k\ge1$. The conformal dimension is at most $d$ almost surely. Conversely, any quasisymmetric metric on $\R^d$ induces the Euclidean topology, so its Hausdorff dimension is at least its topological dimension, which equals $d$. Proposition~\ref{prop:scale} provides a version of the original exponential metric with the exact scaling property used in the radial argument. This establishes \eqref{eq:main}.
+\end{proof}
+
+\section{The \texorpdfstring{$\gamma$}{gamma}-LQG sphere}\label{sec:spheres}
+We use local field equivalence, not a gluing of separately chosen quasisymmetric metrics. The local form of the integral estimate will be useful. If $K\Subset V\Subset U$ are coordinate disks and compact subsets thereof, define $v_j^U$ by using the internal metric in $U$ and filling toward an outer collar in $U$. Put $v_j^U=1$ at scales for which this collar is reached. The resulting observables are Borel by Appendix~\ref{app:measurable}.
+
+\begin{lemma}[Local transfer]\label{lem:local-transfer}
+For $d=2$ and a field whose restriction to $U$ is locally mutually absolutely continuous with a whole-plane GFF restriction, almost surely, for every $K\Subset U$, there is an integer $m$ such that
+\begin{equation}\label{eq:local-sphere-integral}
+\sum_{N\ge m}\alpha^{-q'N}\int_K\left(\prod_{j=m}^Nv_j^U(z)\right)^p\mu_h(\dd z)<\infty.
+\end{equation}
+The same local transfer applies to the uniform lower ball-mass estimate. The parameters may be fixed once for $p>2$ and a fixed finite set of multiplicative variants of $v_j$.
+\end{lemma}
+\begin{proof}
+Fix one whole-plane reference GFF with a smooth additive normalization supported outside $\overline{\Be_4}$. The finite atlas below can be chosen with all comparison images inside $\Be_1$, so the same reference normalization and parameters serve every chart. On this reference field, choose a compact collar between $K$ and $\partial U$. Its distance from a slightly enlarged compact set of centers is positive. Uniform compatibility of the metric and Euclidean topologies on compact sets implies that all sufficiently small balls and their hulls lie inside that collar. A path contributing to any of their boundary diameters has a length bounded by twice the relevant radius; for sufficiently fine scales it cannot reach the collar. Thus the local and ambient metrics, hulls, boundary diameters, and majorants agree after deletion of a finite prefix, uniformly in the center. The choice of exterior component also agrees, because the unfilled balls lie in a disk strictly inside $U$.
+
+Proposition~\ref{prop:integrals} therefore implies~\eqref{eq:local-sphere-integral}. The assertion that some prefix can be deleted is measurable with respect to the restricted field and measure. It transfers by local absolute continuity. The identical localization applies to Proposition~\ref{prop:volume}. Further deletion of prefix factors preserves the assertions since every factor is at least $\eta$. The field comparison is used on strictly smaller disks; in the whole-plane reference field one may choose its smooth additive normalization outside the comparison disk. This avoids imposing an artificial local normalization constraint. For GFFs the required equivalence on smaller disks is the usual domain-Markov and Cameron--Martin local equivalence, also valid after a deterministic smooth perturbation.
+\end{proof}
+
+\begin{corollary}\label{cor:lqg-sphere}
+For every $\gamma\in(0,2)$, the ordinary conformal dimension of the intrinsic $\gamma$-LQG sphere is two almost surely, for any fixed positive total quantum area.
+\end{corollary}
+\begin{proof}
+\emph{The field law.} Fix three distinct marked points on the Riemann sphere and a smooth round background metric. Let $H$ be the background GFF with three insertions of strength $\gamma$, including the smooth coordinate-change term for this background. Write $Z=\mu_H(S^2)$. In the representation of Aru, Huang, and Sun~\cite[Definition 2.2, Theorem 1.1, and Remark 1.2]{AHS}, the unit-area sphere field is $H-\gamma^{-1}\log Z$ under the law with Radon--Nikodym density
+\begin{equation*}
+\frac{Z^{4/\gamma^2-2}}{\E[Z^{4/\gamma^2-2}]}.
+\end{equation*}
+This density is finite and strictly positive almost surely and has a finite, positive normalizing constant. Their integrability condition (7), for three weights equal to $\gamma$, reads
+\begin{equation*}
+Q-3\gamma/2<\min\{2/\gamma,Q-\gamma\},\qquad \gamma<Q,
+\end{equation*}
+which holds for all $0<\gamma<2$. Hence the weighted and unweighted raw-field laws are equivalent. On compact sets away from the marked points, $H$ is locally absolutely continuous with a whole-plane GFF plus a smooth function. Locality and conformal covariance~\cite[Theorem 1.3]{GMCov} identify the local metrics and measures. We may work with the unnormalized compact metric $D_H$; area normalization will only multiply it by a constant. Its topology at the insertions follows either from the sphere construction or from the summable inward annular diameter estimates with $Q-\gamma>0$.
+
+\emph{One global system of weights.} Let $\rho$ be the round geodesic distance on $S^2$. Choose a finite conformal atlas with nested coordinate disks so that every point lies in an inner disk and each coordinate map, after a fixed Euclidean rescaling, is $2$-bilipschitz from the larger disk with metric $\rho$ to its image. At uniformly fine $D_H$-scales, the metric ball containing an entire annular crossing and the hulls used in its admissibility proof lie in one such larger disk. This follows from compactness and uniform agreement of the two topologies.
+
+For all these fine scales, define the exterior of a metric ball to be the unique complementary component with round area greater than half the area of $S^2$. This component exists: the ball lies in a small round disk whose exterior is connected and has more than half the area. Fill every other component. In a chart containing that disk, this is exactly filling toward the chart exterior. The open and closed hull conventions and the good-band events are therefore defined consistently over the sphere.
+
+With these hulls define a single global weight
+\begin{equation*}
+\sigma_S(x,j)=\left(\frac{\diam_\rho B_{4r_j}^{D_H}(x)}
+{\dist_\rho(x,S^2\setminus H_{s_j}^\circ(x))}\wedge1\right)
+\1_{\widetilde F(x,j)}+\1_{\widetilde F(x,j)^c}.
+\end{equation*}
+At all remaining coarse scales put $\sigma_S=1$. Lemma~\ref{lem:admissible} applies to this weight. Its subchain selection is carried out in the single chart just chosen; the distinguished exterior component plays the role of infinity. Its final diameter inequality uses only the triangle inequality and overlapping sets, so it holds for $\rho$ itself. Coarse-scale admissibility is immediate.
+
+Apply the weighted graph construction once to the compact metric space $(S^2,D_H)$ and these weights. The graph argument uses properness, local finiteness of separated nets, and admissibility, but neither noncompactness nor a distinguished Euclidean coordinate. It therefore gives one globally quasisymmetric metric $\delta_p$ on the \emph{entire} sphere. At coarse positive levels the rule $\sigma_S=1$ simply gives the fixed ratio $1-\eta$; the finitely many such factors can be discarded in covering upper bounds.
+
+\emph{Local majorants for those same weights.} In a $2$-bilipschitz chart, the round diameter in $\sigma_S$ is at most twice its Euclidean diameter, and the round distance to the hull complement is at least half the Euclidean inradius. Thus $\sigma_S$ is at most four times the planar Euclidean ratio at a good center. The calculation in Lemma~\ref{lem:majorants} then gives, for all sufficiently fine local scales,
+\begin{equation*}
+\tau_{27}^{S}(x,j)
+\le\left(\eta+32\frac{\outrad_{E,x}H_{64r_j}^\bullet(x)}
+{\inrad_{E,x}H_{s_j/2}^\circ(x)}+2\1_{F_*(x,j)^c}\right)\wedge1
+\le v_j^U(x).
+\end{equation*}
+All hulls and chart distances in this comparison lie strictly inside the larger coordinate disk. The other majorant comparison, for centers at distance at most $r_N/3$, is metric and unchanged. Consequently the weights of this \emph{one global graph} satisfy
+\begin{equation*}
+\pi(x,N)^p\le\left(\prod_{j=m}^Nv_j^U(z)\right)^p,
+\qquad D_H(x,z)\le r_N/3,
+\end{equation*}
+after deleting a finite prefix on a prescribed compact chart subset.
+
+\emph{The covering estimate.} Exhaust the complement of the three marked points by countably many compact sets $K$, each compactly contained in a slightly larger set $K'$ and then $V$ in a coordinate disk away from the marks. Local transfer gives~\eqref{eq:local-sphere-integral} on $V$ and the uniform lower ball-mass bound at centers in $K'$. For the global level-$N$ net vertices whose $r_N$-balls meet $K$, the $r_N/3$-balls are disjoint and lie in $V$ for all large $N$. Choose $d_\gamma+\varepsilon<q'<q$. Then
+\begin{equation*}
+\sum_x\pi(x,N)^p
+\le C\alpha^{-(d_\gamma+\varepsilon)N}
+\int_V\left(\prod_{j=m}^Nv_j^U(z)\right)^p\mu_H(\dd z)
+\longrightarrow0.
+\end{equation*}
+The diameters of the corresponding $\delta_p$-covering balls tend uniformly to zero, by Lemma~\ref{lem:graph}. Hence $\Hh^p_{\delta_p}(K)=0$. A countable union and addition of the three marked points give $\Hh^p_{\delta_p}(S^2)=0$. Taking $p=2+1/k$ proves the upper bound two. Every quasisymmetric target is homeomorphic to $S^2$, so topological dimension gives the reverse bound.
+
+Finally, replacing $H$ by the fixed-area field multiplies $D_H$ by one positive random constant, which does not change its quasisymmetric gauge.
+\end{proof}
+
+\appendix
+\section{Measurability of the geometric majorants}\label{app:measurable}
+Only $F_*$ and the ratios $v_j$ are integrated. The existential good-band events $F$ and $\widetilde F$, and the pointwise supremum in $\tau_k$, are used in deterministic comparisons and need not be selected measurably. We record the Borel coding for the integrated quantities.
+
+For a proper continuous metric $D$, compactify $\R^d$ by $\infty$ and put $f_{D,x}(z)=D(x,z)/(1+D(x,z))$ and $f_{D,x}(\infty)=1$. Properness makes $f_{D,x}$ continuous on $S^d$. Its dependence on $(D,x)$ is Borel as a map into $C(S^d)$, since evaluations on a countable dense set generate the Borel sigma-field of that function space. The nonempty closed superlevel set
+\begin{equation*}
+K_r(D,x)=\{f_{D,x}\ge r/(1+r)\}
+\end{equation*}
+is a Borel compact-set-valued map. Write $C_r$ for its component containing $\infty$. The component map is upper semicontinuous on compact sets containing this fixed point: every Hausdorff subsequential limit of these components is connected, contains $\infty$, and is contained in the corresponding limiting component. Thus $C_r$ is Borel.
+
+The complement $H_r^\circ=S^d\setminus C_r$ is an \emph{open}-set-valued map, not a compact-set-valued map. Its closure and its boundary are compact and Borel. Here is a direct verification. For a connected basic open set $U$, the condition $\partial C\cap U\ne\varnothing$ is equivalent to $C\cap U\ne\varnothing$ and $U\not\subset C$. Both are Borel tests for a closed set $C$, the latter using a fixed countable dense subset of $U$. Also $\overline{S^d\setminus C}$ meets an open set $U$ exactly when $U\not\subset C$. These hitting tests generate the compact hyperspace Borel structure.
+
+For the closed filled hull, the correct compact-set formula is
+\begin{equation}\label{eq:closed-hull-limit}
+H_r^\bullet(x)=\bigcap_{m\ge1}\overline{H_{r+1/m}^\circ(x)}.
+\end{equation}
+Indeed, $H_r^\bullet\subset H_{r+1/m}^\circ$ by the strict radius margin. Conversely, a point in the unbounded component of $\{D(x,\cdot)>r\}$ can be joined to a sufficiently distant Euclidean sphere by a compact path on which $D(x,\cdot)$ has a positive margin above $r$. Outside a sufficiently large Euclidean ball this same inequality holds uniformly, by properness. The path and a small neighborhood of its initial point therefore belong to the exterior component of $\{D(x,\cdot)\ge r+1/m\}$ for all large $m$. The point is then outside $\overline{H_{r+1/m}^\circ}$. This proves~\eqref{eq:closed-hull-limit}. Its right side is a decreasing intersection of nonempty compact sets, hence a Hausdorff limit and a Borel compact-valued map.
+
+The Euclidean outer radius of a compact hull, the Euclidean distance from its center to a closed exterior set, and the $D$-diameter of a compact boundary are Borel functions of the indicated metric and sets. This proves measurability of the radius ratios. The boundary-diameter indicator in~\eqref{eq:Fstar} is jointly Borel; integrating it in the radius proves measurability of $F_*$ and $v_j$.
+
+On a relatively compact domain, the same construction uses the component directed toward a fixed outer collar. To reduce it to the preceding compact coding, truncate the internal distance above all radii in the observable and extend it as that constant across the collar. Whenever the relevant compact set of centers and all its hulls lie strictly inside the collar, this changes none of the observable's sublevel sets or complementary components. A countable exhaustion and a finite initial-scale deletion give the local versions used in the proof.
+
+\begin{thebibliography}{99}
+\bibitem{Bonanno} L.~Bonanno, \emph{Higher-dimensional exponential metrics: a proposed axiomatic existence and uniqueness proof}, research manuscript (2026). \url{https://github.com/leobon12/ai-generated-mathematics/blob/main/papers/higher-dimensional-lqg-metric.pdf}.
+\bibitem{MT} J.~Miller and Y.~Tian, \emph{The conformal dimension of the Brownian sphere is two}, arXiv:2603.24473 (2026). \url{https://arxiv.org/abs/2603.24473}.
+\bibitem{CHZ} A.~A.~Contreras Hip and Z.~Zhuang, \emph{Weak exponential metrics for high-dimensional log-correlated Gaussian fields}, arXiv:2512.06292 (2025). \url{https://arxiv.org/abs/2512.06292}.
+\bibitem{AHS} J.~Aru, Y.~Huang, and X.~Sun, \emph{Two perspectives of the 2D unit area quantum sphere and their equivalence}, Commun. Math. Phys. \textbf{356} (2017), 261--283. \url{https://arxiv.org/abs/1512.06190}.
+\bibitem{GM} E.~Gwynne and J.~Miller, \emph{Existence and uniqueness of the Liouville quantum gravity metric for $\gamma\in(0,2)$}, Invent. Math. \textbf{223} (2021), 213--333. \url{https://arxiv.org/abs/1905.00383}.
+\bibitem{GMCov} E.~Gwynne and J.~Miller, \emph{Conformal covariance of the Liouville quantum gravity metric for $\gamma\in(0,2)$}, Ann. Inst. H. Poincar\'e Probab. Statist. \textbf{57} (2021), 1016--1031. \url{https://arxiv.org/abs/1905.00384}.
+\bibitem{RV} R.~Rhodes and V.~Vargas, \emph{Gaussian multiplicative chaos and applications: a review}, Probab. Surv. \textbf{11} (2014), 315--392. \url{https://arxiv.org/abs/1305.6221}.
+\bibitem{CDP} W.-K.~Chen, N.~Dafnis, and G.~Paouris, \emph{Improved H\"older and reverse H\"older inequalities for correlated Gaussian random vectors}, Adv. Math. \textbf{280} (2015), 643--689. \url{https://arxiv.org/abs/1306.2410}.
+\bibitem{Sonneborn} L.~M.~Sonneborn, \emph{Level sets on spheres}, Pacific J. Math. \textbf{13} (1963), 297--303. \url{https://msp.org/pjm/1963/13-1/pjm-v13-n1-p23-p.pdf}.
+\end{thebibliography}
+\end{document}
