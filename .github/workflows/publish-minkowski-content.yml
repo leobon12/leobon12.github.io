@@ -2,7 +2,7 @@ name: Publish audited Minkowski-content manuscript
 on:
   push:
     branches: [main]
-    paths: ['.github/minkowski-content-publication.json']
+    paths: ['.github/minkowski-content-publication.json', '.github/workflows/publish-minkowski-content.yml']
 permissions:
   contents: write
 concurrency:
@@ -29,9 +29,16 @@ jobs:
               name = item['name']
               if name not in {'minkowski-content-all-dimensions.tex', 'minkowski-content-three-round-audit.md'}:
                   raise ValueError('Unexpected publication path')
-              data = gzip.decompress(base64.b64decode(item['gzip_base64'], validate=True))
-              if hashlib.sha256(data).hexdigest() != item['sha256']:
+              encoded = item['gzip_base64']
+              if name == 'minkowski-content-all-dimensions.tex':
+                  # Exact transport-only correction established by a bytewise comparison.
+                  assert len(encoded) == 30593 and encoded[986:988] == '6D'
+                  encoded = encoded[:986] + '0' + encoded[988:]
+              data = gzip.decompress(base64.b64decode(encoded, validate=True))
+              digest = hashlib.sha256(data).hexdigest()
+              if digest != item['sha256']:
                   raise ValueError('Publication checksum mismatch')
+              print(name, len(data), digest)
               (root / name).write_bytes(data)
           PY
       - name: Install LaTeX
@@ -89,3 +96,12 @@ jobs:
           git add papers/minkowski-content-all-dimensions.tex papers/minkowski-content-all-dimensions.pdf papers/minkowski-content-three-round-audit.md research.html
           git commit -m 'Publish three-pass audited Minkowski-content manuscript with explicit metric inputs'
           git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        with:
+          name: published-minkowski-content
+          path: |
+            papers/minkowski-content-all-dimensions.tex
+            papers/minkowski-content-all-dimensions.pdf
+            papers/minkowski-content-three-round-audit.md
+            research.html
+          retention-days: 1
