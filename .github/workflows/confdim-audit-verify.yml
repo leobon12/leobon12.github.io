@@ -1,0 +1,32 @@
+name: Verify audited PDF equivalence
+on:
+  push:
+    branches: ['audit/conformal-dimension-20261029']
+    paths: ['.github/workflows/confdim-audit-verify.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Compare complete PDF bytes except volatile metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, re, json
+          prefix = Path('papers/conformal-dimension-exponential-metrics-d-ge-2')
+          source = prefix.with_suffix('.tex').read_bytes()
+          pdf = prefix.with_suffix('.pdf').read_bytes()
+          assert hashlib.sha256(source).hexdigest() == '4245105bd701874fabc69b55b26cf9cb99f0240aeb4928382df4f9c36014341c'
+          canonical = pdf
+          for name in (b'CreationDate', b'ModDate'):
+              canonical, count = re.subn(rb'/' + name + rb'\s*\([^)]*\)', b'/' + name + b'(DATE)', canonical)
+              assert count == 1, (name, count)
+          canonical, count = re.subn(rb'/ID\s*\[\s*<[0-9A-Fa-f]+>\s*<[0-9A-Fa-f]+>\s*\]', b'/ID[<ID><ID>]', canonical)
+          assert count == 1, count
+          digest = hashlib.sha256(canonical).hexdigest()
+          assert digest == '72ac6daddbe77a549d30bfbd80c9d356470d33095a4fd3eeb2dc279c4f482f29', 'Rebuilt PDF differs from audited PDF beyond timestamps and document ID'
+          print(json.dumps({'source_sha256': hashlib.sha256(source).hexdigest(), 'pdf_sha256': hashlib.sha256(pdf).hexdigest(), 'canonical_pdf_sha256': digest, 'pdf_bytes': len(pdf), 'result': 'PASS: complete PDF matches audited PDF except creation/modification dates and trailer ID'}, indent=2))
+          PY
