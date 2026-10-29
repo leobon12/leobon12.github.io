@@ -1,0 +1,91 @@
+name: Publish audited Minkowski-content manuscript
+on:
+  push:
+    branches: [main]
+    paths: ['.github/minkowski-content-publication.json']
+permissions:
+  contents: write
+concurrency:
+  group: publish-minkowski-content
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Verify and extract the reviewed source
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, hashlib, json
+          from pathlib import Path
+          manifest = json.loads(Path('.github/minkowski-content-publication.json').read_text())
+          root = Path('papers')
+          root.mkdir(exist_ok=True)
+          for item in manifest['files']:
+              name = item['name']
+              if name not in {'minkowski-content-all-dimensions.tex', 'minkowski-content-three-round-audit.md'}:
+                  raise ValueError('Unexpected publication path')
+              data = gzip.decompress(base64.b64decode(item['gzip_base64'], validate=True))
+              if hashlib.sha256(data).hexdigest() != item['sha256']:
+                  raise ValueError('Publication checksum mismatch')
+              (root / name).write_bytes(data)
+          PY
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern latexmk
+      - name: Compile and check references
+        working-directory: papers
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error minkowski-content-all-dimensions.tex
+          if grep -E 'undefined references|undefined citations|Overfull' minkowski-content-all-dimensions.log; then
+            echo 'LaTeX validation failed'
+            exit 1
+          fi
+      - name: Add a scoped entry under Unformalized
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('research.html')
+          s = p.read_text()
+          anchor = '      <p class="research-warning">This work has not been formalized and may contain errors.</p>'
+          if s.count(anchor) != 1 or 'id="unformalized"' not in s:
+              raise ValueError('Expected Unformalized section not found uniquely')
+          entry = '''
+                <details class="research-topic" id="unformalized-minkowski-content" aria-labelledby="unformalized-minkowski-content-title">
+                  <summary><h4 id="unformalized-minkowski-content-title">Metric Minkowski Content and Gaussian Multiplicative Chaos</h4></summary>
+                  <div class="formalization-list">
+                    <section class="formalization" id="minkowski-content-all-dimensions" aria-labelledby="minkowski-content-all-dimensions-title">
+                      <span class="project-number" aria-hidden="true">01</span>
+                      <div class="research-row">
+                        <h5 class="research-paper-title" id="minkowski-content-all-dimensions-title">The Minkowski Content Measure for Exponential Metrics in All Dimensions</h5>
+                        <div class="research-actions">
+                          <details class="research-details">
+                            <summary aria-label="Result: The Minkowski Content Measure for Exponential Metrics in All Dimensions">Result</summary>
+                            <div class="research-result">
+                              <p>A dimension-independent argument identifying subcritical Gaussian multiplicative chaos with normalized metric-ball covering counts in every dimension <var>d</var> &ge; 2, assuming the strong exponential-metric axioms and one internal-diameter moment of order greater than &gamma;/&xi;. The normalization is comparable to &epsilon;<sup>&minus;&gamma;/&xi;</sup> and regularly varying, and convergence is in probability for random compact sets with zero chaos mass on their boundary.</p>
+                              <p>The proof uses finite-range Gaussian scales rather than a space-filling curve. The one-dimensional case is pathwise. Construction and uniqueness of the higher-dimensional metric are external inputs. The manuscript underwent three sequential AI audit-and-rewrite passes; these are not independent referee reports or formal verification.</p>
+                              <p class="result-source">Theorem 1.1 and the one-dimensional proposition. Revised October 29, 2026; assumptions and audit history are included with the paper.</p>
+                            </div>
+                          </details>
+                          <p class="project-links"><a class="paper-link" href="papers/minkowski-content-all-dimensions.pdf">PDF</a> &middot; <a href="papers/minkowski-content-all-dimensions.tex">LaTeX</a> &middot; <a href="papers/minkowski-content-three-round-audit.md">Audit</a></p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </details>'''
+          if 'id="minkowski-content-all-dimensions"' in s:
+              raise ValueError('An entry already exists; refusing to duplicate or overwrite it')
+          p.write_text(s.replace(anchor, anchor + '\n' + entry, 1))
+          PY
+      - name: Commit only the manuscript and its website entry
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/minkowski-content-all-dimensions.tex papers/minkowski-content-all-dimensions.pdf papers/minkowski-content-three-round-audit.md research.html
+          git commit -m 'Publish three-pass audited Minkowski-content manuscript with explicit metric inputs'
+          git push origin HEAD:main
