@@ -1,9 +1,3 @@
-for (const topic of document.querySelectorAll(".research-topic")) {
-  const count = topic.querySelectorAll(".formalization").length;
-  topic.querySelector(".topic-action .when-closed").textContent =
-    `${count} ${count === 1 ? "paper" : "papers"}`;
-}
-
 // Reveal a linked paper when its topic starts collapsed.
 function revealResearchTarget() {
   let id;

@@ -1,83 +1,41 @@
-.research-topic {
-  margin-top: 0;
-}
-.research-topic > summary,
-.research-details > summary {
-  display: block;
-  list-style: none;
-  cursor: pointer;
-}
-.research-topic > summary::-webkit-details-marker,
-.research-details > summary::-webkit-details-marker {
-  display: none;
-}
 .research-topic > summary {
-  padding: .6rem 0;
-}
-.research-topic > summary h4 {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: .65rem;
+  padding: .35rem 0 .65rem;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  list-style: none;
+}
+.research-topic > summary::-webkit-details-marker { display: none; }
+.research-topic > summary::before {
+  content: "";
+  flex: 0 0 .45rem;
+  width: .45rem;
+  height: .45rem;
+  border-right: 2px solid var(--maroon);
+  border-bottom: 2px solid var(--maroon);
+  transform: rotate(-45deg);
+  align-self: flex-start;
+  margin-top: .55rem;
+}
+.research-topic[open] > summary::before { transform: rotate(45deg); }
+.research-topic > summary > h4 {
+  min-width: 0;
   margin: 0;
-  font: normal 1.3rem/1.35 Georgia, "Times New Roman", serif;
-}
-.topic-action,
-.research-details > summary {
-  display: inline-grid;
-  align-items: baseline;
-  color: var(--maroon);
-  white-space: nowrap;
-}
-.topic-action {
-  justify-items: end;
-  font: normal .8125rem/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-.research-details > summary {
-  min-height: 24px;
-  align-content: center;
-  justify-items: end;
-  font-size: .8125rem;
-}
-.when-open,
-.when-closed {
-  grid-area: 1 / 1;
-  text-decoration: underline;
-  text-decoration-color: var(--link-rule);
-  text-underline-offset: .2em;
-}
-details:not([open]) > summary .when-open,
-details[open] > summary .when-closed {
-  visibility: hidden;
-}
-.research-topic > summary:hover .topic-action,
-.research-details > summary:hover {
   color: var(--ink);
-  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 650;
+  line-height: 1.4;
 }
-summary:hover .when-open,
-summary:hover .when-closed {
-  text-decoration-color: currentColor;
-}
-.research-topic > summary:focus-visible,
-.research-details > summary:focus-visible {
+.research-topic > summary:hover > h4 { color: var(--maroon); }
+.research-topic > summary:focus-visible {
   outline: 2px solid var(--maroon);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
-.research-topic[open] {
-  margin-bottom: 1rem;
-}
-.research-result {
-  max-width: 65ch;
-  margin: .65rem 0 .8rem;
-  border: 0;
-  padding: 0;
-}
-@media (max-width: 480px) {
-  .research-details > summary { justify-items: start; }
-}
+.research-topic > .formalization-list { border-top: 0; }
 @media print {
   .research-topic::details-content { display: block; content-visibility: visible; }
   .research-topic > summary { break-after: avoid; }
-  .topic-action, .research-details > summary { display: none; }
+  .research-topic > summary::before { display: none; }
 }
