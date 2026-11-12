@@ -14,13 +14,18 @@ body.lean-page {
   font-size: .9375rem;
 }
 .coding-page .formalization-list {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr) max-content;
+  column-gap: 1rem;
   margin-top: 1.25rem;
 }
 .coding-page .formalization {
   display: grid;
-  grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
   align-items: baseline;
-  gap: .25rem 1rem;
+  column-gap: inherit;
+  row-gap: .25rem;
   padding: .7rem 0;
 }
 .coding-page .project-number {
@@ -60,7 +65,7 @@ body.lean-page {
   padding: .15rem 0;
 }
 @media (max-width: 640px) {
-  .coding-page .formalization {
+  .coding-page .formalization-list {
     grid-template-columns: 1.2rem minmax(0, 1fr);
     column-gap: .6rem;
   }
