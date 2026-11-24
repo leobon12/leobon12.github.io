@@ -34,6 +34,16 @@
   outline-offset: 4px;
 }
 .research-topic > .formalization-list { border-top: 0; }
+.research-topic .research-row {
+  padding-inline-end: .75rem;
+}
+.research-topic .research-paper-title {
+  min-width: min(15rem, 100%);
+}
+.research-topic .paper-link {
+  flex: none;
+  padding: .12rem .125rem;
+}
 @media print {
   .research-topic::details-content { display: block; content-visibility: visible; }
   .research-topic > summary { break-after: avoid; }
